@@ -11,6 +11,7 @@ module.exports = {
         "gdsccode-logo": "url('/Assets/GDSC-CODE.png')",
         "gdsc-footer-logo": "url('/Assets/GDSC_Silver_Oak University1.png')",
         "gdsc-sou-logo": "url('/Assets/GDSC-SOU.png')",
+        "team-header": "url('/Assets/TEAM_HEADER_BG.png')",
       },
       animation: {
         "spin-slow": "spin 5s linear infinite",

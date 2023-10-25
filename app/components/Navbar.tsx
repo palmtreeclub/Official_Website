@@ -20,16 +20,19 @@ export default function Navbar() {
   };
 
   return (
-    <div className="flex max-sm:flex-col z-50 fixed top-0 w-full h-max bg-slate-50/80 shadow-md backdrop-blur-md justify-between px-[2vw] sm:py-[1vw]">
+    <div className="flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md justify-between sm:px-[2vw] sm:py-[1vw]">
       <div
         onClick={() => router.push("/")}
         className="logo cursor-pointer h-full max-sm:py-5 px-5 justify-between text-3xl items-center flex"
       >
-        <div className="logo bg-gdsc-sou-logo bg-cover sm:w-[18vw] sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]" />
-        <HiBars3BottomRight onClick={toggleMobileMenu} className="sm:hidden" />
+        <div className="logo bg-gdsc-sou-logo bg-cover sm:w-[18vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]" />
+        <HiBars3BottomRight
+          onClick={toggleMobileMenu}
+          className="sm:hidden dark:text-white"
+        />
       </div>
       <div
-        className={`link relative transition-all duration-300 overflow-hidden z-40 max-sm:px-5 max-sm:backdrop-blur-xl max-sm:bg-slate-50 flex max-sm:flex-col max-sm:text-md sm:text-[1.4vw] sm:font-semibold gap-[1.5vw] text-slate-600 ${
+        className={`link relative transition-all duration-300 overflow-hidden z-40 max-sm:px-5 max-sm:backdrop-blur-xl max-sm:bg-slate-50 dark:max-sm:bg-slate-800 dark:text-white/50 flex max-sm:flex-col max-sm:text-md sm:text-[1.4vw] sm:font-semibold gap-[1.5vw] text-slate-600 ${
           isMobileMenuOpen ? "h-max max-sm:py-5" : "max-sm:h-0"
         }`}
       >
