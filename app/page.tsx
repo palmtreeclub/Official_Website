@@ -9,39 +9,74 @@ import {
   BiLogoGithub,
 } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import Confettin from "./components/Confettin";
+import EventCard from "./components/EventCard";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {}, []);
+
   return (
     <>
       <section className="flex flex-col w-full h-full justify-center items-center">
         <div className="flex w-4/5  h-4/5 max-md:flex-col justify-center items-center">
-          <div className=" flex flex-col sm:w-1/2">
-            <div className="bg-gdsccode-logo sm:w-[6vw] sm:h-[6vw] max-sm:w-[12vw] max-sm:h-[12vw] bg-cover"></div>
+          <motion.div
+            initial={{ translateX: "-100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: false }}
+            className=" flex flex-col sm:w-1/2"
+          >
+            <motion.div
+              initial={{ translateX: "-100px", opacity: 0 }}
+              whileInView={{ translateX: "0px", opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: false }}
+              className="bg-gdsccode-logo sm:w-[6vw] sm:h-[6vw] max-sm:w-[12vw] max-sm:h-[12vw] bg-cover"
+            ></motion.div>
             <h1 className="sm:text-[1.7vw] max-sm:text-md font-medium text-slate-600">
               <span className="sm:text-[2.2vw] max-md:text-[1.4rem]">
                 <span>Google</span>&nbsp;<span>Developer</span>&nbsp;
                 <span>Student</span> &nbsp;<span>Club</span>
-                <br />
               </span>
-              <span className="uppercase max-md:text-xl font-google-sans font-bold text-transparent bgGradientAnim">
+              <motion.div
+                initial={{ translateX: "-100px", opacity: 0 }}
+                whileInView={{ translateX: "0px", opacity: 1 }}
+                transition={{ duration: 1.2 }}
+                viewport={{ once: false }}
+                className="uppercase max-md:text-xl font-google-sans font-bold text-transparent bgGradientAnim"
+              >
                 Silver Oak University
-              </span>
-              <br />A technical club focused on building a community of student
+              </motion.div>
+              A technical club focused on building a community of student
               developers interested in solving real-world problems.
             </h1>
-          </div>
-          {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
-          <div className="relative sm:w-[40vw] sm:h-[40vw] max-sm:w-[90vw] max-sm:h-[90vw] ">
+          </motion.div>
+          <motion.div
+            initial={{ translateX: "100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            viewport={{ once: false }}
+            className="relative sm:w-[40vw] sm:h-[40vw] max-sm:w-[90vw] max-sm:h-[90vw] "
+          >
             <Image
               src="/Svg/Hero_Section.svg"
               layout="fill"
               className="max-md:h-fit max-md:w-96 upDown"
               alt="hackathon"
             />
-          </div>
+          </motion.div>
         </div>
-        <div className="relative  flex justify-center items-center py-[2vw] w-full h-max">
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          viewport={{ once: false }}
+          className="relative  flex justify-center items-center py-[2vw] w-full h-max"
+        >
           <button
             type="button"
             className="bg-gradient-to-r from-red-600 to-indigo-600 scale-90 hover:scale-100 transition-all duration-300 absolute w-max max-sm:px-5 max-sm:-top-10 sm:-top-[2vw] max-sm:text-xl sm:text-[1.2vw] text-white p-[1vw] rounded-xl"
@@ -68,12 +103,18 @@ export default function Home() {
               <BiLogoGithub className="" />
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="flex justify-center items-center w-full h-full">
         <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
-          <div className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] ">
+          <motion.div
+            initial={{ translateX: "-100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: false }}
+            className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] "
+          >
             <h1 className="max-sm:text-2xl text-[2vw] font-medium text-red-500">
               About Us
             </h1>
@@ -89,11 +130,17 @@ export default function Home() {
                 objectFit="contain"
               />
             </div>
-          </div>
-          <div className=" flex flex-col sm:w-1/2">
+          </motion.div>
+          <motion.div
+            initial={{ translateY: "100px", opacity: 0 }}
+            whileInView={{ translateY: "0px", opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: false }}
+            className=" flex flex-col sm:w-1/2"
+          >
             <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
               <br />
-              <span className="uppercase  max-md:text-xl sm:text-3xl font-google-sans font-bold text-transparent bgGradientAnim">
+              <span className="uppercase  max-md:text-xl sm:text-[2.2vw] font-google-sans font-bold text-transparent bgGradientAnim">
                 DSC SOU
               </span>{" "}
               conducts workshops, seminars and technical showcases for Silveroak
@@ -106,7 +153,7 @@ export default function Home() {
               connecting with developers around the world, DSC will help the
               students get it.
             </h1>
-          </div>
+          </motion.div>
           {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
         </div>
       </section>
@@ -114,14 +161,44 @@ export default function Home() {
       <section className="flex justify-center items-center w-full h-full">
         <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
           <div className=" flex flex-col sm:w-1/2">
-            <h1 className="max-sm:text-2xl text-[3vw] font-medium text-red-500">
-              <span className="text-red-500">Design.</span>{" "}
-              <span className="text-blue-500">Develop.</span>{" "}
-              <span className="text-yellow-500">Deliver.</span>
-            </h1>
-            <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
+            <div className="max-sm:text-2xl flex text-[3vw] font-medium text-red-500">
+              <motion.div
+                initial={{ translateX: "-100px", opacity: 0 }}
+                whileInView={{ translateX: "0px", opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: false }}
+                className="text-red-500"
+              >
+                Design.&nbsp;
+              </motion.div>{" "}
+              <motion.div
+                initial={{ translateX: "-110px", opacity: 0 }}
+                whileInView={{ translateX: "0px", opacity: 1 }}
+                transition={{ duration: 1.5 }}
+                viewport={{ once: false }}
+                className="text-blue-500"
+              >
+                Develop.&nbsp;
+              </motion.div>{" "}
+              <motion.div
+                initial={{ translateX: "-120px", opacity: 0 }}
+                whileInView={{ translateX: "0px", opacity: 1 }}
+                transition={{ duration: 2.5 }}
+                viewport={{ once: false }}
+                className="text-yellow-500"
+              >
+                Deliver.&nbsp;
+              </motion.div>
+            </div>
+            <motion.div
+              initial={{ translateY: "100px", opacity: 0 }}
+              whileInView={{ translateY: "0px", opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: false }}
+              className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600"
+            >
               <br />
-              <span className="uppercase  max-md:text-xl sm:text-3xl font-google-sans font-bold text-transparent bgGradientAnim">
+              <span className="uppercase  max-md:text-xl sm:text-[2.2vw] font-google-sans font-bold text-transparent bgGradientAnim">
                 DSC SOU
               </span>{" "}
               These are the amazing bunch of people who make the community what
@@ -132,16 +209,26 @@ export default function Home() {
               They take the time out from their daily grind to give back to the
               members and empower them to become bigger (Metaphorically). And
               Better.
-            </h1>
-            <button
+            </motion.div>
+            <motion.button
+              initial={{ translateY: "50px", opacity: 0 }}
+              whileInView={{ translateY: "0px", opacity: 1 }}
+              transition={{ duration: 1.1 }}
+              viewport={{ once: false }}
               onClick={() => router.push("/our_team")}
               type="button"
               className="text-sky-600 flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl font-medium w-max  hover:text-pink-500"
             >
               Meet The Team <AiOutlineArrowRight className="horiAnim" />
-            </button>
+            </motion.button>
           </div>
-          <div className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] ">
+          <motion.div
+            initial={{ translateX: "100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: false }}
+            className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] "
+          >
             {/* <h1 className="max-sm:text-2xl text-[3vw] font-medium text-blue-400">
               What Do We Do?
             </h1> */}
@@ -154,89 +241,29 @@ export default function Home() {
                 objectFit="contain"
               />
             </div>
-          </div>
+          </motion.div>
           {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
         </div>
       </section>
       {/* Upcoming Events */}
-      <section className="flex justify-center items-center w-full h-full">
-        <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
-          <div className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] ">
-            <h1 className="max-sm:text-2xl text-[2vw] font-medium text-red-500">
-              About Us
-            </h1>
-            <h1 className="max-sm:text-2xl text-[3vw] font-medium text-blue-400">
-              What Do We Do?
-            </h1>
-            <div className="relative sm:w-[30vw]  sm:h-[20vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
-              <Image
-                src="/Assets/About.gif"
-                layout="fill"
-                className="mt-[3vw]"
-                alt="hackathon"
-                objectFit="contain"
-              />
-            </div>
-          </div>
-          <div className=" flex flex-col sm:w-1/2">
-            <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
-              <br />
-              <span className="uppercase  max-md:text-xl sm:text-3xl font-google-sans font-bold text-transparent bgGradientAnim">
-                DSC SOU
-              </span>{" "}
-              conducts workshops, seminars and technical showcases for Silveroak
-              University as well as other colleges in Gujarat. In addition to
-              workshops, Silveroak University also provides an opportunity for
-              students to apply their newly gained skills to develop solutions
-              for local organizations and then provide visibility via showcases.
-              From learning about new technologies with materials provided by
-              Google Developers to attending talks, events, DevFests and
-              connecting with developers around the world, DSC will help the
-              students get it.
-            </h1>
-          </div>
-          {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
+      <section className="flex dark:bg-event-bw bg-event-bg bg-contain justify-center items-center w-full h-full">
+        <div className="flex flex-col w-4/5 h-max max-md:flex-col justify-center  items-center">
+          <motion.h1
+            initial={{ translateY: "-100px", opacity: 0 }}
+            whileInView={{ translateY: "0px", opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: false }}
+            className="max-sm:text-2xl sm:pb-[2vw] max-sm:pb-5 text-[2vw] font-medium text-blue-500"
+          >
+            Upcoming Events
+          </motion.h1>
+          <Confettin onClose={setIsVisible} onFire={isVisible} />
+          <EventCard mirror={true} onClick={setIsVisible} />
         </div>
       </section>
       {/* Partners */}
       <section className="flex justify-center items-center w-full h-full">
-        <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
-          <div className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] ">
-            <h1 className="max-sm:text-2xl text-[2vw] font-medium text-red-500">
-              About Us
-            </h1>
-            <h1 className="max-sm:text-2xl text-[3vw] font-medium text-blue-400">
-              What Do We Do?
-            </h1>
-            <div className="relative sm:w-[30vw]  sm:h-[20vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
-              <Image
-                src="/Assets/About.gif"
-                layout="fill"
-                className="mt-[3vw]"
-                alt="hackathon"
-                objectFit="contain"
-              />
-            </div>
-          </div>
-          <div className=" flex flex-col sm:w-1/2">
-            <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
-              <br />
-              <span className="uppercase  max-md:text-xl sm:text-3xl font-google-sans font-bold text-transparent bgGradientAnim">
-                DSC SOU
-              </span>{" "}
-              conducts workshops, seminars and technical showcases for Silveroak
-              University as well as other colleges in Gujarat. In addition to
-              workshops, Silveroak University also provides an opportunity for
-              students to apply their newly gained skills to develop solutions
-              for local organizations and then provide visibility via showcases.
-              From learning about new technologies with materials provided by
-              Google Developers to attending talks, events, DevFests and
-              connecting with developers around the world, DSC will help the
-              students get it.
-            </h1>
-          </div>
-          {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
-        </div>
+        <div className="flex w-full bg-slate-50 h-max max-sm:p-5 shadow-xl  sm:p-[2vw]"></div>
       </section>
     </>
   );

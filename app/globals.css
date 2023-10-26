@@ -278,3 +278,18 @@ a {
   }
 
 }
+
+
+.swiper-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.swiper-slide {
+  width: 100%;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+}

@@ -1,10 +1,11 @@
 "use client";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
 
-export default function TeamCard({ member, onClick }: any) {
+export default function TeamCard({ member, onClick, mirror }: any) {
   console.log(member.color);
   const color = member.color;
   console.log(color);
@@ -54,7 +55,14 @@ export default function TeamCard({ member, onClick }: any) {
   } hover:scale-110 transition-all duration-300  rounded-[50%]`;
 
   return (
-    <div className={CardContainer} onClick={onClick}>
+    <motion.div
+      initial={{ scale: 0.5, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: mirror ? false : true }}
+      className={CardContainer}
+      onClick={onClick}
+    >
       <div className={logoContainer}>
         <Image
           src={"/Assets/Lead.jpeg"}
@@ -85,6 +93,6 @@ export default function TeamCard({ member, onClick }: any) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

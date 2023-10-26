@@ -5,6 +5,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
 import TeamCard from "../components/TeamCard";
 import ReactCanvasConfetti from "react-canvas-confetti";
+import Confettin from "../components/Confettin";
 
 export default function Page() {
   const [members, setMembers] = useState([
@@ -110,57 +111,10 @@ export default function Page() {
   ]);
   const [isVisible, setIsVisible] = useState(false);
 
-  const refAnimationInstance: any = useRef(null);
-
-  const getInstance = useCallback((instance: any) => {
-    refAnimationInstance.current = instance;
-  }, []);
-
-  const makeShot = useCallback((particleRatio: any, opts: any) => {
-    refAnimationInstance.current &&
-      refAnimationInstance.current({
-        ...opts,
-        origin: { y: 0.7 },
-        particleCount: Math.floor(200 * particleRatio),
-      });
-  }, []);
-
-  useEffect(() => fire(), [isVisible]);
-
-  const fire = useCallback(() => {
-    makeShot(0.25, {
-      spread: 26,
-      startVelocity: 55,
-    });
-
-    makeShot(0.2, {
-      spread: 60,
-    });
-
-    makeShot(0.35, {
-      spread: 100,
-      decay: 0.91,
-      scalar: 0.8,
-    });
-
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 25,
-      decay: 0.92,
-      scalar: 1.2,
-    });
-
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 45,
-    });
-    setIsVisible(false);
-  }, [makeShot]);
-
   return (
     <div className="w-full h-max flex justify-center items-center">
       <div className="flex w-full h-full flex-col justify-center items-center">
-        <div className="flex max-sm:py-16 sm:pb-[3vw] sm:pt-[7vw] bg-slate-500 dark:bg-none dark:bg-slate-900 bg-team-header bg-cover bg-fixed h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center">
+        <div className="flex max-sm:py-16 sm:pb-[3vw] sm:pt-[7vw] bg-slate-500  bg-team-header dark:bg-team-header-bw bg-cover bg-fixed h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center">
           <div className="w-4/5 flex font-medium max-sm:gap-3 justify-center flex-col items-center">
             <h1 className="sm:text-[3vw] max-sm:text-3xl dark:text-white text-slate-800">
               Meet The Team
@@ -178,24 +132,11 @@ export default function Page() {
             GDSC Lead 2023
           </h1>
 
-          {true && (
-            <ReactCanvasConfetti
-              refConfetti={getInstance}
-              style={{
-                position: "fixed",
-                pointerEvents: "none",
-                width: "100%",
-                height: "100%",
-                top: 0,
-                left: 0,
-              }}
-            />
-          )}
+          <Confettin onClose={setIsVisible} onFire={isVisible} />
 
           <TeamCard
             onClick={() => {
               setIsVisible(true);
-              console.log("object");
             }}
             member={{
               name: "Dev Shinde",
