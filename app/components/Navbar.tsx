@@ -15,19 +15,24 @@ export default function Navbar() {
     }
   }, []);
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e: any) => {
+    e.preventDefault();
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <div className="flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md justify-between sm:px-[2vw] sm:py-[1vw]">
-      <div
-        onClick={() => router.push("/")}
-        className="logo cursor-pointer h-full max-sm:py-5 px-5 justify-between text-3xl items-center flex"
-      >
-        <div className="logo bg-gdsc-sou-logo bg-cover sm:w-[18vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]" />
+      <div className="logo cursor-pointer h-full max-sm:py-5 px-5 justify-between text-3xl items-center flex">
+        <div
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            router.push("/");
+          }}
+          className="logo dark:-mt-3 dark:bg-gdsc-sou-bw-logo bg-gdsc-sou-logo bg-cover sm:dark:w-[20vw] sm:w-[18vw] max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]"
+        />
         <HiBars3BottomRight
-          onClick={toggleMobileMenu}
+          onClick={(e) => toggleMobileMenu(e)}
           className="sm:hidden dark:text-white"
         />
       </div>

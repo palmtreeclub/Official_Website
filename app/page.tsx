@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { AiOutlineTwitter } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineTwitter } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import {
   BiLogoLinkedin,
@@ -19,9 +19,10 @@ export default function Home() {
           <div className=" flex flex-col sm:w-1/2">
             <div className="bg-gdsccode-logo sm:w-[6vw] sm:h-[6vw] max-sm:w-[12vw] max-sm:h-[12vw] bg-cover"></div>
             <h1 className="sm:text-[1.7vw] max-sm:text-md font-medium text-slate-600">
-              <span className="sm:text-[2.2vw] max-md:text-2xl">
-                <span>Google</span>&nbsp;<span>Developer</span>&nbsp;{" "}
-                <span>Student</span> &nbsp;<span>Club</span> &nbsp; <br />
+              <span className="sm:text-[2.2vw] max-md:text-[1.4rem]">
+                <span>Google</span>&nbsp;<span>Developer</span>&nbsp;
+                <span>Student</span> &nbsp;<span>Club</span>
+                <br />
               </span>
               <span className="uppercase max-md:text-xl font-google-sans font-bold text-transparent bgGradientAnim">
                 Silver Oak University
@@ -112,24 +113,12 @@ export default function Home() {
       {/* Team */}
       <section className="flex justify-center items-center w-full h-full">
         <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
-          <div className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] ">
-            <h1 className="max-sm:text-2xl text-[2vw] font-medium text-red-500">
-              About Us
-            </h1>
-            <h1 className="max-sm:text-2xl text-[3vw] font-medium text-blue-400">
-              What Do We Do?
-            </h1>
-            <div className="relative sm:w-[30vw]  sm:h-[20vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
-              <Image
-                src="/Assets/About.gif"
-                layout="fill"
-                className="mt-[3vw]"
-                alt="hackathon"
-                objectFit="contain"
-              />
-            </div>
-          </div>
           <div className=" flex flex-col sm:w-1/2">
+            <h1 className="max-sm:text-2xl text-[3vw] font-medium text-red-500">
+              <span className="text-red-500">Design.</span>{" "}
+              <span className="text-blue-500">Develop.</span>{" "}
+              <span className="text-yellow-500">Deliver.</span>
+            </h1>
             <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
               <br />
               <span className="uppercase  max-md:text-xl sm:text-3xl font-google-sans font-bold text-transparent bgGradientAnim">
@@ -147,10 +136,24 @@ export default function Home() {
             <button
               onClick={() => router.push("/our_team")}
               type="button"
-              className="text-sky-600 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl font-medium w-max  hover:text-pink-500"
+              className="text-sky-600 flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl font-medium w-max  hover:text-pink-500"
             >
-              Meet The Team
+              Meet The Team <AiOutlineArrowRight className="horiAnim" />
             </button>
+          </div>
+          <div className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] ">
+            {/* <h1 className="max-sm:text-2xl text-[3vw] font-medium text-blue-400">
+              What Do We Do?
+            </h1> */}
+            <div className="relative sm:w-[50vw]  sm:h-[30vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
+              <Image
+                src="/Assets/grow.png"
+                layout="fill"
+                className="mt-[3vw]"
+                alt="hackathon"
+                objectFit="contain"
+              />
+            </div>
           </div>
           {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
         </div>

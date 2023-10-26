@@ -10,6 +10,9 @@ module.exports = {
       backgroundImage: {
         "gdsccode-logo": "url('/Assets/GDSC-CODE.png')",
         "gdsc-footer-logo": "url('/Assets/GDSC_Silver_Oak University1.png')",
+        "gdsc-footer-bw-logo":
+          "url('/Assets/GDSC_Silver_Oak UniversityBW.png')",
+        "gdsc-sou-bw-logo": "url('/Assets/GDSC_SOU_BW.png')",
         "gdsc-sou-logo": "url('/Assets/GDSC-SOU.png')",
         "team-header": "url('/Assets/TEAM_HEADER_BG.png')",
       },

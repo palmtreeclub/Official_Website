@@ -7,11 +7,11 @@ import { FaLocationDot } from "react-icons/fa6";
 export default function Footer() {
   return (
     <>
-      <div className="flex dark:max-sm:bg-slate-800 bg-slate-50 w-full shadow-[0_0_10px_rgba(0,0,255,0.2)]">
+      <div className="flex dark:bg-slate-800 bg-slate-50 w-full shadow-[0_0_10px_rgba(0,0,255,0.2)]">
         <div className="flex flex-col w-full">
           <div className="flex max-sm:flex-col ">
             <div className="px-[4vw] py-[2vw] max-sm:gap-5 flex flex-col justify-center max-sm:items-center">
-              <div className="bg-gdsc-footer-logo bg-cover max-sm:w-[70vw] max-sm:h-[30vw]  sm:w-[20vw] sm:h-[7vw]"></div>
+              <div className="bg-gdsc-footer-logo dark:sm:h-[10vw] dark:bg-gdsc-footer-bw-logo bg-cover max-sm:w-[70vw] max-sm:h-[30vw]  sm:w-[20vw] sm:h-[7vw]"></div>
               <h1 className="sm:text-[2vw] dark:text-white max-sm:text-2xl font-medium  text-slate-800">
                 Join Our Community
               </h1>
@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
             <div className="flex max-sm:w-full max-sm:justify-center ">
               <div className="flex flex-col text-slate-600 dark:text-white/60  font-normal px-[4vw] py-[2vw] max-sm:text-xl sm:text-[1.4vw] gap-[.5rem]">
-                <h1 className="sm:text-[1.8vw] max-sm:text-xl text-slate-800 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
+                <h1 className="sm:text-[1.8vw] max-sm:text-xl dark:text-white/60 text-slate-800 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
                   Quick Links
                 </h1>
                 <Link
@@ -67,7 +67,7 @@ export default function Footer() {
                 </Link>
               </div>
               <div className="flex flex-col text-slate-800  font-normal px-[4vw] py-[2vw] max-sm:text-md sm:text-[1.4vw] gap-[.5rem]">
-                <h1 className="sm:text-[1.8vw] max-sm:text-xl text-slate-800 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
+                <h1 className="sm:text-[1.8vw] max-sm:text-xl text-slate-800 dark:text-white/60 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
                   Contact Us
                 </h1>
                 <Link
