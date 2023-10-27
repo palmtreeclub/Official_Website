@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { FirebaseProvider } from "./context/firebase";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} relative dark:bg-black`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <FirebaseProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </FirebaseProvider>
       </body>
     </html>
   );

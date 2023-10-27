@@ -13,11 +13,16 @@ import React, { useEffect, useState } from "react";
 import Confettin from "./components/Confettin";
 import EventCard from "./components/EventCard";
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useFirebase } from "./context/firebase";
 
 export default function Home() {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => {}, []);
+  const firebase: any = useFirebase();
+  useEffect(() => {
+    firebase.isLoggedIn && router.push("/team/dashboard");
+    console.log(firebase.isLoggedIn);
+  }, [firebase.isLoggedIn]);
 
   return (
     <>
@@ -30,13 +35,7 @@ export default function Home() {
             viewport={{ once: false }}
             className=" flex flex-col sm:w-1/2"
           >
-            <motion.div
-              initial={{ translateX: "-100px", opacity: 0 }}
-              whileInView={{ translateX: "0px", opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: false }}
-              className="bg-gdsccode-logo sm:w-[6vw] sm:h-[6vw] max-sm:w-[12vw] max-sm:h-[12vw] bg-cover"
-            ></motion.div>
+            <motion.div className="bg-gdsccode-logo sm:w-[6vw] sm:h-[6vw] max-sm:w-[12vw] max-sm:h-[12vw] bg-cover"></motion.div>
             <h1 className="sm:text-[1.7vw] max-sm:text-md font-medium text-slate-600">
               <span className="sm:text-[2.2vw] max-md:text-[1.4rem]">
                 <span>Google</span>&nbsp;<span>Developer</span>&nbsp;
@@ -247,7 +246,7 @@ export default function Home() {
       </section>
       {/* Upcoming Events */}
       <section className="flex dark:bg-event-bw bg-event-bg bg-contain justify-center items-center w-full h-full">
-        <div className="flex flex-col w-4/5 h-max max-md:flex-col justify-center  items-center">
+        <div className="flex flex-col max-sm:scale-90 h-max max-md:flex-col justify-center  items-center">
           <motion.h1
             initial={{ translateY: "-100px", opacity: 0 }}
             whileInView={{ translateY: "0px", opacity: 1 }}
