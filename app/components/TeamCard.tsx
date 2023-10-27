@@ -65,7 +65,11 @@ export default function TeamCard({ member, onClick, mirror }: any) {
     >
       <div className={logoContainer}>
         <Image
-          src={"/Assets/Lead.jpeg"}
+          src={
+            member?.avtar
+              ? member?.avtar
+              : "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
+          }
           layout="fill"
           alt="GDSC-Lead"
           className="logo"

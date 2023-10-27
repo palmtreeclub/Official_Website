@@ -2,6 +2,19 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -26,13 +39,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
 const auth = getAuth(app);
 export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props: any) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [members, setMembers] = useState([]);
   useEffect(() => {
     onAuthStateChanged(auth, (user: any) => {
       if (user) {
@@ -52,7 +67,11 @@ export const FirebaseProvider = (props: any) => {
   };
 
   const signUp = async (email: any, password: any) => {
-    return await createUserWithEmailAndPassword(auth, email, password);
+    return await createUserWithEmailAndPassword(auth, email, password).then(
+      (res) => {
+        resetPassword(email);
+      }
+    );
   };
 
   const resetPassword = async (email: any) => {
@@ -63,6 +82,82 @@ export const FirebaseProvider = (props: any) => {
   const signout = async () => {
     return await signOut(auth);
   };
+  const addNewMemberDetails = async (
+    newMemberDetails: any,
+    newMemberCradentials: any
+  ) => {
+    const db = getFirestore();
+    try {
+      const docRef = await addDoc(collection(db, "members"), {
+        name: newMemberDetails.name,
+        designation: newMemberDetails.designation,
+        color: newMemberDetails.color,
+        github: newMemberDetails.github,
+        linkedin: newMemberDetails.linkedin,
+        twitter: newMemberDetails.twitter,
+      });
+      await uploadMemberPhoto(newMemberDetails?.avtar, docRef.id);
+      const url = await getMemberPhotoURL(docRef.id);
+      const memberDocRef = doc(db, "members", docRef.id); // Replace `memberId` with the actual member document ID
+      await updateMember(memberDocRef, {
+        id: docRef.id,
+        avtar: url,
+      });
+      await signUp(newMemberCradentials.email, newMemberCradentials.password);
+      await getMembers();
+      return {
+        success: true,
+        data: docRef.id,
+      };
+    } catch (error: any) {
+      console.error("Error adding document: ", error);
+      return {
+        success: false,
+        data: error.message,
+      };
+    }
+  };
+
+  const updateMember = async (memberDocRef: any, updatedData: any) => {
+    try {
+      await updateDoc(memberDocRef, updatedData);
+      console.log("Member data updated successfully.");
+    } catch (error) {
+      console.error("Error updating member data: ", error);
+    }
+  };
+
+  const uploadMemberPhoto = async (file: any, memberId: any) => {
+    console.log({ file });
+    const storageRef = ref(storage, `members/${memberId}/profile.png`);
+    await uploadBytes(storageRef, file);
+  };
+  const getMemberPhotoURL = async (memberId: any) => {
+    const storageRef = ref(storage, `members/${memberId}/profile.png`);
+    return await getDownloadURL(storageRef);
+  };
+  const getMembers = async () => {
+    const membersCollection = collection(db, "members");
+    const q = query(membersCollection);
+
+    try {
+      const querySnapshot = await getDocs(q);
+      const members: any = [];
+      querySnapshot.forEach((doc) => {
+        members.push(doc.data());
+      });
+
+      setMembers(members);
+      return members;
+    } catch (error) {
+      console.error("Error getting documents: ", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    getMembers();
+  }, []);
   return (
     <>
       <FirebaseContext.Provider
@@ -74,6 +169,8 @@ export const FirebaseProvider = (props: any) => {
           signIn,
           signUp,
           signout,
+          getMembers,
+          addNewMemberDetails,
         }}
       >
         {props.children}

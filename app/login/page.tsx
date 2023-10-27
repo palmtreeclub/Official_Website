@@ -19,11 +19,15 @@ export default function Page() {
 
   const isValid = () => {
     if (!cradentials.email) {
-      toast.error("Please enter Email address");
+      toast.error("Please enter Email address", {
+        className: "sm:text-[1vw] max-sm:text-xl",
+      });
       return false;
     }
     if (!cradentials.password) {
-      toast.error("Please enter Password");
+      toast.error("Please enter Password", {
+        className: "sm:text-[1vw] max-sm:text-xl",
+      });
       return false;
     }
     return true;
@@ -40,7 +44,9 @@ export default function Page() {
           router.push("/team/dashboard");
         })
         .catch((err: any) => {
-          toast.error("Error: " + err.message);
+          toast.error("Error: " + err.message, {
+            className: "sm:text-[1vw] max-sm:text-xl",
+          });
         });
     }
   };
