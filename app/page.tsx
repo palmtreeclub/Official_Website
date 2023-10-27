@@ -127,6 +127,9 @@ export default function Home() {
                 className="mt-[3vw]"
                 alt="hackathon"
                 objectFit="contain"
+                priority
+                fetchPriority="high"
+                quality={60}
               />
             </div>
           </motion.div>

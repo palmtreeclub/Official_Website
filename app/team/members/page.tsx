@@ -1,7 +1,6 @@
 "use client";
 import TeamCard from "@/app/components/TeamCard";
 import { useFirebase } from "@/app/context/firebase";
-import { membersArr } from "@/app/our_team/page";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -14,7 +13,7 @@ export default function Page() {
   const imgRef: any = useRef();
   const [isMemberDialog, setIsMemberDialog] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
-  const [members, setMembers] = useState(membersArr);
+  const [members, setMembers] = useState(firebase?.members);
   const [previewAvtar, setPreviewAvtar] = useState(null);
   const [newMemberDetails, setNewMemberDetails] = useState({
     name: "",
@@ -268,7 +267,7 @@ export default function Page() {
           Core Team Members
         </h1>
         <div className="flex flex-wrap w-full justify-center items-center sm:gap-[3vw] max-sm:gap-10">
-          {members?.map((member) => (
+          {members?.map((member: any) => (
             <TeamCard key={member} member={member} />
           ))}
         </div>
