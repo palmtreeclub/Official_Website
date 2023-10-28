@@ -6,6 +6,9 @@ import { BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
 import TeamCard from "../components/TeamCard";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import Confettin from "../components/Confettin";
+import { useFirebase } from "../context/firebase";
+import { useTheme } from "next-themes";
+
 interface Member {
   img: string;
   gender: string;
@@ -119,12 +122,37 @@ export default function Page() {
       portfolio: "",
     },
   ]);
+  const firebase: any = useFirebase();
   const [isVisible, setIsVisible] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    console.log(
+      JSON.stringify(firebase?.members),
+      firebase?.members?.length,
+      "firebase"
+    );
+    setMembers(firebase?.members);
+    console.log({ theme });
+  }, [firebase?.members]);
 
   return (
     <div className="w-full h-max flex justify-center items-center">
       <div className="flex w-full h-full flex-col justify-center items-center">
-        <div className="flex max-sm:py-16 sm:pb-[3vw] sm:pt-[7vw] bg-slate-500  bg-team-header dark:bg-team-header-bw bg-cover bg-fixed h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center">
+        <div className="flex overflow-hidden relative max-sm:py-16 sm:pb-[3vw] sm:pt-[7vw] h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center">
+          <Image
+            src={
+              theme === "dark"
+                ? "/Assets/TEAM_HEADER_BW.jpg"
+                : "/Assets/TEAM_HEADER_BG.png"
+            }
+            layout="fill"
+            objectFit="cover"
+            className="-z-10"
+            priority
+            fetchPriority="high"
+            alt="Team-Cover-Photo"
+          />
           <div className="w-4/5 flex font-medium max-sm:gap-3 justify-center flex-col items-center">
             <h1 className="sm:text-[3vw] max-sm:text-3xl dark:text-white text-slate-800">
               Meet The Team

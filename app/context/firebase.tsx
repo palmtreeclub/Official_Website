@@ -2,7 +2,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  getStorage,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 
 import {
   getFirestore,
@@ -13,6 +19,7 @@ import {
   where,
   updateDoc,
   doc,
+  deleteDoc,
 } from "firebase/firestore";
 
 import {
@@ -25,6 +32,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { ThemeProvider } from "next-themes";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const FirebaseContext: any = createContext(null);
 
@@ -155,6 +165,44 @@ export const FirebaseProvider = (props: any) => {
     }
   };
 
+  const deleteMember = async (memberId: any) => {
+    try {
+      const memberDocRef = doc(db, `members/${memberId}`);
+
+      await deleteDoc(memberDocRef);
+      console.log("Document deleted from Firestore.");
+      await deleteMemberPhoto(memberId);
+      getMembers();
+      return {
+        success: true,
+        data: "Member deleted successfully",
+      };
+    } catch (error: any) {
+      console.error("Error deleting document:", error);
+      return {
+        success: false,
+        data: "Error : " + error.message,
+      };
+    }
+  };
+  const deleteMemberPhoto = async (memberId: any) => {
+    try {
+      const imageRef = ref(storage, `members/${memberId}/profile.png`);
+
+      await deleteObject(imageRef);
+      console.log("Document deleted from Firestore.");
+      return {
+        success: true,
+        data: "Member photo deleted successfully",
+      };
+    } catch (error: any) {
+      console.error("Error deleting document:", error);
+      return {
+        success: false,
+        data: "Error : " + error.message,
+      };
+    }
+  };
   useEffect(() => {
     getMembers();
   }, []);
@@ -166,14 +214,20 @@ export const FirebaseProvider = (props: any) => {
           setIsLoggedIn,
           setUser,
           user,
+          members,
           signIn,
           signUp,
           signout,
           getMembers,
+          deleteMember,
           addNewMemberDetails,
         }}
       >
-        {props.children}
+        <ThemeProvider>
+          <Navbar />
+          {props.children}
+          <Footer />
+        </ThemeProvider>
       </FirebaseContext.Provider>
     </>
   );

@@ -7,13 +7,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { GrClose } from "react-icons/gr";
 
 export default function Page() {
   const firebase: any = useFirebase();
   const imgRef: any = useRef();
+  const [isOptions, setIsOptions] = useState(false);
+  const [isTip, setIsTip] = useState(false);
+  const [isDeleteMode, setDeleteMode] = useState(false);
+  const [isEditMode, setEditMode] = useState(false);
   const [isMemberDialog, setIsMemberDialog] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
-  const [members, setMembers] = useState(firebase?.members);
+  const [members, setMembers] = useState([]);
   const [previewAvtar, setPreviewAvtar] = useState(null);
   const [newMemberDetails, setNewMemberDetails] = useState({
     name: "",
@@ -34,6 +40,18 @@ export default function Page() {
     console.log(firebase.isLoggedIn, "team");
     setMembers(firebase?.members);
   }, [firebase?.isLoggedIn, firebase?.members]);
+
+  useEffect(() => {
+    if (isDeleteMode) {
+      setEditMode(false);
+      setIsTip(true);
+    }
+    if (isEditMode) {
+      setIsTip(true);
+      setDeleteMode(false);
+    }
+    if (!isDeleteMode && !isEditMode) setIsTip(false);
+  }, [isDeleteMode, isEditMode]);
 
   const colors = [
     { name: "Blue", value: "bg-blue-600", dbValue: "blue" },
@@ -78,6 +96,14 @@ export default function Page() {
     }
   };
 
+  const deleteMember = (memberId: any) => {
+    if (isDeleteMode) {
+      if (confirm("Are you sure you want to delete this member?")) {
+        firebase?.deleteMember(memberId);
+      }
+    }
+  };
+
   const SubmitDetails = async () => {
     const res = await firebase.addNewMemberDetails(
       newMemberDetails,
@@ -104,19 +130,46 @@ export default function Page() {
 
   return (
     <div
-      className={`flex z-30 relative max-sm:pt-10 sm:pt-[5vw] w-full h-max justify-center ${
-        isMemberDialog && "bg-black/10"
-      } items-center`}
+      className={`flex z-30 relative max-sm:pt-10 sm:pt-[5vw] w-full ${
+        members?.length > 0 ? "h-max" : "h-full"
+      } justify-center ${isMemberDialog && "bg-black/10"} items-center`}
     >
+      {isTip && (
+        <motion.div
+          initial={{ translateY: "-100px", opacity: 0 }}
+          whileInView={{ translateY: "0px", opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false }}
+          className={`max-sm:text-md max-sm:w-4/5 ${
+            isDeleteMode && "bg-red-200"
+          } ${
+            isEditMode && "bg-green-300"
+          } sm:w-1/3 shadow-xl max-sm:p-4 sm:p-[2vw] max-sm:rounded-lg sm:rounded-[1vw] fixed sm:top-[7vw] max-sm:top-20 z-50 text-center w-full sm:text-[1.2vw] font-medium text-slate-500`}
+        >
+          <h1 className="relative">
+            Tip
+            <GrClose
+              onClick={() => setIsTip(false)}
+              className="absolute right-0 top-0 text-slate-500 font-bold cursor-pointer"
+            />
+          </h1>
+          <h1 className="w-full">
+            {isDeleteMode &&
+              "Delete Mode are Activated , just click on member and press Confirm to delete."}
+            {isEditMode &&
+              "Edit Mode are Activated , just click on member and edit details and hit submit button."}
+          </h1>
+        </motion.div>
+      )}
       <ToastContainer />
       {isMemberDialog && (
-        <div className="flex w-full h-full fixed max-sm:flex-col-reverse overflow-hidden sm:gap-[5vw] max-sm:gap-10  z-50 backdrop-blur-sm  justify-center items-center top-0">
+        <div className="flex w-full max-sm:h-full  sm:h-full max-sm:scale-90 max-sm:py-24 rounded-2xl fixed max-sm:flex-col-reverse overflow-hidden sm:gap-[5vw] max-sm:gap-10  z-50 backdrop-blur-sm  justify-center items-center top-0">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2 }}
             viewport={{ once: false }}
-            className="flex relative h-max z-50 max-sm:w-4/5 sm:w-[50vw] sm:gap-[.4vw] max-sm:gap-5 flex-col sm:p-[2vw] bg-slate-300 max-sm:p-10 max-sm:rounded-xl sm:rounded-[1vw]"
+            className="flex relative h-max z-50 max-sm:w-full sm:w-[50vw] sm:gap-[.4vw] max-sm:gap-5 flex-col sm:p-[2vw] bg-slate-300 max-sm:p-10 max-sm:rounded-xl sm:rounded-[1vw]"
           >
             <h1 className="max-sm:text-2xl text-center w-full text-[2vw] font-medium text-red-500">
               Add New Member
@@ -250,7 +303,7 @@ export default function Page() {
               Submit
             </button>
           </motion.div>
-          <div className="flex sm:p-[2vw] max-sm:p-5 bg-white sm:rounded-[2vw] max-sm:rounded-xl shadow-xl">
+          <div className="flex max-md:hidden sm:p-[2vw] max-sm:p-5 bg-white sm:rounded-[2vw] max-sm:rounded-xl shadow-xl">
             <TeamCard
               member={{
                 name: newMemberDetails.name,
@@ -262,22 +315,83 @@ export default function Page() {
           </div>
         </div>
       )}
-      <div className="border-t-2  pb-10 flex flex-col justify-center items-center  dark:border-t-slate-700 border-t-slate-400/40  w-4/5">
+      <div className="border-t-2 h-full pb-10 flex flex-col justify-center items-center  dark:border-t-slate-700 border-t-slate-400/40  w-4/5">
         <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
           Core Team Members
         </h1>
-        <div className="flex flex-wrap w-full justify-center items-center sm:gap-[3vw] max-sm:gap-10">
-          {members?.map((member: any) => (
-            <TeamCard key={member} member={member} />
-          ))}
+        <div className="flex flex-wrap w-full h-full justify-center items-center sm:gap-[3vw] max-sm:gap-10">
+          {members?.length > 0 ? (
+            members?.map((member: any) => (
+              <div
+                className="flex"
+                key={member?.id}
+                onClick={() => deleteMember(member?.id)}
+              >
+                <TeamCard key={member} member={member} />
+              </div>
+            ))
+          ) : (
+            <h1 className="max-sm:text-xl font-medium text-slate-600 sm:text-[1.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
+              No Members Present in DB
+            </h1>
+          )}
         </div>
       </div>
-      <AiFillPlusCircle
-        onClick={() => setIsMemberDialog(!isMemberDialog)}
-        className={`cursor-pointer ${
-          isMemberDialog && "rotate-[135deg]"
-        } text-red-600 z-50 hover:text-red-600/75 transition-all duration-300 fixed sm:bottom-[3vw] max-sm:bottom-10 sm:right-[3vw] max-sm:text-7xl max-sm:right-5 sm:text-[5vw]`}
-      />
+      <div className="">
+        {isOptions && (
+          <>
+            <motion.div
+              initial={{ translateY: "100px", opacity: 0 }}
+              whileInView={{ translateY: "0px", opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false }}
+              className="bg-red-600 fixed sm:p-[.6vw] rounded-[50%]  hover:bg-red-600/75 cursor-pointer 
+          text-white z-50 transition-all duration-300  sm:bottom-[21vw] max-sm:bottom-[30vh] sm:right-[3.5vw] max-sm:text-4xl max-sm:right-7 sm:text-[3vw] max-sm:p-3"
+            >
+              <MdDelete
+                onClick={() => {
+                  setEditMode(false);
+                  setDeleteMode(!isDeleteMode);
+                }}
+                className={``}
+              />
+            </motion.div>
+            <motion.div
+              initial={{ translateY: "100px", opacity: 0 }}
+              whileInView={{ translateY: "0px", opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: false }}
+              className={`cursor-pointer bg-white rounded-[50%] text-blue-600 z-50 hover:text-blue-600/75 transition-all duration-300 fixed sm:bottom-[15vw] max-sm:bottom-[22vh] sm:right-[3vw] max-sm:text-6xl max-sm:right-7 sm:text-[5vw]`}
+            >
+              <AiFillPlusCircle
+                onClick={() => setIsMemberDialog(!isMemberDialog)}
+              />
+            </motion.div>
+            <motion.div
+              initial={{ translateY: "100px", opacity: 0 }}
+              whileInView={{ translateY: "0px", opacity: 1 }}
+              transition={{ duration: 1.1 }}
+              viewport={{ once: false }}
+              className="bg-green-600 fixed sm:p-[.6vw] rounded-[50%]  hover:bg-green-600/75 cursor-pointer 
+          text-white z-50 transition-all duration-300 max-sm:p-3 sm:bottom-[9.5vw] max-sm:bottom-[14vh] sm:right-[3.5vw] max-sm:text-4xl max-sm:right-7 sm:text-[3vw]"
+            >
+              <MdEdit
+                onClick={() => {
+                  setEditMode(!isEditMode);
+                  setDeleteMode(false);
+                }}
+                className={``}
+              />
+            </motion.div>
+          </>
+        )}
+        <AiFillPlusCircle
+          onClick={() => setIsOptions(!isOptions)}
+          className={`cursor-pointer ${
+            isOptions && "rotate-[135deg]"
+          } text-yellow-500 z-50 hover:text-yellow-500/75 transition-all duration-300 fixed sm:bottom-[3vw] max-sm:bottom-10 sm:right-[3vw] max-sm:text-7xl max-sm:right-5 sm:text-[5vw]`}
+        />
+      </div>
     </div>
   );
 }

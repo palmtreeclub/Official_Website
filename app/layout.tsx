@@ -21,9 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} relative dark:bg-black`}>
         <FirebaseProvider>
-          <Navbar />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </FirebaseProvider>
       </body>
     </html>

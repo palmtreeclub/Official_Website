@@ -21,6 +21,9 @@ export default function EventCard({ onClick, event, mirror }: any) {
             src={event?.photo ? event?.photo : "/Assets/grow.png"}
             alt="event"
             layout="fill"
+            priority
+            fetchPriority="high"
+            quality={60}
           />
         </div>
         <h1 className="sm:text-[1.5vw] max-sm:text-2xl font-bold pt-[1vw] w-4/5 sm:w-5/6 text-center">

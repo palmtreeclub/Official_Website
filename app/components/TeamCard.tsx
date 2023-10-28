@@ -74,6 +74,9 @@ export default function TeamCard({ member, onClick, mirror }: any) {
           alt="GDSC-Lead"
           className="logo"
           objectFit="contain"
+          priority
+          fetchPriority="high"
+          quality={60}
         />
       </div>
       <div className="w-[18rem] flex justify-center items-end">

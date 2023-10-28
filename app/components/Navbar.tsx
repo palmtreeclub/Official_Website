@@ -2,16 +2,19 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { HiBars3BottomRight } from "react-icons/hi2";
+import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { IoArrowUndo } from "react-icons/io5";
 import { useFirebase } from "../context/firebase";
 import { ToastContainer, toast } from "react-toastify";
+import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { theme, setTheme } = useTheme();
   const router = useRouter();
   const firebase: any = useFirebase();
   const pathname = usePathname();
@@ -54,6 +57,10 @@ export default function Navbar() {
               />
             )}
           </div>
+          <div
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="hover:text-blue-600 max-sm:pt-2 sm:pt-[.4vw] cursor-pointer"
+          ></div>
           {isLoggedIn ? (
             <div
               className={`link relative transition-all duration-300 overflow-hidden z-40 max-sm:px-5 max-sm:backdrop-blur-xl max-sm:bg-slate-50 dark:max-sm:bg-slate-800 dark:text-white/50 flex max-sm:flex-col max-sm:text-md sm:text-[1.4vw] sm:font-semibold gap-[1.5vw] text-slate-600 ${
@@ -177,6 +184,12 @@ export default function Navbar() {
               className="flex transition-all duration-300 sm:text-white max-sm:text-blue-600 cursor-pointer sm:bg-blue-600 h-max py-[.3vw] sm:px-[1vw] rounded-full hover:shadow-[0_5px_10px_rgba(255,0,10,.4)] max-sm:text-md sm:text-[1.2vw]"
             >
               Team Login
+            </div>
+            <div
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="hover:text-blue-600 max-sm:pt-2 sm:pt-[.4vw] cursor-pointer"
+            >
+              {theme === "dark" ? <BsSunFill /> : <BsFillMoonStarsFill />}
             </div>
           </div>
         </div>

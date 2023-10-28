@@ -33,7 +33,8 @@ export default function Page() {
     return true;
   };
 
-  const Login = () => {
+  const Login = (e: any) => {
+    e.preventDefault();
     if (isValid()) {
       firebase
         .signIn(cradentials.email, cradentials.password)
@@ -102,7 +103,7 @@ export default function Page() {
             className="bg-slate-100 dark:text-white dark:bg-slate-800 placeholder:text-center text-center focus:border-2 border-slate-600/50 shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
           />
           <button
-            onClick={() => Login()}
+            onClick={(e) => Login(e)}
             type="button"
             className="bg-red-600 hover:bg-red-600/75 text-white placeholder:text-center text-center shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
           >
