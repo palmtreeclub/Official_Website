@@ -88,13 +88,22 @@ export default function TeamCard({ member, onClick, mirror }: any) {
             {member?.designation}
           </h1>
           <div className="flex py-2 max-sm:gap-5 sm:gap-[1vw]">
-            <div className={socialLinkContainer}>
+            <div
+              className={socialLinkContainer}
+              onClick={() => window?.open(member?.linkedin)}
+            >
               <BiLogoLinkedin className="" />
             </div>
-            <div className={socialLinkContainer}>
+            <div
+              className={socialLinkContainer}
+              onClick={() => window?.open(member?.github)}
+            >
               <BiLogoGithub className="" />
             </div>
-            <div className={socialLinkContainer}>
+            <div
+              className={socialLinkContainer}
+              onClick={() => window?.open(member?.twitter)}
+            >
               <AiOutlineTwitter className="" />
             </div>
           </div>
