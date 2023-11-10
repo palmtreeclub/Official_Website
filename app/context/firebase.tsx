@@ -35,6 +35,8 @@ import {
 import { ThemeProvider } from "next-themes";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const FirebaseContext: any = createContext(null);
 
@@ -58,6 +60,7 @@ export const FirebaseProvider = (props: any) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [members, setMembers] = useState([]);
+  const path = usePathname();
   useEffect(() => {
     onAuthStateChanged(auth, (user: any) => {
       if (user) {
@@ -105,6 +108,7 @@ export const FirebaseProvider = (props: any) => {
         github: newMemberDetails.github,
         linkedin: newMemberDetails.linkedin,
         twitter: newMemberDetails.twitter,
+        type: newMemberDetails.type,
       });
       await uploadMemberPhoto(newMemberDetails?.avtar, docRef.id);
       const url = await getMemberPhotoURL(docRef.id);
@@ -113,7 +117,12 @@ export const FirebaseProvider = (props: any) => {
         id: docRef.id,
         avtar: url,
       });
-      await signUp(newMemberCradentials.email, newMemberCradentials.password);
+      if (
+        newMemberDetails.type !== "volunteer" &&
+        newMemberDetails.type !== "alumni"
+      ) {
+        await signUp(newMemberCradentials.email, newMemberCradentials.password);
+      }
       await getMembers();
       return {
         success: true,
@@ -224,9 +233,51 @@ export const FirebaseProvider = (props: any) => {
         }}
       >
         <ThemeProvider>
-          <Navbar />
-          {props.children}
-          <Footer />
+          <AnimatePresence mode="sync" key={path}>
+            <Navbar />
+            <motion.div
+              className={`w-full fixed h-[25%] bottom-0 
+              bg-yellow-500
+                z-[20]`}
+              initial={{ scaleY: 1 }}
+              animate={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0, height: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            />
+            <motion.div
+              className={`w-full fixed h-[50%] bottom-0 
+              bg-blue-500
+                z-[19]`}
+              initial={{ scaleY: 1 }}
+              animate={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0, height: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            />
+            <motion.div
+              className={`w-full fixed h-[75%] bottom-0 
+              bg-green-500
+                z-[18]`}
+              initial={{ scaleY: 1 }}
+              animate={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0, height: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            />
+            <motion.div
+              className={`w-full fixed h-full bottom-0 
+              bg-red-500
+                z-[17]`}
+              initial={{ scaleY: 1 }}
+              animate={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0, height: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            />
+            {props.children}
+            <Footer />
+          </AnimatePresence>
         </ThemeProvider>
       </FirebaseContext.Provider>
     </>
