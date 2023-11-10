@@ -14,25 +14,31 @@ import Confettin from "./components/Confettin";
 import EventCard from "./components/EventCard";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useFirebase } from "./context/firebase";
+import Partner from "./components/Partner";
+import Cursor from "./components/Cursor";
+import AnimateCircleCard from "./components/AnimateCircleCard";
 
 export default function Home() {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const firebase: any = useFirebase();
   useEffect(() => {
+    window.innerWidth < 600 ? setIsMobile(true) : setIsMobile(false);
     firebase.isLoggedIn && router.push("/team/dashboard");
     console.log(firebase.isLoggedIn);
   }, [firebase.isLoggedIn]);
 
   return (
     <>
+      <Cursor />
       <section className="flex flex-col w-full h-full justify-center items-center">
         <div className="flex w-4/5  h-4/5 max-md:flex-col justify-center items-center">
           <motion.div
             initial={{ translateX: "-100px", opacity: 0 }}
             whileInView={{ translateX: "0px", opacity: 1 }}
             transition={{ duration: 1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className=" flex flex-col sm:w-1/2"
           >
             <motion.div className="bg-gdsccode-logo sm:w-[6vw] sm:h-[6vw] max-sm:w-[12vw] max-sm:h-[12vw] bg-cover"></motion.div>
@@ -45,7 +51,7 @@ export default function Home() {
                 initial={{ translateX: "-100px", opacity: 0 }}
                 whileInView={{ translateX: "0px", opacity: 1 }}
                 transition={{ duration: 1.2 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 className="uppercase max-md:text-xl font-google-sans font-bold text-transparent bgGradientAnim"
               >
                 Silver Oak University
@@ -58,7 +64,7 @@ export default function Home() {
             initial={{ translateX: "100px", opacity: 0 }}
             whileInView={{ translateX: "0px", opacity: 1 }}
             transition={{ duration: 1.2 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="relative sm:w-[40vw] sm:h-[40vw] max-sm:w-[90vw] max-sm:h-[90vw] "
           >
             <Image
@@ -73,7 +79,7 @@ export default function Home() {
           initial={{ scale: 0.5, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           className="relative  flex justify-center items-center py-[2vw] w-full h-max"
         >
           <button
@@ -105,13 +111,13 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="flex justify-center items-center w-full h-full">
+      <section className="flex relative justify-center items-center w-full h-full">
         <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
           <motion.div
             initial={{ translateX: "-100px", opacity: 0 }}
             whileInView={{ translateX: "0px", opacity: 1 }}
             transition={{ duration: 0.7 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] "
           >
             <h1 className="max-sm:text-2xl text-[2vw] font-medium text-red-500">
@@ -137,7 +143,7 @@ export default function Home() {
             initial={{ translateY: "100px", opacity: 0 }}
             whileInView={{ translateY: "0px", opacity: 1 }}
             transition={{ duration: 0.7 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className=" flex flex-col sm:w-1/2"
           >
             <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
@@ -158,6 +164,13 @@ export default function Home() {
           </motion.div>
           {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
         </div>
+        <motion.div
+          initial={{ translateX: "-300px", translateY: "200px", opacity: 0 }}
+          whileInView={{ translateX: "0px", translateY: "0px", opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          viewport={{ once: true }}
+          className="absolute w-full bg-wave bg-cover h-[15vw] max-sm:bottom-10 sm:-bottom-10 "
+        />
       </section>
       {/* Team */}
       <section className="flex justify-center items-center w-full h-full">
@@ -168,7 +181,7 @@ export default function Home() {
                 initial={{ translateX: "-100px", opacity: 0 }}
                 whileInView={{ translateX: "0px", opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 className="text-red-500"
               >
                 Design.&nbsp;
@@ -177,7 +190,7 @@ export default function Home() {
                 initial={{ translateX: "-110px", opacity: 0 }}
                 whileInView={{ translateX: "0px", opacity: 1 }}
                 transition={{ duration: 1.5 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 className="text-blue-500"
               >
                 Develop.&nbsp;
@@ -186,7 +199,7 @@ export default function Home() {
                 initial={{ translateX: "-120px", opacity: 0 }}
                 whileInView={{ translateX: "0px", opacity: 1 }}
                 transition={{ duration: 2.5 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 className="text-yellow-500"
               >
                 Deliver.&nbsp;
@@ -196,7 +209,7 @@ export default function Home() {
               initial={{ translateY: "100px", opacity: 0 }}
               whileInView={{ translateY: "0px", opacity: 1 }}
               transition={{ duration: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600"
             >
               <br />
@@ -216,7 +229,7 @@ export default function Home() {
               initial={{ translateY: "50px", opacity: 0 }}
               whileInView={{ translateY: "0px", opacity: 1 }}
               transition={{ duration: 1.1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               onClick={() => router.push("/our_team")}
               type="button"
               className="text-sky-600 flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl font-medium w-max  hover:text-pink-500"
@@ -228,13 +241,10 @@ export default function Home() {
             initial={{ translateX: "100px", opacity: 0 }}
             whileInView={{ translateX: "0px", opacity: 1 }}
             transition={{ duration: 1.5 }}
-            viewport={{ once: false }}
-            className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] "
+            viewport={{ once: true }}
+            className=" sm:w-[40vw] max-sm:justify-center max-sm:flex sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[30vw] "
           >
-            {/* <h1 className="max-sm:text-2xl text-[3vw] font-medium text-blue-400">
-              What Do We Do?
-            </h1> */}
-            <div className="relative sm:w-[50vw]  sm:h-[30vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
+            <div className="relative sm:w-[50vw]  sm:h-[30vw] max-sm:w-[60vw] max-sm:h-[70vw] items-center ">
               <Image
                 src="/Assets/grow.png"
                 layout="fill"
@@ -244,28 +254,110 @@ export default function Home() {
               />
             </div>
           </motion.div>
-          {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
+        </div>
+      </section>
+
+      <section className="flex justify-center items-center w-full h-max p-[5vw]">
+        <div className="flex max-sm:flex-col w-4/6 justify-between items-center max-sm:gap-10">
+          <AnimateCircleCard
+            title="Leads"
+            link="/our_team/core_team"
+            border="border-red-500"
+            animationName="rotate-1"
+          />
+          <AnimateCircleCard
+            title="Alumni"
+            link="/our_team/alumni"
+            border="border-blue-500"
+            animationName="rotate-2"
+          />
+          <AnimateCircleCard
+            title="Volunteers"
+            link="/our_team/volunteers"
+            border="border-yellow-500"
+            animationName="rotate-3"
+          />
         </div>
       </section>
       {/* Upcoming Events */}
-      <section className="flex dark:bg-event-bw bg-event-bg bg-contain justify-center items-center w-full h-full">
-        <div className="flex flex-col max-sm:scale-90 h-max max-md:flex-col justify-center  items-center">
+      <section className="flex relative  dark:bg-event-bw bg-event-bg bg-contain justify-center items-center w-full sm:h-full">
+        <div className="flex  flex-col max-sm:scale-90 max-sm:overflow-y-scroll sm:overflow-auto max-sm:py-28 sm:h-full max-md:flex-col scrollbar-none justify-center  items-center">
           <motion.h1
             initial={{ translateY: "-100px", opacity: 0 }}
             whileInView={{ translateY: "0px", opacity: 1 }}
             transition={{ duration: 1 }}
-            viewport={{ once: false }}
-            className="max-sm:text-2xl sm:pb-[2vw] max-sm:pb-5 text-[2vw] font-medium text-blue-500"
+            viewport={{ once: true }}
+            className="max-sm:text-2xl max-sm:top-16 sm:top-[3vw] z-20 absolute sm:pb-[2vw] max-sm:pb-5 sm:text-[2vw] font-medium text-blue-500"
           >
             Upcoming Events
           </motion.h1>
           <Confettin onClose={setIsVisible} onFire={isVisible} />
-          <EventCard mirror={true} onClick={setIsVisible} />
+          <div className="flex max-sm:flex-col max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
+            {/* <div className="flex sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll pl-[100vw] pr-[5vw]  scrollbar-none "> */}
+            <EventCard mirror={true} onClick={setIsVisible} />
+            {/* <EventCard mirror={true} onClick={setIsVisible} /> */}
+            {/* <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard mirror={true} onClick={setIsVisible} /> */}
+          </div>
         </div>
       </section>
       {/* Partners */}
-      <section className="flex justify-center items-center w-full h-full">
-        <div className="flex w-full bg-slate-50 h-max max-sm:p-5 shadow-xl  sm:p-[2vw]"></div>
+      <section className="flex relative justify-center bg-white items-center w-full h-full">
+        <div className="flex  w-full flex-col   justify-center items-center  bg-white/50  h-4/5 max-sm:p-5   sm:p-[2vw]">
+          <motion.h1
+            initial={{ translateY: "-100px", opacity: 0 }}
+            whileInView={{ translateY: "0px", opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="max-sm:text-2xl sm:pb-[2vw] max-sm:pb-5  md:text-[2.5vw] font-medium text-yellow-500"
+          >
+            Our Partners
+          </motion.h1>
+          <div className="flex  flex-wrap sm:gap-x-[15vw] max-sm:gap-5 gap-y-[3vw] w-4/5 justify-center items-center">
+            <Partner
+              src="/Assets/PALM_TREE_CLUB.png"
+              size={{
+                width: isMobile ? "w-[18rem]" : "w-[30vw]",
+                height: isMobile ? "h-[10rem]" : "h-[10vw]",
+              }}
+            />
+            <Partner
+              src="/Assets/peepal_tree_club.png"
+              size={{
+                width: isMobile ? "w-[18rem]" : "w-[25vw]",
+                height: isMobile ? "h-[10rem]" : "h-[10vw]",
+              }}
+            />
+            <Partner
+              src="/Assets/IEEE_SOU_SB_Logo.png"
+              size={{
+                width: isMobile ? "w-[18rem]" : "w-[25vw]",
+                height: isMobile ? "h-[10rem]" : "h-[5vw]",
+              }}
+            />
+            <Partner
+              src="/Assets/IEEE_SOU_SB_Logo.png"
+              size={{
+                width: isMobile ? "w-[18rem]" : "w-[25vw]",
+                height: isMobile ? "h-[10rem]" : "h-[5vw]",
+              }}
+            />
+            <Partner
+              src="/Assets/IEEE_SOU_SB_Logo.png"
+              size={{
+                width: isMobile ? "w-[18rem]" : "w-[25vw]",
+                height: isMobile ? "h-[10rem]" : "h-[5vw]",
+              }}
+            />
+          </div>
+        </div>
       </section>
     </>
   );
