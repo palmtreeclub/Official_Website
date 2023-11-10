@@ -127,6 +127,12 @@ export default function Navbar() {
               >
                 Logout
               </div>
+              <div
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="hover:text-blue-600 max-sm:pt-2 sm:pt-[.4vw] cursor-pointer"
+              >
+                {theme === "dark" ? <BsSunFill /> : <BsFillMoonStarsFill />}
+              </div>
             </div>
           ) : null}
         </div>
@@ -168,7 +174,7 @@ export default function Navbar() {
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="hover:text-green-600"
-              href={"/our_team"}
+              href={"/our_team/leads"}
             >
               Our Teams
             </Link>
@@ -184,12 +190,6 @@ export default function Navbar() {
               className="flex transition-all duration-300 sm:text-white max-sm:text-blue-600 cursor-pointer sm:bg-blue-600 h-max py-[.3vw] sm:px-[1vw] rounded-full hover:shadow-[0_5px_10px_rgba(255,0,10,.4)] max-sm:text-md sm:text-[1.2vw]"
             >
               Team Login
-            </div>
-            <div
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="hover:text-blue-600 max-sm:pt-2 sm:pt-[.4vw] cursor-pointer"
-            >
-              {theme === "dark" ? <BsSunFill /> : <BsFillMoonStarsFill />}
             </div>
           </div>
         </div>

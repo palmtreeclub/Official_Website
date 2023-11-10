@@ -15,6 +15,7 @@ module.exports = {
         "gdsc-sou-bw-logo": "url('/Assets/GDSC_SOU_BW.png')",
         "gdsc-sou-logo": "url('/Assets/GDSC-SOU.png')",
         "team-header": "url('/Assets/TEAM_HEADER_BG.png')",
+        wave: "url('/Assets/wave.png')",
         "team-header-bw": "url('/Assets/TEAM_HEADER_BW.jpg')",
         "event-bg": "url('/Assets/EventsBG.png')",
         "event-bw": "url('/Assets/EVENTS_BW.jpg')",
