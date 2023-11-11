@@ -86,15 +86,15 @@ export default function Page() {
     if (isDeleteMode) {
       setEditMode(false);
       setIsTip(true);
-      toast.warn("Delete Mode Activated !!!", {
-        className: "sm:text-[1vw] max-sm:text-xs",
+      toast.warning("Delete Mode Activated !!!", {
+        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
     }
     if (isEditMode) {
       setIsTip(true);
       setDeleteMode(false);
       toast.info("Edit Mode Activated !!!", {
-        className: "sm:text-[1vw] max-sm:text-xs",
+        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
     }
     if (!isDeleteMode && !isEditMode) setIsTip(false);
@@ -190,29 +190,39 @@ export default function Page() {
     }
   };
 
+  const removeAllCurrentDetails = async () => {
+    setNewMemberDetails({
+      name: "",
+      designation: "",
+      color: "",
+      github: "",
+      linkedin: "",
+      twitter: "",
+      avtar: null,
+      type: "",
+    });
+    setNewMemberCradentials({
+      email: "",
+      password: "",
+    });
+    setPreviewAvtar(null);
+    setIsMemberDialog(false);
+  };
   const SubmitDetails = async () => {
     const res = await firebase.addNewMemberDetails(
       newMemberDetails,
       newMemberCradentials
     );
     if (res.success) {
-      toast.success("New Member Successfully Added!!!");
-      setNewMemberDetails({
-        name: "",
-        designation: "",
-        color: "",
-        github: "",
-        linkedin: "",
-        twitter: "",
-        avtar: null,
-        type: "",
+      toast.success("New Member Successfully Added!!!", {
+        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
-      setNewMemberCradentials({
-        email: "",
-        password: "",
+      removeAllCurrentDetails();
+    } else {
+      toast.error(res.data, {
+        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
-      setPreviewAvtar(null);
-    } else toast.error(res.data);
+    }
   };
 
   return (
@@ -470,7 +480,7 @@ export default function Page() {
             )}
             <div className="flex w-full gap-5">
               <button
-                onClick={() => SubmitDetails()}
+                onClick={() => removeAllCurrentDetails()}
                 type="button"
                 className="bg-red-600 hover:bg-red-600/75 text-white placeholder:text-center text-center shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
               >
@@ -517,9 +527,9 @@ export default function Page() {
           })}
         </div>
         <div className="flex flex-wrap w-full h-full py-10  justify-center items-center sm:gap-[3vw] sm:gap-y-0 max-sm:gap-10">
-          {showMembers?.map((member: any) => (
+          {/* {showMembers?.map((member: any) => (
             <div
-              className={`flex   ${isDeleteMode && "shake"} ${
+              className={`flex ${isDeleteMode && "shake"} ${
                 isEditMode && "pulse"
               }`}
               key={member?.id}
@@ -527,44 +537,12 @@ export default function Page() {
             >
               <TeamCard key={member} member={member} />
             </div>
-          ))}
-          {showMembers?.map((member: any) => (
-            <div
-              className={`flex   ${isDeleteMode && "shake"} ${
-                isEditMode && "pulse"
-              }`}
-              key={member?.id}
-              onClick={() => deleteMember(member?.id)}
-            >
-              <TeamCard key={member} member={member} />
-            </div>
-          ))}
-          {showMembers?.map((member: any) => (
-            <div
-              className={`flex   ${isDeleteMode && "shake"} ${
-                isEditMode && "pulse"
-              }`}
-              key={member?.id}
-              onClick={() => deleteMember(member?.id)}
-            >
-              <TeamCard key={member} member={member} />
-            </div>
-          ))}
-          {showMembers?.map((member: any) => (
-            <div
-              className={`flex   ${isDeleteMode && "shake"} ${
-                isEditMode && "pulse"
-              }`}
-              key={member?.id}
-              onClick={() => deleteMember(member?.id)}
-            >
-              <TeamCard key={member} member={member} />
-            </div>
-          ))}
-          {/* {showMembers?.length > 0 ? (
+          ))} */}
+
+          {showMembers?.length > 0 ? (
             showMembers?.map((member: any) => (
               <div
-                className={`flex scale-75  ${isDeleteMode && "shake"} ${
+                className={`flex ${isDeleteMode && "shake"} ${
                   isEditMode && "pulse"
                 }`}
                 key={member?.id}
@@ -581,7 +559,7 @@ export default function Page() {
               })}{" "}
               Present in DB
             </div>
-          )} */}
+          )}
         </div>
       </div>
       <div className="">

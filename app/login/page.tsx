@@ -14,20 +14,22 @@ export default function Page() {
 
   useEffect(() => {
     if (firebase.isLoggedIn) router.push("/team/dashboard");
-    console.log(firebase.isLoggedIn);
+    // console.log(firebase.isLoggedIn);
   }, [firebase.isLoggedIn]);
 
   const isValid = () => {
     if (!cradentials.email) {
-      toast.error("Please enter Email address", {
-        className: "sm:text-[1vw] max-sm:text-xl",
+      toast.error("Please enter Email address!!", {
+        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
+
       return false;
     }
     if (!cradentials.password) {
-      toast.error("Please enter Password", {
-        className: "sm:text-[1vw] max-sm:text-xl",
+      toast.error("Please enter password!!", {
+        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
+
       return false;
     }
     return true;
@@ -39,14 +41,16 @@ export default function Page() {
       firebase
         .signIn(cradentials.email, cradentials.password)
         .then((data: any) => {
-          toast.success("You are logged in successfully", {
-            className: "sm:text-[1vw] max-sm:text-xl",
+          toast.success("Your are now logged in successfully!!", {
+            className: "sm:text-[1vw] max-sm:text-xl relative z-50",
           });
-          router.push("/team/dashboard");
+          setTimeout(() => {
+            router.push("/team/dashboard");
+          }, 1000); // Add a delay before redirecting
         })
         .catch((err: any) => {
-          toast.error("Error: " + err.message, {
-            className: "sm:text-[1vw] max-sm:text-xl",
+          toast.error(err.message, {
+            className: "sm:text-[1vw] max-sm:text-xl relative z-50",
           });
         });
     }

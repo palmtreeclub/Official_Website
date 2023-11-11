@@ -115,11 +115,13 @@ export default function Navbar() {
                       router.push("/");
                       firebase.setUser(null);
                       toast.success("You are now logged out!!", {
-                        className: "sm:text-[1vw] max-sm:text-xl",
+                        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
                       });
                     })
                     .catch((err: any) => {
-                      toast.error("Error: " + err.message);
+                      toast.error(err.message, {
+                        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
+                      });
                     });
                   router.push("/");
                 }}

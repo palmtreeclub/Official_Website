@@ -261,7 +261,7 @@ export default function Home() {
         <div className="flex max-sm:flex-col w-4/6 justify-between items-center max-sm:gap-10">
           <AnimateCircleCard
             title="Leads"
-            link="/our_team/core_team"
+            link="/our_team/leads"
             border="border-red-500"
             animationName="rotate-1"
           />

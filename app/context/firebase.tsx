@@ -37,6 +37,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
 
 const FirebaseContext: any = createContext(null);
 
@@ -212,6 +213,7 @@ export const FirebaseProvider = (props: any) => {
       };
     }
   };
+
   useEffect(() => {
     getMembers();
   }, []);
@@ -244,6 +246,7 @@ export const FirebaseProvider = (props: any) => {
               whileInView={{ scaleY: 0, height: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              key={path}
             />
             <motion.div
               className={`w-full fixed h-[50%] bottom-0 
@@ -254,7 +257,9 @@ export const FirebaseProvider = (props: any) => {
               whileInView={{ scaleY: 0, height: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              key={path}
             />
+
             <motion.div
               className={`w-full fixed h-[75%] bottom-0 
               bg-green-500
@@ -264,6 +269,7 @@ export const FirebaseProvider = (props: any) => {
               whileInView={{ scaleY: 0, height: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              key={path}
             />
             <motion.div
               className={`w-full fixed h-full bottom-0 
@@ -274,6 +280,7 @@ export const FirebaseProvider = (props: any) => {
               whileInView={{ scaleY: 0, height: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              key={path}
             />
             {props.children}
             <Footer />
