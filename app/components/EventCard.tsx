@@ -13,7 +13,7 @@ export default function EventCard({ onClick, event, mirror }: any) {
       className="flex relative h-max sm:pt-[3vw] max-sm:py-[10vw] shadow-xl flex-col w-full sm:w-[25vw] sm:p-[1vw] rounded-[5%] border-2 border-red-300 dark:bg-slate-900 bg-white cursor-pointer"
     >
       <h1 className="text-right absolute text-white max-sm:top-5 sm:top-[1vw] max-sm:right-3 sm:right-[1vw] sm:text-[1vw] font-medium rounded-full px-[1vw] py-[.5vw] bg-red-300 w-max ">
-        Oct 28, 2023
+        Oct 30, 2023
       </h1>
       <div className="w-full dark:text-white flex flex-col justify-center items-center h-full">
         <div className="flex relative mb-[1vw] rounded-[50%] overflow-hidden max-sm:w-[20rem] max-sm:h-[20rem]  sm:w-[15vw] sm:h-[15vw]">
