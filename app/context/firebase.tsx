@@ -250,7 +250,7 @@ export const FirebaseProvider = (props: any) => {
             />
             <motion.div
               className={`w-full fixed h-[50%] bottom-0 
-              bg-blue-500
+              bg-blue-500 
                 z-[19]`}
               initial={{ scaleY: 1 }}
               animate={{ scaleY: 1 }}
