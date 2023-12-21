@@ -258,7 +258,7 @@ export default function Home() {
       </section>
 
       <section className="flex justify-center items-center w-full h-max p-[5vw]">
-        <div className="flex max-sm:flex-col w-4/6 justify-between items-center max-sm:gap-10">
+        <div className="flex max-sm:flex-col dark:invert w-4/6 justify-between items-center max-sm:gap-10">
           <AnimateCircleCard
             title="Leads"
             link="/our_team/leads"
@@ -280,7 +280,7 @@ export default function Home() {
         </div>
       </section>
       {/* Upcoming Events */}
-      <section className="flex relative  dark:bg-event-bw bg-event-bg bg-contain justify-center items-center w-full sm:h-full">
+      <section className="flex relative  dark:bg-event-b dark:invert bg-event-bg bg-contain justify-center items-center w-full sm:h-full">
         <div className="flex  flex-col max-sm:scale-90 max-sm:overflow-y-scroll sm:overflow-auto max-sm:py-28 sm:h-full max-md:flex-col scrollbar-none justify-center  items-center">
           <motion.h1
             initial={{ translateY: "-100px", opacity: 0 }}
@@ -292,9 +292,15 @@ export default function Home() {
             Upcoming Events
           </motion.h1>
           <Confettin onClose={setIsVisible} onFire={isVisible} />
-          <div className="flex max-sm:flex-col max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
+          <div className="flex max-sm:flex-col dark:invert max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
             {/* <div className="flex sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll pl-[100vw] pr-[5vw]  scrollbar-none "> */}
-            <EventCard mirror={true} onClick={setIsVisible} />
+            <EventCard
+              mirror={true}
+              onClick={setIsVisible}
+              onEventClick={() => {
+                router.push("/event/cloudreadynessprogramm");
+              }}
+            />
             {/* <EventCard mirror={true} onClick={setIsVisible} /> */}
             {/* <EventCard mirror={true} onClick={setIsVisible} />
             <EventCard mirror={true} onClick={setIsVisible} />
@@ -309,8 +315,8 @@ export default function Home() {
         </div>
       </section>
       {/* Partners */}
-      <section className="flex relative justify-center bg-white items-center w-full h-full">
-        <div className="flex  w-full flex-col   justify-center items-center  bg-white/50  h-4/5 max-sm:p-5   sm:p-[2vw]">
+      <section className="flex relative justify-center bg-white dark:bg-slate-900 items-center w-full h-full">
+        <div className="flex  w-full flex-col   justify-center items-center  light:bg-white/50  h-4/5 max-sm:p-5   sm:p-[2vw]">
           <motion.h1
             initial={{ translateY: "-100px", opacity: 0 }}
             whileInView={{ translateY: "0px", opacity: 1 }}

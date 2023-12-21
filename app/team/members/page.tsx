@@ -208,6 +208,31 @@ export default function Page() {
     setPreviewAvtar(null);
     setIsMemberDialog(false);
   };
+
+  const onMenuPress = () => {
+    setIsOptions(!isOptions);
+    if (isOptions) {
+      setDeleteMode(false);
+      setEditMode(false);
+      setIsMemberDialog(false);
+      setNewMemberDetails({
+        name: "",
+        designation: "",
+        color: "",
+        github: "",
+        linkedin: "",
+        twitter: "",
+        avtar: null,
+        type: "",
+      });
+      setNewMemberCradentials({
+        email: "",
+        password: "",
+      });
+      setPreviewAvtar(null);
+    }
+  };
+
   const SubmitDetails = async () => {
     const res = await firebase.addNewMemberDetails(
       newMemberDetails,
@@ -227,8 +252,8 @@ export default function Page() {
 
   return (
     <div
-      className={`flex z-30 relative overflow-auto scrollbar-none py-20 max-sm:pt-10 w-full ${
-        firebase?.members?.length > 0 ? "h-full sm:pt-[5vw]" : "h-full"
+      className={`flex z-30 relative overflow-auto scrollbar-none pb-20 max-sm:pt-10 w-full ${
+        showMembers?.length > 0 ? "h-[90%] pt-16" : "h-[90%]"
       } justify-center  ${isMemberDialog && "bg-black/10"} items-center`}
     >
       {isTip && (
@@ -526,23 +551,11 @@ export default function Page() {
             );
           })}
         </div>
-        <div className="flex flex-wrap w-full h-full py-10  justify-center items-center sm:gap-[3vw] sm:gap-y-0 max-sm:gap-10">
-          {/* {showMembers?.map((member: any) => (
-            <div
-              className={`flex ${isDeleteMode && "shake"} ${
-                isEditMode && "pulse"
-              }`}
-              key={member?.id}
-              onClick={() => deleteMember(member?.id)}
-            >
-              <TeamCard key={member} member={member} />
-            </div>
-          ))} */}
-
+        <div className="flex flex-wrap w-full h-full pb-10  justify-center items-center sm:gap-[3vw] sm:gap-y-0 max-sm:gap-10">
           {showMembers?.length > 0 ? (
             showMembers?.map((member: any) => (
               <div
-                className={`flex ${isDeleteMode && "shake"} ${
+                className={`flex pb-10 ${isDeleteMode && "shake"} ${
                   isEditMode && "pulse"
                 }`}
                 key={member?.id}
@@ -609,7 +622,6 @@ export default function Page() {
               <MdEdit
                 onClick={() => {
                   setEditMode(!isEditMode);
-
                   setDeleteMode(false);
                 }}
                 className={``}
@@ -618,29 +630,7 @@ export default function Page() {
           </>
         )}
         <AiFillPlusCircle
-          onClick={() => {
-            setIsOptions(!isOptions);
-            if (isOptions) {
-              setDeleteMode(false);
-              setEditMode(false);
-              setIsMemberDialog(false);
-              setNewMemberDetails({
-                name: "",
-                designation: "",
-                color: "",
-                github: "",
-                linkedin: "",
-                twitter: "",
-                avtar: null,
-                type: "",
-              });
-              setNewMemberCradentials({
-                email: "",
-                password: "",
-              });
-              setPreviewAvtar(null);
-            }
-          }}
+          onClick={() => onMenuPress()}
           className={`cursor-pointer ${
             isOptions && "rotate-[135deg]"
           } text-yellow-500 z-50 hover:text-yellow-500/75 transition-all duration-300 fixed sm:bottom-[3vw] max-sm:bottom-10 sm:right-[3vw] max-sm:text-7xl max-sm:right-5 sm:text-[5vw]`}

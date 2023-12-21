@@ -139,14 +139,10 @@ export default function Page() {
       <div className="flex w-full h-full flex-col justify-center items-center">
         <div className="flex overflow-hidden relative max-sm:py-24 sm:pb-[3vw] sm:pt-[7vw] h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center">
           <Image
-            src={
-              theme === "dark"
-                ? "/Assets/TEAM_HEADER_BW.jpg"
-                : "/Assets/TEAM_HEADER_BG.png"
-            }
+            src={"/Assets/TEAM_HEADER_BG.png"}
             layout="fill"
             objectFit="cover"
-            className="-z-10"
+            className="-z-10 dark:invert"
             priority
             fetchPriority="high"
             alt="Team-Cover-Photo"
@@ -164,7 +160,7 @@ export default function Page() {
           </div>
         </div>
         {page === "leads" && (
-          <div className="flex  flex-col pb-10 items-center w-full h-full ">
+          <div className="flex flex-col pb-10 items-center w-full h-full ">
             <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
               GDSC Lead 2023
             </h1>

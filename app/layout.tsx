@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { FirebaseProvider } from "./context/firebase";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} relative dark:bg-black`}>
-        <FirebaseProvider>
-          {children}
-          {/* <Footer /> */}
-        </FirebaseProvider>
+        <Suspense
+          fallback={<h1>Loading....</h1>}
+          unstable_expectedLoadTime={10}
+        >
+          <FirebaseProvider>
+            {children}
+            {/* <Footer /> */}
+          </FirebaseProvider>
+        </Suspense>
       </body>
     </html>
   );

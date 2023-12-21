@@ -29,6 +29,7 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   sendSignInLinkToEmail,
+  updateProfile,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -38,6 +39,7 @@ import Footer from "../components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FirebaseContext: any = createContext(null);
 
@@ -60,14 +62,18 @@ export const useFirebase = () => useContext(FirebaseContext);
 export const FirebaseProvider = (props: any) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [members, setMembers] = useState([]);
+  const [events, setEvents] = useState([]);
   const path = usePathname();
+  const db = getFirestore();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user: any) => {
       if (user) {
         setUser(user);
         setIsLoggedIn(true);
-        console.log(user.email);
+        console.log({ user });
       } else {
         setIsLoggedIn(false);
         setUser(null);
@@ -80,10 +86,11 @@ export const FirebaseProvider = (props: any) => {
     return await signInWithEmailAndPassword(auth, email, password);
   };
 
-  const signUp = async (email: any, password: any) => {
+  const signUp = async (name: any, url: any, email: any, password: any) => {
     return await createUserWithEmailAndPassword(auth, email, password).then(
       (res) => {
         resetPassword(email);
+        updateProfile(res.user, { displayName: name, photoURL: url });
       }
     );
   };
@@ -100,7 +107,6 @@ export const FirebaseProvider = (props: any) => {
     newMemberDetails: any,
     newMemberCradentials: any
   ) => {
-    const db = getFirestore();
     try {
       const docRef = await addDoc(collection(db, "members"), {
         name: newMemberDetails.name,
@@ -122,7 +128,12 @@ export const FirebaseProvider = (props: any) => {
         newMemberDetails.type !== "volunteer" &&
         newMemberDetails.type !== "alumni"
       ) {
-        await signUp(newMemberCradentials.email, newMemberCradentials.password);
+        await signUp(
+          newMemberDetails.name,
+          url,
+          newMemberCradentials.email,
+          newMemberCradentials.password
+        );
       }
       await getMembers();
       return {
@@ -195,6 +206,7 @@ export const FirebaseProvider = (props: any) => {
       };
     }
   };
+
   const deleteMemberPhoto = async (memberId: any) => {
     try {
       const imageRef = ref(storage, `members/${memberId}/profile.png`);
@@ -213,9 +225,66 @@ export const FirebaseProvider = (props: any) => {
       };
     }
   };
+  const addEventToFirestore = async (eventData: any) => {
+    try {
+      const docRef = await addDoc(collection(db, "events"), eventData);
+      if (docRef.id) {
+        const eventDocRef = doc(db, "events", docRef.id); // Replace `memberId` with the actual member document ID
+        await updateDoc(eventDocRef, {
+          id: docRef.id,
+        });
+        toast("Document added successfully ");
+        await getEvents();
+      }
+      console.log("Event added with ID:", docRef.id);
+    } catch (error) {
+      console.error("Error adding event to Firestore:", error);
+    }
+  };
+
+  const getEvents = async () => {
+    const eventCollection = collection(db, "events");
+    const q = query(eventCollection);
+
+    try {
+      const querySnapshot = await getDocs(q);
+      const events: any = [];
+      querySnapshot.forEach((doc) => {
+        events.push(doc.data());
+      });
+
+      setEvents(events);
+      return events;
+    } catch (error) {
+      console.error("Error getting documents: ", error);
+      return [];
+    }
+  };
+
+  const deleteEvent = async (eventId: any) => {
+    try {
+      const eventDocRef = doc(db, `members/${eventId}`);
+
+      await deleteDoc(eventDocRef);
+      console.log("Document deleted from Firestore.");
+      await deleteMemberPhoto(eventId);
+      getEvents();
+      return {
+        success: true,
+        data: "Event deleted successfully",
+      };
+    } catch (error: any) {
+      console.error("Error deleting document:", error);
+      return {
+        success: false,
+        data: "Error : " + error.message,
+      };
+    }
+  };
 
   useEffect(() => {
     getMembers();
+    getEvents();
   }, []);
   return (
     <>
@@ -226,17 +295,22 @@ export const FirebaseProvider = (props: any) => {
           setUser,
           user,
           members,
+          events,
           signIn,
           signUp,
           signout,
           getMembers,
           deleteMember,
           addNewMemberDetails,
+          addEventToFirestore,
+          deleteEvent,
+          getEvents,
         }}
       >
         <ThemeProvider>
           <AnimatePresence mode="sync" key={path}>
             <Navbar />
+
             <motion.div
               className={`w-full fixed h-[25%] bottom-0 
               bg-yellow-500
@@ -282,6 +356,8 @@ export const FirebaseProvider = (props: any) => {
               viewport={{ once: true }}
               key={path}
             />
+            <ToastContainer />
+
             {props.children}
             <Footer />
           </AnimatePresence>
