@@ -11,7 +11,7 @@ export default function EventCard({
   onEventClick,
 }: {
   onClick?: (boolean: boolean) => void;
-  event: {
+  event?: {
     eventLogo: string;
     eventName: string;
     eventDate: string;
