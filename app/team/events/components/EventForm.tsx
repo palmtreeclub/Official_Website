@@ -35,6 +35,7 @@ interface EventFormProps {
   onSubmit: (formData: formData) => void;
   setFormData: any;
   formData: formData;
+  isEditMode?: boolean;
 }
 const InputField = ({
   label,
@@ -100,6 +101,7 @@ const EventForm: React.FC<EventFormProps> = ({
   onSubmit,
   setFormData,
   formData,
+  isEditMode,
 }) => {
   const handleChange = (field: string, value: string) => {
     setFormData((prevData: any) => ({
@@ -373,7 +375,7 @@ const EventForm: React.FC<EventFormProps> = ({
         type="submit"
         className="bg-green-500 w-full my-5 py-[.5vw] rounded-md text-white "
       >
-        Submit
+        {isEditMode ? "Update Event" : "Submit"}
       </button>
     </form>
   );

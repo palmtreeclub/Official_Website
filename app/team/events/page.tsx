@@ -53,6 +53,9 @@ export default function Page() {
       setDeleteMode(false);
       setEditMode(false);
       setIsCreateMode(false);
+      setIsFormVisible(false);
+      setIsOptions(false);
+      setIsTip(false);
       setFormData({
         driveLink: "",
         eventCaption: "",
@@ -116,8 +119,13 @@ export default function Page() {
   const onSubmit = () => {
     const isValid = validateFormData(formData);
     if (isValid) {
-      firebase?.addEventToFirestore(formData);
-      onMenuPress();
+      if (isEditMode) {
+        firebase?.updateEvent(formData);
+        onMenuPress();
+      } else {
+        firebase?.addEventToFirestore(formData);
+        onMenuPress();
+      }
     }
   };
 
@@ -201,7 +209,7 @@ export default function Page() {
           />
         )}
 
-        {IsCreateMode ? (
+        {IsCreateMode || isFormVisible ? (
           <AddEventPage
             setFormData={setFormData}
             toggleFormVisibility={toggleFormVisibility}
@@ -227,10 +235,18 @@ export default function Page() {
                       onclick={() => deleteEvent(event?.id)}
                     >
                       <EventCard
+                        isEditMode={isEditMode}
                         event={event}
                         mirror
                         key={index}
-                        onEventClick={() => router.push("/event/" + event.id)}
+                        onEventClick={() => {
+                          if (isEditMode) {
+                            setFormData(event);
+                            setIsFormVisible(true);
+                          } else {
+                            router.push("/event/" + event.id);
+                          }
+                        }}
                       />
                     </CardLayout>
                   </>

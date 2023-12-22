@@ -7,6 +7,7 @@ export default function AddEventPage({
   toggleFormVisibility,
   onsubmit,
   setFormData,
+  isEditMode,
   isFormVisible,
   formData,
 }: {
@@ -14,6 +15,7 @@ export default function AddEventPage({
   setFormData: React.Dispatch<React.SetStateAction<formData>>;
   onsubmit: () => void;
   isFormVisible: boolean;
+  isEditMode?: boolean;
   formData: formData;
 }) {
   return (
@@ -30,7 +32,7 @@ export default function AddEventPage({
 
         <div
           className={`${
-            isFormVisible
+            !isFormVisible
               ? "w-0 pr-[3vw] -z-50 opacity-0"
               : "pr-[7vw] opacity-100 w-[40%] z-30"
           } flex transition-all  duration-300 px-[2vw] fixed  right-0 h-full pt-[5vw] overflow-auto justify-center bg-white shadow-2xl p-[2vw] rounded-2xl`}
@@ -39,6 +41,7 @@ export default function AddEventPage({
             formData={formData}
             setFormData={setFormData}
             onSubmit={onsubmit}
+            isEditMode={isEditMode}
           />
         </div>
       </div>
@@ -47,7 +50,7 @@ export default function AddEventPage({
           <h1 className="text-center text-slate-600 font-semibold text-[3vw] pb-[2vw]">
             Event Preview
           </h1>
-          <EventPage data={formData} isPreview />
+          <EventPage data={formData} />
           <div className="w-full"></div>
         </div>
       </div>

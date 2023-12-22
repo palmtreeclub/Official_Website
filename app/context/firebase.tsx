@@ -262,9 +262,9 @@ export const FirebaseProvider = (props: any) => {
     }
   };
 
-  const updateEvent = async (eventId: any, updatedData: any) => {
+  const updateEvent = async (updatedData: any) => {
     try {
-      const eventDocRef = doc(db, "events", eventId); // Replace `memberId` with the actual member document ID
+      const eventDocRef = doc(db, "events", updatedData?.id); // Replace `memberId` with the actual member document ID
       await updateDoc(eventDocRef, updatedData);
       toast.success("event data updated successfully.");
     } catch (error: any) {

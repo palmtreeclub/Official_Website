@@ -9,6 +9,7 @@ export default function EventCard({
   event,
   mirror,
   onEventClick,
+  isEditMode,
 }: {
   onClick?: (boolean: boolean) => void;
   event?: {
@@ -18,6 +19,7 @@ export default function EventCard({
     eventCaption?: string;
     id?: string;
   };
+  isEditMode?: boolean;
   mirror?: boolean;
   onEventClick?: () => void;
 }) {
@@ -69,7 +71,7 @@ export default function EventCard({
           type="button"
           className="bg-red-600 hover:shadow-[0_0_10px_#EAB308] mt-2 sm:mt-[.5vw] text-white sm:text-[1.3vw] px-[1vw] py-[.2vw] sm:rounded-[.4vw] max-sm:rounded-lg max-sm:px-10 max-sm:py-2 max-sm:text-2xl"
         >
-          Learn More
+          {isEditMode ? "Edit" : "Learn More"}
         </button>
       </div>
     </motion.div>

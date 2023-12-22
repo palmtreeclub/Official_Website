@@ -14,7 +14,6 @@ import { Sponsor as SponsorCard } from "../components/Sponsor";
 
 export default function EventPage({
   data,
-  isPreview,
 }: {
   data?:
     | {
@@ -33,7 +32,6 @@ export default function EventPage({
         speakers: Speaker[];
       }
     | any;
-  isPreview?: boolean;
 }) {
   const [eventData, setEventData] = useState(data);
 
@@ -41,7 +39,7 @@ export default function EventPage({
     setEventData(data);
   }, [data]);
 
-  const pageTheme = isPreview ? Number(eventData?.eventTheme) : 1;
+  const pageTheme = Number(eventData?.eventTheme);
   const getPageThemeColor = (pageTheme: any, isLightColor: any) => {
     switch (pageTheme) {
       case 1:
