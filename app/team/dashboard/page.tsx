@@ -10,7 +10,6 @@ import { GDSCImageCard } from "./components/GDSC_SOU_ImageCard";
 
 export default function Page() {
   const firebase: any = useFirebase();
-  ("use server");
 
   return (
     <div className="flex flex-wrap transition-all duration-300 w-full dark:nvert h-[90%] p-[1vw] justify-center pt-[6%] gap-[1vw] items-center">
