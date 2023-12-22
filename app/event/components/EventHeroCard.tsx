@@ -15,7 +15,7 @@ export function EventHeroCard({
       <div className="w-[20vw] overflow-hidden h-[20vw] rounded-full bg-white shadow-md flex justify-center items-center relative">
         {eventLogo ? (
           <Image
-            src={eventLogo}
+            src={eventLogo?.includes("https://") && eventLogo}
             alt="logo"
             layout="fill"
             className="dark:invert"

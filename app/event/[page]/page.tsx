@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { IoMdCalendar, IoMdTime } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { Speakers } from "../components/Speakers";
-import { Sponsor } from "../components/Sponsor";
 import { HeroBarItems } from "../components/HeroBarItems";
 import { EventHeroCard } from "../components/EventHeroCard";
 import { FloatingSvgs } from "../components/FloatingSvgs";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Speaker, Sponsor } from "@/app/team/events/components/EventForm";
+import { Sponsor as SponsorCard } from "../components/Sponsor";
 
 export default function EventPage({
   data,
@@ -27,8 +28,8 @@ export default function EventPage({
     eventTime: string;
     eventLocation: string;
     moreDetails: string;
-    sponsors: Array<[]>;
-    speakers: Array<[]>;
+    sponsors: Sponsor[];
+    speakers: Speaker[];
   };
   isPreview: boolean;
 }) {
@@ -196,7 +197,7 @@ export default function EventPage({
             <div className="flex pl-[1vw] text-center flex-wrap  gap-x-[5vw]  gap-y-[2vw]">
               {eventData?.sponsors?.map((elem: any, index: number) => {
                 return (
-                  <Sponsor key={index} src={elem.logo} title={elem.name} />
+                  <SponsorCard key={index} src={elem.logo} title={elem.name} />
                 );
               })}
             </div>

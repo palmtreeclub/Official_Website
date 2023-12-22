@@ -51,7 +51,14 @@ export const BubbleMenu = ({
             isCreateMode && "grayscale"
           } bg-white rounded-[50%] text-blue-600 z-50 hover:text-blue-600/75 transition-all duration-300 fixed sm:bottom-[15vw] max-sm:bottom-[22vh] sm:right-[3vw] max-sm:text-6xl max-sm:right-7 sm:text-[5vw]`}
         >
-          <AiFillPlusCircle onClick={() => setIsCreateMode(!isCreateMode)} />
+          <AiFillPlusCircle
+            onClick={() => {
+              if (isCreateMode) {
+                onMenuPress();
+              }
+              setIsCreateMode(!isCreateMode);
+            }}
+          />
         </motion.div>
         <motion.div
           initial={{ translateY: "100px", opacity: 0 }}

@@ -66,8 +66,14 @@ export const Speakers = ({
             ></div>
             {speaker?.logo ? (
               <Image
-                src={speaker?.logo}
+                src={
+                  speaker?.logo?.includes("https://")
+                    ? speaker?.logo
+                    : "https://static.vecteezy.com/system/resources/thumbnails/008/568/878/small/website-page-not-found-error-404-oops-worried-robot-character-peeking-out-of-outer-space-site-crash-on-technical-work-web-design-template-with-chatbot-mascot-cartoon-online-bot-assistance-failure-vector.jpg"
+                }
                 alt="logo"
+                placeholder="blur"
+                blurDataURL="https://static.vecteezy.com/system/resources/thumbnails/008/568/878/small/website-page-not-found-error-404-oops-worried-robot-character-peeking-out-of-outer-space-site-crash-on-technical-work-web-design-template-with-chatbot-mascot-cartoon-online-bot-assistance-failure-vector.jpg"
                 layout="fill"
                 objectFit="contain"
                 className="dark:invert rounded-[1vw] shadow-2xl"

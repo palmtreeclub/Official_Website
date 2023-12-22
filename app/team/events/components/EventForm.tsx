@@ -2,38 +2,39 @@ import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { IoClose } from "react-icons/io5";
 
-interface Sponsor {
+export interface Sponsor {
   name: string;
   logo: string;
   link: string;
 }
 
-interface Speaker {
+export interface Speaker {
   name: string;
   designation: string;
   about: string;
   logo: string;
   link: string;
 }
+export interface formData {
+  eventName: string;
+  eventType: string;
+  eventCaption: string;
+  eventLogo: string;
+  eventTheme: number;
+  rsvpLink: string;
+  driveLink: string;
+  eventDate: string;
+  eventTime: string;
+  moreDetails: string;
+  eventLocation: string;
+  sponsors: Sponsor[];
+  speakers: Speaker[];
+}
 
 interface EventFormProps {
-  onSubmit: (formData: {
-    eventName: string;
-    eventType: string;
-    eventCaption: string;
-    eventLogo: string;
-    eventTheme: string;
-    rsvpLink: string;
-    driveLink: string;
-    eventDate: string;
-    eventTime: string;
-    eventLocation: string;
-    eventMoreDetails: string;
-    sponsors: Sponsor[];
-    speakers: Speaker[];
-  }) => void;
+  onSubmit: (formData: formData) => void;
   setFormData: any;
-  formData: any;
+  formData: formData;
 }
 const InputField = ({
   label,
@@ -182,7 +183,7 @@ const EventForm: React.FC<EventFormProps> = ({
         <InputField
           label="Theme"
           type="number"
-          value={formData.eventTheme}
+          value={`${formData.eventTheme}`}
           onChange={(val) => handleChange("eventTheme", val)}
         />
 

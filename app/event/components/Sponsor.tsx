@@ -8,7 +8,7 @@ export const Sponsor = ({ title, src }: any) => {
         <div className="relative overflow-hidden w-full h-[5rem]">
           {src ? (
             <Image
-              src={src}
+              src={src?.includes("https://") && src}
               alt="logo"
               layout="fill"
               objectFit="contain"
