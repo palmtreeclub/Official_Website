@@ -16,7 +16,7 @@ export default function EventPage({
   data,
   isPreview,
 }: {
-  data:
+  data?:
     | {
         eventName: string;
         eventType: string;
@@ -33,7 +33,7 @@ export default function EventPage({
         speakers: Speaker[];
       }
     | any;
-  isPreview: boolean;
+  isPreview?: boolean;
 }) {
   const [eventData, setEventData] = useState(data);
 
