@@ -37,34 +37,6 @@ export default function EventPage({
 }) {
   const [eventData, setEventData] = useState(data);
 
-  // const formdata = {
-  //   eventName,
-  //   eventType,
-  //   eventCaption,
-  //   eventLogo,
-  //   eventTheme,
-  //   rsvpLink,
-  //   driveLink,
-  //   date,
-  //   time,
-  //   location,
-  //   moreDetails,
-  //   sponsors: [
-  //     {
-  //       name: "",
-  //       logo: "",
-  //     },
-  //   ],
-  //   speakers: [
-  //     {
-  //       name: "",
-  //       designation: "",
-  //       about: "",
-  //       logo: "",
-  //     },
-  //   ],
-  // };
-
   useEffect(() => {
     setEventData(data);
   }, [data]);

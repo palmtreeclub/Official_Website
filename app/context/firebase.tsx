@@ -233,12 +233,13 @@ export const FirebaseProvider = (props: any) => {
         await updateDoc(eventDocRef, {
           id: docRef.id,
         });
-        toast("Document added successfully ");
+        toast.success("Document added successfully ");
         await getEvents();
       }
       console.log("Event added with ID:", docRef.id);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error adding event to Firestore:", error);
+      toast.error("Error adding event : " + error.message);
     }
   };
 
@@ -261,9 +262,19 @@ export const FirebaseProvider = (props: any) => {
     }
   };
 
+  const updateEvent = async (eventId: any, updatedData: any) => {
+    try {
+      const eventDocRef = doc(db, "events", eventId); // Replace `memberId` with the actual member document ID
+      await updateDoc(eventDocRef, updatedData);
+      toast.success("event data updated successfully.");
+    } catch (error: any) {
+      toast.error("Error updating event data: ", error.message);
+    }
+  };
+
   const deleteEvent = async (eventId: any) => {
     try {
-      const eventDocRef = doc(db, `members/${eventId}`);
+      const eventDocRef = doc(db, `events/${eventId}`);
 
       await deleteDoc(eventDocRef);
       console.log("Document deleted from Firestore.");
@@ -305,6 +316,7 @@ export const FirebaseProvider = (props: any) => {
           addEventToFirestore,
           deleteEvent,
           getEvents,
+          updateEvent,
         }}
       >
         <ThemeProvider>

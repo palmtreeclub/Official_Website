@@ -120,6 +120,15 @@ export default function Page() {
       onMenuPress();
     }
   };
+
+  const deleteEvent = (eventId: any) => {
+    if (isDeleteMode) {
+      if (window.confirm("Are you sure you want to delete this event?")) {
+        firebase?.deleteEvent(eventId);
+      }
+    }
+  };
+
   useEffect(() => {
     setEvents(firebase?.events);
 
@@ -212,10 +221,10 @@ export default function Page() {
                 return (
                   <>
                     <CardLayout
-                      onclick={() => console.log(index)}
                       isDeleteMode={isDeleteMode}
                       isEditMode={isEditMode}
                       key={`${index}`}
+                      onclick={() => deleteEvent(event?.id)}
                     >
                       <EventCard
                         event={event}
