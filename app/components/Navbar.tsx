@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { IoArrowUndo } from "react-icons/io5";
 import { useFirebase } from "../context/firebase";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
 
 export default function Navbar() {
@@ -23,7 +23,6 @@ export default function Navbar() {
       window.innerWidth > 600 ? setIsMobile(true) : setIsMobile(false);
     }
     firebase?.isLoggedIn === true ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    console.log(firebase?.isLoggedIn, isLoggedIn, "navbar");
   }, [firebase?.isLoggedIn]);
 
   const toggleMobileMenu = (e: any) => {
@@ -35,7 +34,9 @@ export default function Navbar() {
     <>
       {pathname === "/login" || pathname.includes("/team/") ? (
         <div
-          className={`flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md ${
+          className={`${
+            theme === "dark" && "invert"
+          } flex max-sm:flex-col z-50 fixed top-0 w-full h-max  bg-white shadow-md backdrop-blur-md ${
             isLoggedIn
               ? "sm:justify-between max-sm:justify-start"
               : "justify-center max-sm:justify-start"
@@ -48,7 +49,6 @@ export default function Navbar() {
                 onClick={() => router.push("/")}
               />
             )}
-            <ToastContainer />
             <div className="logo dark:-mt-3 dark:bg-gdsc-sou-bw-logo bg-gdsc-sou-logo bg-cover sm:dark:w-[20vw] sm:w-[18vw] max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]" />
             {isLoggedIn && (
               <HiBars3BottomRight

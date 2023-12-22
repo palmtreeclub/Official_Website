@@ -21,6 +21,7 @@ export default function Page() {
   const [isTip, setIsTip] = useState(false);
   const [isDeleteMode, setDeleteMode] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
+  const [isEditableWithPreview, setIsEditableWithPreview] = useState(false);
   const [IsCreateMode, setIsCreateMode] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [events, setEvents] = useState(firebase?.events);
@@ -54,6 +55,7 @@ export default function Page() {
       setEditMode(false);
       setIsCreateMode(false);
       setIsFormVisible(false);
+      setIsEditableWithPreview(false);
       setIsOptions(false);
       setIsTip(false);
       setFormData({
@@ -160,6 +162,15 @@ export default function Page() {
     console.log({ image: "", uniqueEventTypes });
   }, [firebase?.events]);
 
+  const handleEditMode = () => {
+    if (isEditMode) {
+      setEditMode(false);
+      setIsEditableWithPreview(false);
+    } else {
+      setEditMode(true);
+    }
+  };
+
   useEffect(() => {
     const filteredEvents = firebase?.events.filter(
       (event: any) => event.eventType === selectedType
@@ -177,6 +188,7 @@ export default function Page() {
   useEffect(() => {
     if (isDeleteMode) {
       setEditMode(false);
+      setIsEditableWithPreview(false);
       setIsTip(true);
       toast.warning("Delete Mode Activated !!!", {
         className: "sm:text-[1vw] max-sm:text-xl relative z-50",
@@ -189,6 +201,7 @@ export default function Page() {
         className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
     }
+
     if (!isDeleteMode && !isEditMode) setIsTip(false);
   }, [isDeleteMode, isEditMode]);
 
@@ -209,7 +222,7 @@ export default function Page() {
           />
         )}
 
-        {IsCreateMode || isFormVisible ? (
+        {IsCreateMode || isEditableWithPreview ? (
           <AddEventPage
             setFormData={setFormData}
             toggleFormVisibility={toggleFormVisibility}
@@ -242,7 +255,7 @@ export default function Page() {
                         onEventClick={() => {
                           if (isEditMode) {
                             setFormData(event);
-                            setIsFormVisible(true);
+                            setIsEditableWithPreview(true);
                           } else {
                             router.push("/event/" + event.id);
                           }
@@ -263,7 +276,7 @@ export default function Page() {
           isOptions={isOptions}
           onMenuPress={onMenuPress}
           setDeleteMode={setDeleteMode}
-          setEditMode={setEditMode}
+          setEditMode={handleEditMode}
           setIsCreateMode={setIsCreateMode}
         />
       </div>

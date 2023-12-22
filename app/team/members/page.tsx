@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { GrClose } from "react-icons/gr";
@@ -270,7 +270,6 @@ export default function Page() {
           editModeMsg="Edit Mode are Activated , just click on member and edit details and hit submit button."
         />
       )}
-      <ToastContainer className={"text-xl"} />
       {isMemberDialog && (
         <MemberForm
           handleColorChange={handleColorChange}

@@ -5,12 +5,18 @@ import { BiLogoDiscordAlt } from "react-icons/bi";
 import { GrMail } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export default function Footer() {
   const pathname: any = usePathname();
+  const { theme } = useTheme();
   return (
     <>
-      <div className="flex dark:bg-slate-800 bg-slate-50 w-full shadow-[0_0_10px_rgba(0,0,255,0.2)]">
+      <div
+        className={`flex ${
+          theme === "dark" && "invert"
+        } dark:bg-slate-800 bg-slate-50 w-full shadow-[0_0_10px_rgba(0,0,255,0.2)]`}
+      >
         <div className="flex flex-col w-full">
           {pathname === "/login" ||
             (pathname?.includes("/team/") ? null : (

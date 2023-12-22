@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useFirebase } from "../context/firebase";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
@@ -58,7 +58,6 @@ export default function Page() {
 
   return (
     <div className="flex flex-col dark:invert bg-event-bg bg-cover w-full h-full justify-center items-center">
-      <ToastContainer />
       <div className="flex flex-col dark:invert sm:py-[1vw] max-sm:py-5 gap-5 shadow-xl dark:bg-slate-900/80 bg-white/80 w-max h-max sm:p-[5vw max-sm:p-10 rounded-[5%] justify-center items-center">
         <h1
           className={`max-sm:text-2xl text-blue-600 text-center cursor-pointer text-[2vw] font-medium `}

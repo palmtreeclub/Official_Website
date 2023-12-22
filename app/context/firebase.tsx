@@ -1,5 +1,11 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -54,7 +60,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
 export const useFirebase = () => useContext(FirebaseContext);
@@ -62,44 +67,45 @@ export const useFirebase = () => useContext(FirebaseContext);
 export const FirebaseProvider = (props: any) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
   const path = usePathname();
   const db = getFirestore();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user: any) => {
-      if (user) {
-        setUser(user);
-        setIsLoggedIn(true);
-        console.log({ user });
-      } else {
-        setIsLoggedIn(false);
-        setUser(null);
-      }
-    });
-  }, []);
-
-  const signIn = async (email: any, password: any) => {
-    console.log(email, password);
-    return await signInWithEmailAndPassword(auth, email, password);
-  };
-
-  const signUp = async (name: any, url: any, email: any, password: any) => {
-    return await createUserWithEmailAndPassword(auth, email, password).then(
-      (res) => {
-        resetPassword(email);
-        updateProfile(res.user, { displayName: name, photoURL: url });
-      }
-    );
-  };
-
-  const resetPassword = async (email: any) => {
+  const resetPassword = useCallback(async (email: any) => {
     return await sendPasswordResetEmail(auth, email)
       .then((p) => console.log("pw reset email sented", p))
       .catch((err) => console.log(err));
-  };
+  }, []);
+
+  const handleAuthStateChanged = useCallback((user: any) => {
+    if (user) {
+      setUser(user);
+      setIsLoggedIn(true);
+      console.log({ user });
+    } else {
+      setIsLoggedIn(false);
+      setUser(null);
+    }
+  }, []);
+
+  const signIn = useCallback(async (email: any, password: any) => {
+    console.log(email, password);
+    return await signInWithEmailAndPassword(auth, email, password);
+  }, []);
+
+  const signUp = useCallback(
+    async (name: any, url: any, email: any, password: any) => {
+      return await createUserWithEmailAndPassword(auth, email, password).then(
+        (res) => {
+          resetPassword(email);
+          updateProfile(res.user, { displayName: name, photoURL: url });
+        }
+      );
+    },
+    [resetPassword]
+  );
+
   const signout = async () => {
     return await signOut(auth);
   };
@@ -167,7 +173,7 @@ export const FirebaseProvider = (props: any) => {
     const storageRef = ref(storage, `members/${memberId}/profile.png`);
     return await getDownloadURL(storageRef);
   };
-  const getMembers = async () => {
+  const getMembers = useCallback(async () => {
     const membersCollection = collection(db, "members");
     const q = query(membersCollection);
 
@@ -184,7 +190,7 @@ export const FirebaseProvider = (props: any) => {
       console.error("Error getting documents: ", error);
       return [];
     }
-  };
+  }, [db]);
 
   const deleteMember = async (memberId: any) => {
     try {
@@ -243,7 +249,7 @@ export const FirebaseProvider = (props: any) => {
     }
   };
 
-  const getEvents = async () => {
+  const getEvents = useCallback(async () => {
     const eventCollection = collection(db, "events");
     const q = query(eventCollection);
 
@@ -260,7 +266,7 @@ export const FirebaseProvider = (props: any) => {
       console.error("Error getting documents: ", error);
       return [];
     }
-  };
+  }, [db]);
 
   const updateEvent = async (updatedData: any) => {
     try {
@@ -293,10 +299,19 @@ export const FirebaseProvider = (props: any) => {
     }
   };
 
-  useEffect(() => {
+  const getInitialData = useCallback(() => {
     getMembers();
     getEvents();
-  }, []);
+  }, [getMembers, getEvents]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, handleAuthStateChanged);
+  }, [path, handleAuthStateChanged]);
+
+  useEffect(() => {
+    getInitialData();
+  }, [getInitialData]);
+
   return (
     <>
       <FirebaseContext.Provider
@@ -322,7 +337,6 @@ export const FirebaseProvider = (props: any) => {
         <ThemeProvider>
           <AnimatePresence mode="sync" key={path}>
             <Navbar />
-
             <motion.div
               className={`w-full fixed h-[25%] bottom-0 
               bg-yellow-500
@@ -368,8 +382,7 @@ export const FirebaseProvider = (props: any) => {
               viewport={{ once: true }}
               key={path}
             />
-            <ToastContainer />
-
+            <ToastContainer className={"text-[1vw]"} />
             {props.children}
             <Footer />
           </AnimatePresence>

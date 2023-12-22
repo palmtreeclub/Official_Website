@@ -35,7 +35,7 @@ export default function AddEventPage({
             !isFormVisible
               ? "w-0 pr-[3vw] -z-50 opacity-0"
               : "pr-[7vw] opacity-100 w-[40%] z-30"
-          } flex transition-all  duration-300 px-[2vw] fixed  right-0 h-full pt-[5vw] overflow-auto justify-center bg-white shadow-2xl p-[2vw] rounded-2xl`}
+          } flex transition-all duration-300 px-[2vw] fixed  right-0 h-full pt-[5vw] overflow-auto justify-center backdrop-blur-lg dark:invert bg-slate-400/60 shadow-2xl p-[2vw] rounded-2xl`}
         >
           <EventForm
             formData={formData}
