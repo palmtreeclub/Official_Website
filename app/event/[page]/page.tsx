@@ -16,21 +16,23 @@ export default function EventPage({
   data,
   isPreview,
 }: {
-  data: {
-    eventName: string;
-    eventType: string;
-    eventCaption: string;
-    eventLogo: string;
-    eventTheme: number;
-    rsvpLink: string;
-    driveLink: string;
-    eventDate: string;
-    eventTime: string;
-    eventLocation: string;
-    moreDetails: string;
-    sponsors: Sponsor[];
-    speakers: Speaker[];
-  };
+  data:
+    | {
+        eventName: string;
+        eventType: string;
+        eventCaption: string;
+        eventLogo: string;
+        eventTheme: number;
+        rsvpLink: string;
+        driveLink: string;
+        eventDate: string;
+        eventTime: string;
+        eventLocation: string;
+        moreDetails: string;
+        sponsors: Sponsor[];
+        speakers: Speaker[];
+      }
+    | any;
   isPreview: boolean;
 }) {
   const [eventData, setEventData] = useState(data);
