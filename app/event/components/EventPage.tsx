@@ -66,16 +66,7 @@ export default function EventPage({
   // };
 
   useEffect(() => {
-    if (isPreview) {
-      setEventData(data);
-    } else {
-      const dummyElements = [1, 2, 3, 4, 5];
-      setEventData((data: any) => ({
-        ...data,
-        speakers: dummyElements,
-        sponsors: dummyElements,
-      }));
-    }
+    setEventData(data);
   }, [data]);
 
   const pageTheme = isPreview ? Number(eventData?.eventTheme) : 1;
