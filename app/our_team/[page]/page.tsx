@@ -22,6 +22,7 @@ interface Member {
 }
 
 export default function Page() {
+  const [GdscLead, setGdscLead] = useState({});
   const [members, setMembers] = useState([
     {
       img: "",
@@ -126,18 +127,27 @@ export default function Page() {
   const firebase: any = useFirebase();
   const [isVisible, setIsVisible] = useState(false);
   const { theme, setTheme } = useTheme();
-  const router = useRouter();
   const { page } = useParams();
 
   useEffect(() => {
-    setMembers(firebase?.members);
-    console.log({ theme });
-  }, [firebase?.members]);
-
+    const pageName = page === "leads" ? "core_team" : page;
+    setMembers(
+      firebase.members.filter((member: any) => member.type === pageName)
+    );
+    const lead: any = firebase.members.filter(
+      (member: any) => member.type === "gdsc_lead"
+    );
+    setGdscLead(lead[0]);
+    console.log({ lead });
+  }, [firebase.members, page]);
   return (
     <div className="w-full h-max flex justify-center items-center">
       <div className="flex w-full h-full flex-col justify-center items-center">
-        <div className="flex overflow-hidden relative max-sm:py-24 sm:pb-[3vw] sm:pt-[7vw] h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center">
+        <div
+          className={`flex overflow-hidden relative max-sm:py-24 sm:pb-[3vw] sm:pt-[7vw] h-max flex-col max-sm:text-center sm:text-center w-full justify-center items-center ${
+            theme === "dark" && "invert"
+          }`}
+        >
           <Image
             src={"/Assets/TEAM_HEADER_BG.png"}
             layout="fill"
@@ -159,7 +169,7 @@ export default function Page() {
             </h4>
           </div>
         </div>
-        {page === "leads" && (
+        {(page === "leads" || page === "core_team") && (
           <div className="flex flex-col pb-10 items-center w-full h-full ">
             <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
               GDSC Lead 2023
@@ -171,14 +181,7 @@ export default function Page() {
               onClick={() => {
                 setIsVisible(true);
               }}
-              member={{
-                name: "Dev Shinde",
-                designation: "GDSC Lead (2023)",
-                color: "green",
-                github: "",
-                twitter: "",
-                linkedin: "",
-              }}
+              member={GdscLead}
             />
           </div>
         )}
@@ -186,13 +189,13 @@ export default function Page() {
           <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
             {page === "alumni"
               ? "Formar Leads"
-              : page === "volunteers"
+              : page === "volunteer"
               ? "Our Volunteers"
               : "Core Team"}
           </h1>
           <div className="flex flex-wrap w-full justify-center items-center sm:gap-[3vw] max-sm:gap-10">
-            {members.map((member) => (
-              <TeamCard key={member} member={member} />
+            {members.map((member, index) => (
+              <TeamCard key={index} member={member} />
             ))}
           </div>
         </div>

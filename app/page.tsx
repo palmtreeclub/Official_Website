@@ -17,12 +17,14 @@ import { useFirebase } from "./context/firebase";
 import Partner from "./components/Partner";
 import Cursor from "./components/Cursor";
 import AnimateCircleCard from "./components/AnimateCircleCard";
+import { useTheme } from "next-themes";
 
 export default function Home() {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const firebase: any = useFirebase();
+  const { theme } = useTheme();
   useEffect(() => {
     window.innerWidth < 600 ? setIsMobile(true) : setIsMobile(false);
     firebase.isLoggedIn && router.push("/team/dashboard");
@@ -261,7 +263,7 @@ export default function Home() {
         <div className="flex max-sm:flex-col dark:invert w-4/6 justify-between items-center max-sm:gap-10">
           <AnimateCircleCard
             title="Leads"
-            link="/our_team/leads"
+            link="/our_team/core_team"
             border="border-red-500"
             animationName="rotate-1"
           />
@@ -273,14 +275,18 @@ export default function Home() {
           />
           <AnimateCircleCard
             title="Volunteers"
-            link="/our_team/volunteers"
+            link="/our_team/volunteer"
             border="border-yellow-500"
             animationName="rotate-3"
           />
         </div>
       </section>
       {/* Upcoming Events */}
-      <section className="flex relative  dark:bg-event-b dark:invert bg-event-bg bg-contain justify-center items-center w-full sm:h-full">
+      <section
+        className={`flex ${
+          theme === "dark" && "invert"
+        } relative  dark:bg-event-b dark:invert bg-event-bg bg-contain justify-center items-center w-full sm:h-full`}
+      >
         <div className="flex  flex-col max-sm:scale-90 max-sm:overflow-y-scroll sm:overflow-auto max-sm:py-28 sm:h-full max-md:flex-col scrollbar-none justify-center  items-center">
           <motion.h1
             initial={{ translateY: "-100px", opacity: 0 }}
@@ -301,21 +307,15 @@ export default function Home() {
                 router.push("/event/cloudreadynessprogramm");
               }}
             />
-            {/* <EventCard mirror={true} onClick={setIsVisible} /> */}
-            {/* <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} />
-            <EventCard mirror={true} onClick={setIsVisible} /> */}
           </div>
         </div>
       </section>
       {/* Partners */}
-      <section className="flex relative justify-center bg-white dark:bg-slate-900 items-center w-full h-full">
+      <section
+        className={`flex relative justify-center bg-white dark:bg-slate-900 items-center w-full h-full ${
+          theme === "dark" && "invert"
+        }`}
+      >
         <div className="flex  w-full flex-col   justify-center items-center  light:bg-white/50  h-4/5 max-sm:p-5   sm:p-[2vw]">
           <motion.h1
             initial={{ translateY: "-100px", opacity: 0 }}

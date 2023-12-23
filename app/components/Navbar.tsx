@@ -139,7 +139,11 @@ export default function Navbar() {
           ) : null}
         </div>
       ) : (
-        <div className="flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md justify-between sm:px-[2vw] sm:py-[1vw]">
+        <div
+          className={`${
+            theme === "dark" && "invert"
+          } flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md justify-between sm:px-[2vw] sm:py-[1vw]`}
+        >
           <div className="logo cursor-pointer h-full max-sm:py-5 px-5 justify-between text-3xl items-center flex">
             <div
               onClick={(e) => {
