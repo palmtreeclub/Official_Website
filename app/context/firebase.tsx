@@ -155,9 +155,11 @@ export const FirebaseProvider = (props: any) => {
     }
   };
 
-  const updateMember = async (memberDocRef: any, updatedData: any) => {
+  const updateMember = async (memberRef: any, updatedData: any) => {
     try {
+      const memberDocRef = memberRef || doc(db, "members", updatedData?.id); // Replace `memberId` with the actual member document ID
       await updateDoc(memberDocRef, updatedData);
+      await getMembers();
       console.log("Member data updated successfully.");
     } catch (error) {
       console.error("Error updating member data: ", error);
@@ -332,6 +334,7 @@ export const FirebaseProvider = (props: any) => {
           deleteEvent,
           getEvents,
           updateEvent,
+          updateMember,
         }}
       >
         <ThemeProvider>

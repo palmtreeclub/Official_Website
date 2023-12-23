@@ -187,11 +187,15 @@ export default function Page() {
     }
   };
 
-  const deleteMember = (memberId: any) => {
+  const deleteMember = (memberId: any, memberData: any) => {
     if (isDeleteMode) {
       if (confirm("Are you sure you want to delete this member?")) {
         firebase?.deleteMember(memberId);
       }
+    }
+    if (isEditMode) {
+      setNewMemberDetails(memberData);
+      setIsMemberDialog(true);
     }
   };
 
@@ -239,19 +243,28 @@ export default function Page() {
   };
 
   const SubmitDetails = async () => {
-    const res = await firebase.addNewMemberDetails(
-      newMemberDetails,
-      newMemberCradentials
-    );
-    if (res.success) {
-      toast.success("New Member Successfully Added!!!", {
+    if (isEditMode) {
+      console.log({ newMemberDetails });
+      await firebase?.updateMember(null, newMemberDetails);
+      toast.success("Member Successfully updated!!!", {
         className: "sm:text-[1vw] max-sm:text-xl relative z-50",
       });
       removeAllCurrentDetails();
     } else {
-      toast.error(res.data, {
-        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
-      });
+      const res = await firebase?.addNewMemberDetails(
+        newMemberDetails,
+        newMemberCradentials
+      );
+      if (res.success) {
+        toast.success("New Member Successfully Added!!!", {
+          className: "sm:text-[1vw] max-sm:text-xl relative z-50",
+        });
+        removeAllCurrentDetails();
+      } else {
+        toast.error(res.data, {
+          className: "sm:text-[1vw] max-sm:text-xl relative z-50",
+        });
+      }
     }
   };
 
@@ -282,6 +295,7 @@ export default function Page() {
           newMemberCradentials={newMemberCradentials}
           newMemberDetails={newMemberDetails}
           previewAvtar={previewAvtar}
+          isEditMode={isEditMode}
           removeAllCurrentDetails={removeAllCurrentDetails}
           selectedColor={selectedColor}
           selectedMemberColor={selectedMemberColor}
@@ -303,7 +317,7 @@ export default function Page() {
                 isDeleteMode={isDeleteMode}
                 isEditMode={isEditMode}
                 key={member?.id}
-                onclick={() => deleteMember(member?.id)}
+                onclick={() => deleteMember(member?.id, member)}
               >
                 <TeamCard key={member} member={member} />
               </CardLayout>

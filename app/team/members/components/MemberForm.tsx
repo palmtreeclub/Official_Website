@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import TeamCard from "@/app/components/TeamCard";
-import MemberTypeOption from "./MemberTypeOption";
 
 interface MemberFormProps {
   newMemberDetails: any;
@@ -15,6 +14,7 @@ interface MemberFormProps {
   selectedMemberColor: string | null;
   imgRef: React.RefObject<HTMLInputElement>;
   previewAvtar: string | null;
+  isEditMode: boolean;
   newMemberCradentials: any;
   setNewMemberCradentials: React.Dispatch<React.SetStateAction<any>>;
   removeAllCurrentDetails: () => void;
@@ -65,6 +65,7 @@ const MemberForm: React.FC<MemberFormProps> = ({
   handleColorChange,
   handleMemberTypeChange,
   selectedColor,
+  isEditMode,
   memberTypes,
   selectedMemberColor,
   imgRef,
@@ -280,48 +281,49 @@ const MemberForm: React.FC<MemberFormProps> = ({
           ))}
         </div>
         {(newMemberDetails.type === "gdsc_lead" ||
-          newMemberDetails.type === "core_team") && (
-          <div className="flex justify-center items-center gap-5 pb-5">
-            <div className="flex justify-center items-center w-1/2 gap-5">
-              <h1 className="max-sm:text-[1vw] max-sm:text-xl font-semibold text-red-500">
-                Email:
-              </h1>
-              <input
-                value={newMemberCradentials.email}
-                onChange={(e: any) =>
-                  setNewMemberCradentials({
-                    ...newMemberCradentials,
-                    email: e.target.value,
-                  })
-                }
-                type="text"
-                name="email"
-                title="email"
-                placeholder="example@mail.com "
-                className="bg-slate-100 dark:text-white dark:bg-slate-800  focus:border-2 border-slate-600/50 shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
-              />
+          newMemberDetails.type === "core_team") &&
+          !isEditMode && (
+            <div className="flex justify-center items-center gap-5 pb-5">
+              <div className="flex justify-center items-center w-1/2 gap-5">
+                <h1 className="max-sm:text-[1vw] max-sm:text-xl font-semibold text-red-500">
+                  Email:
+                </h1>
+                <input
+                  value={newMemberCradentials.email}
+                  onChange={(e: any) =>
+                    setNewMemberCradentials({
+                      ...newMemberCradentials,
+                      email: e.target.value,
+                    })
+                  }
+                  type="text"
+                  name="email"
+                  title="email"
+                  placeholder="example@mail.com "
+                  className="bg-slate-100 dark:text-white dark:bg-slate-800  focus:border-2 border-slate-600/50 shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
+                />
+              </div>
+              <div className="flex justify-center items-center w-1/2 gap-5">
+                <h1 className="max-sm:text-[1vw] max-sm:text-xl font-semibold text-red-500">
+                  Password:
+                </h1>
+                <input
+                  value={newMemberCradentials.password}
+                  onChange={(e: any) =>
+                    setNewMemberCradentials({
+                      ...newMemberCradentials,
+                      password: e.target.value,
+                    })
+                  }
+                  type="text"
+                  name="password"
+                  title="password"
+                  placeholder="******** "
+                  className="bg-slate-100 dark:text-white dark:bg-slate-800  focus:border-2 border-slate-600/50 shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
+                />
+              </div>
             </div>
-            <div className="flex justify-center items-center w-1/2 gap-5">
-              <h1 className="max-sm:text-[1vw] max-sm:text-xl font-semibold text-red-500">
-                Password:
-              </h1>
-              <input
-                value={newMemberCradentials.password}
-                onChange={(e: any) =>
-                  setNewMemberCradentials({
-                    ...newMemberCradentials,
-                    password: e.target.value,
-                  })
-                }
-                type="text"
-                name="password"
-                title="password"
-                placeholder="******** "
-                className="bg-slate-100 dark:text-white dark:bg-slate-800  focus:border-2 border-slate-600/50 shadow-inner max-sm:rounded-md sm:rounded-[.5vw] sm:pl-[1.5vw] max-sm:pl-5 max-sm:p-3 outline-none w-full sm:p-[.4vw]"
-              />
-            </div>
-          </div>
-        )}
+          )}
         <div className="flex w-full gap-5">
           <button
             onClick={() => removeAllCurrentDetails()}
@@ -344,7 +346,7 @@ const MemberForm: React.FC<MemberFormProps> = ({
           member={{
             name: newMemberDetails.name,
             designation: newMemberDetails.designation,
-            avtar: previewAvtar,
+            avtar: previewAvtar || newMemberDetails.avtar,
             color: newMemberDetails.color,
           }}
         />

@@ -6,9 +6,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
 
 export default function TeamCard({ member, onClick, mirror }: any) {
-  console.log(member.color);
-  const color = member.color;
-  console.log(color);
+  const color = member?.color;
   const CardContainer = `flex card p-5 dark:shadow-[0_0_10px_rgba(150,150,150,0.5)] hover:text-white flex-col shadow-2xl relative z-10 cursor-pointer  ${
     color === "blue"
       ? "before:bg-blue-600"

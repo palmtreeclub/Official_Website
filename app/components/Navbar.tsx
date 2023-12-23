@@ -95,7 +95,7 @@ export default function Navbar() {
                 Materials
               </Link>
               {(firebase?.user?.email === "yashsoni48678@gmail.com" ||
-                firebase?.user?.email === "devshinde@gmail.com") && (
+                firebase?.user?.email === "vimarsh2013@gmail.com") && (
                 <Link
                   onClick={() =>
                     isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)

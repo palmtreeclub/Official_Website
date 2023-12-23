@@ -1,18 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EventCard from "../components/EventCard";
 import { useTheme } from "next-themes";
+import { useFirebase } from "../context/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const firebase: any = useFirebase();
+  const router = useRouter();
   const [events, setEvents] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-  const [upcomingEvents, setUpcomingEvents] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1,
-  ]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  useEffect(() => {
+    setUpcomingEvents(firebase?.events);
+  }, []);
+
   const { theme } = useTheme();
   return (
     <div className="flex  w-full h-max flex-col justify-center items-center">
       <div
-        className={`event sm:pt-[4vw] invert max-sm:pt-14 justify-center items-center max-sm:gap-5 sm:gap-[1vw]  flex flex-wrap ${
+        className={`event sm:pt-[4vw]  max-sm:pt-14 justify-center items-center max-sm:gap-5 sm:gap-[1vw]  flex flex-wrap ${
           theme === "dark" && "invert"
         }`}
       >
@@ -20,10 +26,13 @@ export default function Page() {
           Events
         </h1>
         {upcomingEvents?.length > 0 ? (
-          upcomingEvents.map((event) => {
+          upcomingEvents.map((event: any) => {
             return (
               <div key={event} className="scale-90">
-                <EventCard />
+                <EventCard
+                  event={event}
+                  onEventClick={() => router.push("/event/" + event?.id)}
+                />
               </div>
             );
           })
