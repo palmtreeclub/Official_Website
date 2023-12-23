@@ -25,32 +25,3 @@ export default function Page() {
     </div>
   );
 }
-
-export const PageItem = ({ title }: { title: string }) => (
-  <h4 className="p-[.5vw] flex justify-between border-b-[1px] font-medium text-slate-500 pl-[2vw] cursor-pointer transition-all duration-300 text-[1vw] hover:text-cyan-500 border-b-cyan-500/30">
-    <span>{title}</span>
-    <MdArrowOutward />
-  </h4>
-);
-
-export const CardHeader = ({ title }: { title: string }) => (
-  <h1 className="bg-cyan-500/20 w-full text-slate-500 font-semibold rounded-t-[1vw] pl-[2vw] p-[.5vw] text-[1.2vw] shadow-md">
-    {title}
-  </h1>
-);
-
-export const IconCard = ({
-  icon,
-  bgColor,
-  bgHover,
-}: {
-  icon: any;
-  bgColor: string;
-  bgHover: string;
-}) => (
-  <div
-    className={`text-[2vw] p-[1vw] ${bgColor} ${bgHover}  cursor-pointer text-white w-max h-max rounded-[1vw]`}
-  >
-    {icon}
-  </div>
-);

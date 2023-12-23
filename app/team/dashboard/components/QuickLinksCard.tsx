@@ -7,7 +7,8 @@ import {
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
-import { CardHeader, IconCard } from "../page";
+import { IconCard } from "./IconCard";
+import { CardHeader } from "./CardHeader";
 
 export const QuickLinksCard = () => (
   <div className="w-[30vw] h-[14vw] scrollbar-none bg-cyan-500/10 shadow-[0_0_10px_1px_rgba(0,0,0,.2)] rounded-[1vw]">

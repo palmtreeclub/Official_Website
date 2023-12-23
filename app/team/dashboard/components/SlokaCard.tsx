@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { CardHeader } from "../page";
 import axios from "axios";
 import { MdArrowOutward } from "react-icons/md";
 import { useTheme } from "next-themes";
+import { CardHeader } from "./CardHeader";
 
 export const SlokaCard = () => {
   const [sloka, setSloka] = useState<any>([]);
