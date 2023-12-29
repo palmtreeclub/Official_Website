@@ -185,25 +185,25 @@ export default function Page() {
     });
   }, [events, selectedType]);
 
-  useEffect(() => {
-    if (isDeleteMode) {
-      setEditMode(false);
-      setIsEditableWithPreview(false);
-      setIsTip(true);
-      toast.warning("Delete Mode Activated !!!", {
-        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
-      });
-    }
-    if (isEditMode) {
-      setIsTip(true);
-      setDeleteMode(false);
-      toast.info("Edit Mode Activated !!!", {
-        className: "sm:text-[1vw] max-sm:text-xl relative z-50",
-      });
-    }
+  // useEffect(() => {
+  //   if (isDeleteMode) {
+  //     setEditMode(false);
+  //     setIsEditableWithPreview(false);
+  //     setIsTip(true);
+  //     toast.warning("Delete Mode Activated !!!", {
+  //       className: "sm:text-[1vw] max-sm:text-xl relative z-50",
+  //     });
+  //   }
+  //   if (isEditMode) {
+  //     setIsTip(true);
+  //     setDeleteMode(false);
+  //     toast.info("Edit Mode Activated !!!", {
+  //       className: "sm:text-[1vw] max-sm:text-xl relative z-50",
+  //     });
+  //   }
 
-    if (!isDeleteMode && !isEditMode) setIsTip(false);
-  }, [isDeleteMode, isEditMode]);
+  //   if (!isDeleteMode && !isEditMode) setIsTip(false);
+  // }, [isDeleteMode, isEditMode]);
 
   useEffect(() => {
     firebase.isLoggedIn ? null : router.push("/login");
