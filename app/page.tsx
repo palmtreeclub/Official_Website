@@ -24,6 +24,7 @@ import JoinCommunityv2 from "./components/JoinCommunity.v2";
 import UpcomingEvents from "./components/UpcomingEvents";
 import UpcomingEventsv2 from "./components/UpcomingEvents.v2";
 import WhatWeDo from "./components/WhatWeDo.v2";
+import AboutUs from "./components/AboutUsSection";
 
 export default function Home() {
   const router = useRouter();
@@ -40,7 +41,11 @@ export default function Home() {
   return (
     <>
       <Cursor />
+      {/*Hero section */}
       <HeroSection />
+
+      {/*About section */}
+      <AboutUs />
 
       {/*What we do */}
       <WhatWeDo />
@@ -50,6 +55,7 @@ export default function Home() {
 
       {/* Upcoming Events */}
       <UpcomingEventsv2 />
+
       {/* Join Our Community */}
       <JoinCommunityv2 />
 

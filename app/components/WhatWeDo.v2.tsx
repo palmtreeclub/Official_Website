@@ -14,9 +14,6 @@ export default function WhatWeDo() {
           viewport={{ once: true }}
           className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] "
         >
-          {/* <h1 className="max-sm:text-2xl text-[2vw] font-medium text-red-500">
-            About Us
-          </h1> */}
           <div className="relative sm:w-[30vw] sm:h-[25vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
             <Image
               src="/Assets/About.gif"
@@ -58,16 +55,7 @@ export default function WhatWeDo() {
             <span className="text-black">&gt;</span> Events
           </h1>
         </motion.div>
-
-        {/* <Image alt="Hero SVG" layout="fill" src={"/Hero_Section.svg"} /> */}
       </div>
-      {/* <motion.div
-        initial={{ translateX: "-300px", translateY: "200px", opacity: 0 }}
-        whileInView={{ translateX: "0px", translateY: "0px", opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        viewport={{ once: true }}
-        className="absolute w-full bg-wave bg-cover h-[15vw] max-sm:bottom-10 sm:-bottom-10 "
-      /> */}
     </section>
   );
 }
