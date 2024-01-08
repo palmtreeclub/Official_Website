@@ -1,0 +1,45 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FaGreaterThan } from "react-icons/fa6";
+export default function JoinCommunityv2() {
+  const router = useRouter();
+  return (
+    <>
+      <div className="w-full bg-[#0080FC] py-5"></div>
+      <section className="flex relative justify-center  py-[5vw] h-4/5  items-center w-full ">
+        <div className="flex">
+          <div className="w-[40%]">
+            <h1 className="text-white text-[5vw] leading-[7vw] w-full">
+              Join Our Community of
+              <span className="font-bold"> #Developers</span>
+            </h1>
+            <h1 className="mt-[6vw] text-[1.2vw] text-white cursor-pointer transition-all duration-300 hover:text-white/50">
+              &gt; Become a Member
+            </h1>
+          </div>
+          <div className="w-[60%] bg-red-">
+            <div className="event-svg w-full h-[30vw] relative">
+              <Image
+                src={"/Svg/Event3.svg"}
+                objectFit="contain"
+                layout="fill"
+                className="self-start left-0 absolute -z-10"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <Image
+          src={"/Svg/GDSC-blue-bg.png"}
+          objectFit="cover"
+          layout="fill"
+          className="self-start left-0 absolute -z-20"
+          alt=""
+        />
+      </section>
+    </>
+  );
+}
