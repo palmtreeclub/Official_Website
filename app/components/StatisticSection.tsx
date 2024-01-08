@@ -45,9 +45,7 @@ export default function StatisticSection() {
         />
       </div>
 
-      <div className="flex  w-full flex-col   justify-center items-center  light:bg-white/50   max-sm:p-5   sm:p-[2vw]">
-        {/* <div className="relative h-4 w-full"> */}
-        {/* </div> */}
+      <div className="flex relative z-30 w-full flex-col   justify-center items-center  light:bg-white/50   max-sm:p-5   sm:p-[2vw]">
         <motion.h1
           initial={{ translateY: "-100px", opacity: 0 }}
           whileInView={{ translateY: "0px", opacity: 1 }}
