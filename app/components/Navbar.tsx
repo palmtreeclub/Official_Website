@@ -191,6 +191,14 @@ export default function Navbar() {
             </Link>
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="hover:text-pink-600"
+              href={"/our_team/alumni"}
+            >
+              Alumni
+            </Link>
+
+            <Link
+              onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="hover:text-yellow-600"
               href={"/contact_us"}
             >

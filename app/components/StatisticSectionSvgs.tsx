@@ -9,7 +9,7 @@ export default function StatisticSectionSvgs() {
         whileInView={{ translateX: "0px", translateY: "0px", opacity: 1 }}
         transition={{ duration: 2 }}
         viewport={{ once: false }}
-        className=" left-0 top-[8vw] w-full"
+        className=" left-0 top-[8vw] w-1/2"
         key={"yellow-star-half"}
       >
         <div className="relative w-[15vw] h-[42vw]  ">
@@ -27,7 +27,7 @@ export default function StatisticSectionSvgs() {
         whileInView={{ translateX: "0px", translateY: "0px", opacity: 1 }}
         transition={{ duration: 2 }}
         viewport={{ once: false }}
-        className=" right-0 top-[8vw]"
+        className="w-1/2  justify-end flex"
         key={"red-star-half"}
       >
         <div className="relative w-[15vw] h-[42vw]  ">

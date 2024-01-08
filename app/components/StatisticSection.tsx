@@ -14,7 +14,7 @@ export default function StatisticSection() {
         theme === "dark" && "invert"
       }`}
     >
-      <div className="flex absolute w-full top-[8vw] z-10">
+      <div className="flex absolute w-screen justify-between top-[8vw] z-10">
         <StatisticSectionSvgs />
       </div>
       <div className="flex relative z-30 flex-wrap gap-[4vw]">
