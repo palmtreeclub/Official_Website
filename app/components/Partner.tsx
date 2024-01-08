@@ -29,7 +29,7 @@ export default function Partner({ src, size }: Image) {
         initial={{ scale: 0.3, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         className={container}
       >
         <Image src={src} fill layout="fill" alt="Partner" objectFit="contain" />

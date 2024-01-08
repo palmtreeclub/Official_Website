@@ -54,9 +54,28 @@ export default function StatisticSection() {
         </div>
       </motion.div>
       <div className="flex flex-wrap gap-[4vw]">
-        <CounterCard bgColor="bg-yellow-50" title="Members" total={650} />
-        <CounterCard bgColor="bg-blue-50" title="Volunteers" total={30} />
-        <CounterCard bgColor="bg-green-50" title="Leads" total={10} />
+        <CounterCard
+          bgColor="bg-yellow-50"
+          onClick={() =>
+            window.open(
+              "https://gdsc.community.dev/silver-oak-university-ahmedabad/"
+            )
+          }
+          title="Members"
+          total={650}
+        />
+        <CounterCard
+          bgColor="bg-blue-50"
+          redirect="/our_team/volunteer"
+          title="Volunteers"
+          total={30}
+        />
+        <CounterCard
+          bgColor="bg-green-50"
+          redirect="/our_team/core_team"
+          title="Leads"
+          total={10}
+        />
       </div>
       <div className="flex  w-full flex-col   justify-center items-center  light:bg-white/50   max-sm:p-5   sm:p-[2vw]">
         <motion.h1

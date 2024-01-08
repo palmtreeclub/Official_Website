@@ -53,26 +53,26 @@ export default function Footer() {
                       Vidyapith, S. G. Road,
                       <br /> Gota, Ahmedabad
                     </Link>
-                    <h1 className="sm:text-[1.8vw] mt-[3vw] max-sm:text-xl dark:text-white/60 text-slate-800 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
+                    <h1 className="sm:text-[1.8vw] mt-[3vw] max-sm:text-xl text-slate-800 dark:text-white/60 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
                       Follow us
                     </h1>
                     <div className="flex text-[3vw] gap-[1vw]">
-                      <div className="box cursor-pointer text-red-500 hover:scale-110 transition-all duration-300 hover:text-red-500/50 rounded-lg bg-white">
+                      <div className="box cursor-pointer text-red-500 hover:scale-110 transition-all duration-300 hover:text-red-500/50 rounded-lg ">
                         <BiLogoInstagramAlt className="" />
                       </div>
-                      <div className="box cursor-pointer text-blue-500 hover:scale-110 transition-all duration-300 hover:text-blue-500/50 rounded-lg bg-white">
+                      <div className="box cursor-pointer text-blue-500 hover:scale-110 transition-all duration-300 hover:text-blue-500/50 rounded-lg ">
                         <BiLogoLinkedin className="" />
                       </div>
-                      <div className="box cursor-pointer text-green-500 hover:scale-110 transition-all duration-300 hover:text-green-500/50 rounded-lg bg-white">
+                      <div className="box cursor-pointer text-green-500 hover:scale-110 transition-all duration-300 hover:text-green-500/50 rounded-lg ">
                         <FcGoogle className="" />
                       </div>
-                      <div className="box cursor-pointer text-yellow-500 hover:scale-110 transition-all duration-300 hover:text-yellow-500/50 bg-white">
+                      <div className="box cursor-pointer text-yellow-500 hover:scale-110 transition-all duration-300 hover:text-yellow-500/50 ">
                         <BiLogoFacebookCircle className="" />
                       </div>
-                      <div className="box cursor-pointer text-sky-500 hover:scale-110 transition-all duration-300 hover:text-sky-500/50 bg-white">
+                      <div className="box cursor-pointer text-sky-500 hover:scale-110 transition-all duration-300 hover:text-sky-500/50 ">
                         <AiOutlineTwitter className="" />
                       </div>
-                      <div className="box cursor-pointer text-slate-800 hover:scale-110 transition-all duration-300 hover:text-slate-800/50 rounded-lg bg-white">
+                      <div className="box cursor-pointer text-black dark:text-white dark:hover:text-white/75 hover:scale-110 transition-all duration-300 hover:text-slate-800/50 rounded-lg ">
                         <BiLogoGithub className="" />
                       </div>
                     </div>
