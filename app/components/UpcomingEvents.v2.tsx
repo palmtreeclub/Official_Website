@@ -26,11 +26,11 @@ export default function UpcomingEventsv2() {
         alt="Haritage svg"
       />
       <div className="flex  flex-col max-sm:scale-90 max-sm:overflow-y-scroll sm:overflow-auto max-sm:py-28 sm:h-full max-md:flex-col scrollbar-none justify-center  items-center">
-        <Confettin onClose={setIsVisible} onFire={isVisible} />
-        <div className="flex max-sm:flex-col dark:invert max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
+        <div className="flex max-sm:flex-col max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
           {/* <div className="flex sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll pl-[100vw] pr-[5vw]  scrollbar-none "> */}
           <UpcomingEventCard onClick={() => setIsVisible(true)} />
         </div>
+        <Confettin onClose={setIsVisible} onFire={isVisible} />
       </div>
     </section>
   );

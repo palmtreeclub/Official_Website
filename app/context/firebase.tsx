@@ -41,7 +41,7 @@ import {
 } from "firebase/auth";
 import { ThemeProvider } from "next-themes";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer.v2";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";

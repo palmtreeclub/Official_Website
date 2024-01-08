@@ -11,7 +11,7 @@ export default function UpcomingEventCard({
   return (
     <div
       onClick={onClick}
-      className="bg-black px-[3vw] cursor-pointer flex w-[70vw] h-[35vw] justify-center items-center mt-[5vw] rounded-[4vw]"
+      className="bg-slate-900  px-[3vw] cursor-pointer flex w-[70vw] h-[35vw] justify-center items-center mt-[5vw] rounded-[4vw]"
     >
       <div className="flex flex-col">
         <h1 className="text-[5vw] text-white w-1/2">Upcoming Event</h1>
