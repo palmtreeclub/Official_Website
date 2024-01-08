@@ -21,6 +21,8 @@ import { useTheme } from "next-themes";
 import HeroSection from "./components/HeroSection.v2";
 import D3Section from "./components/D3Section.v2.";
 import JoinCommunityv2 from "./components/JoinCommunity.v2";
+import UpcomingEvents from "./components/UpcomingEvents";
+import UpcomingEventsv2 from "./components/UpcomingEvents.v2";
 
 export default function Home() {
   const router = useRouter();
@@ -98,61 +100,15 @@ export default function Home() {
           className="absolute w-full bg-wave bg-cover h-[15vw] max-sm:bottom-10 sm:-bottom-10 "
         />
       </section>
-      {/* Team */}
+      {/*Design, Develop, Deliver. */}
       <D3Section />
 
-      <section className="flex justify-center items-center w-full h-max p-[5vw]">
-        <div className="flex max-sm:flex-col dark:invert w-4/6 justify-between items-center max-sm:gap-10">
-          <AnimateCircleCard
-            title="Leads"
-            link="/our_team/core_team"
-            border="border-red-500"
-            animationName="rotate-1"
-          />
-          <AnimateCircleCard
-            title="Alumni"
-            link="/our_team/alumni"
-            border="border-blue-500"
-            animationName="rotate-2"
-          />
-          <AnimateCircleCard
-            title="Volunteers"
-            link="/our_team/volunteer"
-            border="border-yellow-500"
-            animationName="rotate-3"
-          />
-        </div>
-      </section>
-      <JoinCommunityv2 />
       {/* Upcoming Events */}
-      <section
-        className={`flex ${
-          theme === "dark" && "invert"
-        } relative  dark:bg-event-b dark:invert bg-event-bg bg-contain justify-center items-center w-full sm:h-full`}
-      >
-        <div className="flex  flex-col max-sm:scale-90 max-sm:overflow-y-scroll sm:overflow-auto max-sm:py-28 sm:h-full max-md:flex-col scrollbar-none justify-center  items-center">
-          <motion.h1
-            initial={{ translateY: "-100px", opacity: 0 }}
-            whileInView={{ translateY: "0px", opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="max-sm:text-2xl max-sm:top-16 sm:top-[3vw] z-20 absolute sm:pb-[2vw] max-sm:pb-5 sm:text-[2vw] font-medium text-blue-500"
-          >
-            Upcoming Events
-          </motion.h1>
-          <Confettin onClose={setIsVisible} onFire={isVisible} />
-          <div className="flex max-sm:flex-col dark:invert max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
-            {/* <div className="flex sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll pl-[100vw] pr-[5vw]  scrollbar-none "> */}
-            <EventCard
-              mirror={true}
-              onClick={setIsVisible}
-              onEventClick={() => {
-                router.push("/event/cloudreadynessprogramm");
-              }}
-            />
-          </div>
-        </div>
-      </section>
+      <UpcomingEventsv2 />
+
+      {/* Join Our Community */}
+      <JoinCommunityv2 />
+
       {/* Partners */}
       <section
         className={`flex relative justify-center bg-white dark:bg-slate-900 items-center w-full h-full ${
