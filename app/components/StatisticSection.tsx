@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import CounterCard from "./CounterCard";
 import { useTheme } from "next-themes";
+import StatisticSectionSvgs from "./StatisticSectionSvgs";
 
 export default function StatisticSection() {
   const { theme } = useTheme();
@@ -13,48 +14,12 @@ export default function StatisticSection() {
         theme === "dark" && "invert"
       }`}
     >
-      <motion.div
-        initial={{ translateX: "-300px", translateY: "0px", opacity: 0 }}
-        whileInView={{ translateX: "0px", translateY: "0px", opacity: 1 }}
-        transition={{ duration: 2 }}
-        viewport={{ once: false }}
-        className="absolute left-0 top-[8vw]"
-      >
-        <div className="relative -rotate-[25vw] overflow-hidden g-slate-300 w-[15vw] h-[42vw]  ">
-          <Image
-            src="/Svg/yellow-star-half.svg"
-            layout="fill"
-            className=""
-            alt="hackathon"
-            objectFit="contain"
-            priority
-            fetchPriority="high"
-            quality={60}
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        initial={{ translateX: "300px", translateY: "0px", opacity: 0 }}
-        whileInView={{ translateX: "0px", translateY: "0px", opacity: 1 }}
-        transition={{ duration: 2 }}
-        viewport={{ once: false }}
-        className="absolute right-0 top-[8vw]"
-      >
-        <div className="relative -rotate-[25vw] overflow-hidden g-slate-300 w-[15vw] h-[42vw]  ">
-          <Image
-            src="/Svg/red-star-half.svg"
-            layout="fill"
-            className=""
-            alt="hackathon"
-            objectFit="contain"
-            priority
-            fetchPriority="high"
-            quality={60}
-          />
-        </div>
-      </motion.div>
-      <div className="flex flex-wrap gap-[4vw]">
+      <div className="flex absolute w-full top-[8vw] z-10">
+        <StatisticSectionSvgs />
+      </div>
+      <div className="flex relative z-30 flex-wrap gap-[4vw]">
         <CounterCard
+          hoverColor="hover:bg-yellow-500"
           bgColor="bg-yellow-50"
           onClick={() =>
             window.open(
@@ -65,19 +30,24 @@ export default function StatisticSection() {
           total={650}
         />
         <CounterCard
+          hoverColor="hover:bg-blue-500"
           bgColor="bg-blue-50"
           redirect="/our_team/volunteer"
           title="Volunteers"
           total={30}
         />
         <CounterCard
+          hoverColor="hover:bg-green-500"
           bgColor="bg-green-50"
           redirect="/our_team/core_team"
           title="Leads"
           total={10}
         />
       </div>
+
       <div className="flex  w-full flex-col   justify-center items-center  light:bg-white/50   max-sm:p-5   sm:p-[2vw]">
+        {/* <div className="relative h-4 w-full"> */}
+        {/* </div> */}
         <motion.h1
           initial={{ translateY: "-100px", opacity: 0 }}
           whileInView={{ translateY: "0px", opacity: 1 }}

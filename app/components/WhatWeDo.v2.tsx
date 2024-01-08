@@ -34,7 +34,7 @@ export default function WhatWeDo() {
           viewport={{ once: true }}
           className=" flex flex-col sm:w-1/2 text-center"
         >
-          <h1 className="max-sm:text-2xl text-[3vw] font-bold text-black">
+          <h1 className="max-sm:text-2xl dark:invert text-[3vw] font-bold text-black">
             What Do We Do?
           </h1>
           <h1 className="sm:text-[1.5vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
@@ -51,7 +51,7 @@ export default function WhatWeDo() {
             talks, events, and Dev Fests ensures a well-rounded learning
             experience.
           </h1>
-          <h1 className="mt-[3vw] hover:text-blue-500/50 cursor-pointer transition-all duration-300 font-semibold text-[1.5vw] text-blue-500">
+          <h1 className="mt-[3vw] dark:invert hover:text-blue-500/50 cursor-pointer transition-all duration-300 font-semibold text-[1.5vw] text-blue-500">
             <span className="text-black">&gt;</span> Events
           </h1>
         </motion.div>
