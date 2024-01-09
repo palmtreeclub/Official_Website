@@ -2,7 +2,7 @@
 import { useFirebase } from "@/app/context/firebase";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import EventCard from "@/app/components/EventCard";
+import EventCard from "@/app/components/v1/EventCard";
 import { BubbleMenu } from "../members/components/BubbleMenu";
 import AddEventPage from "./components/AddEventPage";
 import { formData } from "./components/EventForm";

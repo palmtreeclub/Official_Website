@@ -12,7 +12,7 @@ import { GrMail } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import Partner from "./Partner";
+import Partner from "../v1/Partner";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineTwitter } from "react-icons/ai";
 

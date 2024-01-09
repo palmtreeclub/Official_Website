@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import TeamCard from "@/app/components/TeamCard";
+import TeamCard from "@/app/components/v1/TeamCard";
 
 interface MemberFormProps {
   newMemberDetails: any;

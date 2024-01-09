@@ -40,8 +40,8 @@ import {
   signOut,
 } from "firebase/auth";
 import { ThemeProvider } from "next-themes";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer.v2";
+import Navbar from "../components/v1/Navbar";
+import Footer from "../components/v2/Footer.v2";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";

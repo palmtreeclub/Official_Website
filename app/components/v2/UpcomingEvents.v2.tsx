@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import Confettin from "./Confettin";
-import EventCard from "./EventCard";
+import Confettin from "../v1/Confettin";
+import EventCard from "../v1/EventCard";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import UpcomingEventCard from "./UpcomingEventCard";
-import { useFirebase } from "../context/firebase";
+import { useFirebase } from "../../context/firebase";
 export default function UpcomingEventsv2() {
   const [isVisible, setIsVisible] = useState(false);
   const { theme } = useTheme();
