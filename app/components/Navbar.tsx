@@ -151,8 +151,13 @@ export default function Navbar() {
                 e.stopPropagation();
                 router.push("/");
               }}
-              className="logo dark:-mt-3 dark:bg-gdsc-sou-bw-logo bg-gdsc-sou-logo bg-cover sm:dark:w-[20vw] sm:w-[18vw] max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]"
-            />
+              className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[14vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]"
+            >
+              {" "}
+              <h1 className="dark:invert text-[2vw] max-sm:text-xl">
+                GDSC SOU
+              </h1>
+            </div>
             <HiBars3BottomRight
               onClick={(e) => toggleMobileMenu(e)}
               className="sm:hidden dark:text-white"
@@ -184,6 +189,14 @@ export default function Navbar() {
             >
               Our Teams
             </Link>
+            <Link
+              onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="hover:text-pink-600"
+              href={"/our_team/alumni"}
+            >
+              Alumni
+            </Link>
+
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="hover:text-yellow-600"

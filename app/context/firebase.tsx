@@ -41,7 +41,7 @@ import {
 } from "firebase/auth";
 import { ThemeProvider } from "next-themes";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer.v2";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
@@ -66,6 +66,7 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props: any) => {
   const [user, setUser] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
@@ -311,6 +312,12 @@ export const FirebaseProvider = (props: any) => {
   }, [path, handleAuthStateChanged]);
 
   useEffect(() => {
+    function IsMobile() {
+      const regex =
+        /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      return regex.test(navigator.userAgent);
+    }
+    if (IsMobile()) setIsMobile(true);
     getInitialData();
   }, [getInitialData]);
 
@@ -338,57 +345,69 @@ export const FirebaseProvider = (props: any) => {
         }}
       >
         <ThemeProvider>
-          <AnimatePresence mode="sync" key={path}>
-            <Navbar />
-            <motion.div
-              className={`w-full fixed h-[25%] bottom-0 
+          {isMobile ? (
+            <>
+              <div className="flex justify-center items-center w-full h-full text-center px-[5vw] text-slate-500 font-semibold">
+                <h1>
+                  Currently this website available for only desktop devices, so
+                  kindly use it on your desktop device or on desktop mode on
+                  your mobile browser.
+                </h1>
+              </div>
+            </>
+          ) : (
+            <AnimatePresence mode="sync" key={path}>
+              <Navbar />
+              <motion.div
+                className={`w-full fixed h-[25%] bottom-0 
               bg-yellow-500
                 z-[20]`}
-              initial={{ scaleY: 1 }}
-              animate={{ scaleY: 1 }}
-              whileInView={{ scaleY: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              key={path}
-            />
-            <motion.div
-              className={`w-full fixed h-[50%] bottom-0 
+                initial={{ scaleY: 1 }}
+                animate={{ scaleY: 1 }}
+                whileInView={{ scaleY: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                key={path}
+              />
+              <motion.div
+                className={`w-full fixed h-[50%] bottom-0 
               bg-blue-500 
                 z-[19]`}
-              initial={{ scaleY: 1 }}
-              animate={{ scaleY: 1 }}
-              whileInView={{ scaleY: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              key={path}
-            />
+                initial={{ scaleY: 1 }}
+                animate={{ scaleY: 1 }}
+                whileInView={{ scaleY: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                key={path}
+              />
 
-            <motion.div
-              className={`w-full fixed h-[75%] bottom-0 
+              <motion.div
+                className={`w-full fixed h-[75%] bottom-0 
               bg-green-500
                 z-[18]`}
-              initial={{ scaleY: 1 }}
-              animate={{ scaleY: 1 }}
-              whileInView={{ scaleY: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              key={path}
-            />
-            <motion.div
-              className={`w-full fixed h-full bottom-0 
+                initial={{ scaleY: 1 }}
+                animate={{ scaleY: 1 }}
+                whileInView={{ scaleY: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                key={path}
+              />
+              <motion.div
+                className={`w-full fixed h-full bottom-0 
               bg-red-500
                 z-[17]`}
-              initial={{ scaleY: 1 }}
-              animate={{ scaleY: 1 }}
-              whileInView={{ scaleY: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              key={path}
-            />
-            <ToastContainer className={"text-[1vw]"} />
-            {props.children}
-            <Footer />
-          </AnimatePresence>
+                initial={{ scaleY: 1 }}
+                animate={{ scaleY: 1 }}
+                whileInView={{ scaleY: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                key={path}
+              />
+              <ToastContainer className={"text-[1vw]"} />
+              {props.children}
+              <Footer />
+            </AnimatePresence>
+          )}
         </ThemeProvider>
       </FirebaseContext.Provider>
     </>
