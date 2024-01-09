@@ -6,7 +6,7 @@ import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { IoArrowUndo } from "react-icons/io5";
-import { useFirebase } from "../context/firebase";
+import { useFirebase } from "../../context/firebase";
 import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
 

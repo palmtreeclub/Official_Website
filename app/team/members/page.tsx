@@ -1,5 +1,5 @@
 "use client";
-import TeamCard from "@/app/components/TeamCard";
+import TeamCard from "@/app/components/v1/TeamCard";
 import { useFirebase } from "@/app/context/firebase";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";

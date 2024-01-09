@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import Confettin from "./Confettin";
 import EventCard from "./EventCard";
 import { useRouter } from "next/navigation";
-import { useFirebase } from "../context/firebase";
+import { useFirebase } from "../../context/firebase";
 export default function UpcomingEvents() {
   const globalStore = useFirebase();
   const [isVisible, setIsVisible] = useState(false);

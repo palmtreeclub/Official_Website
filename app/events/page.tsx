@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import EventCard from "../components/EventCard";
+import EventCard from "../components/v1/EventCard";
 import { useTheme } from "next-themes";
 import { useFirebase } from "../context/firebase";
 import { useRouter } from "next/navigation";
