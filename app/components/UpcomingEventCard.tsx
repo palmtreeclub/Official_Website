@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function UpcomingEventCard({
   onClick,
@@ -16,7 +17,7 @@ export default function UpcomingEventCard({
       <div className="flex flex-col">
         <h1 className="text-[5vw] text-white w-1/2">Upcoming Event</h1>
         <h2 className="text-[1.5vw] text-yellow-500 font-semibold">
-          SECUREDRIOD’23
+          {event?.eventName}
         </h2>
         <button
           type="button"
@@ -26,13 +27,17 @@ export default function UpcomingEventCard({
         </button>
       </div>
       <div className="flex relative overflow-hidden w-[27vw] h-[27vw] bg-white rounded-full">
-        <Image
-          src={"/Svg/Event3.svg"}
-          objectFit="contain"
-          layout="fill"
-          className="self-start left-0 "
-          alt=""
-        />
+        {event?.eventLogo ? (
+          <Image
+            src={event?.eventLogo}
+            objectFit="contain"
+            layout="fill"
+            className="self-start left-0 "
+            alt=""
+          />
+        ) : (
+          <Skeleton width={"27vw"} circle height={"27vw"} baseColor="gray" />
+        )}
       </div>
     </div>
   );

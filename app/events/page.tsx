@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 export default function Page() {
   const firebase: any = useFirebase();
   const router = useRouter();
-  const [events, setEvents] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   useEffect(() => {
     setUpcomingEvents(firebase?.events);
