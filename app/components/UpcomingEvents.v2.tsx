@@ -15,7 +15,7 @@ export default function UpcomingEventsv2() {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   useEffect(() => {
     setUpcomingEvents(firebase?.events);
-  }, []);
+  }, [firebase?.events]);
 
   return (
     <section
