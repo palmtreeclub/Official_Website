@@ -56,14 +56,14 @@ export default function AboutUs() {
         className="relative sm:w-[40%] max-sm:w-full  max-sm:h-[35rem] max-sm:rounded-2xl max-sm:mt-[5rem] max-sm:overflow-hidden  sm:h-full"
       >
         <Image
-          src={"/Svg/aboutus-lead.svg"}
+          src={"/Assets/aboutus-lead.png"}
           alt="aboutus-lead"
           layout="fill"
           objectFit="contain"
           priority
           className="max-sm:rounded-2xl"
           fetchPriority="high"
-          quality={60}
+          // quality={60}
         />
       </motion.div>
     </div>

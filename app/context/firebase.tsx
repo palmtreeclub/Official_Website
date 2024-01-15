@@ -1,5 +1,6 @@
 "use client";
 import {
+  Suspense,
   createContext,
   useCallback,
   useContext,
@@ -46,6 +47,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useOnline } from "rooks";
+import Loading from "../loading";
 
 const FirebaseContext: any = createContext(null);
 
@@ -69,6 +72,8 @@ export const FirebaseProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
+  const online = useOnline();
+
   const path = usePathname();
   const db = getFirestore();
 
@@ -311,14 +316,15 @@ export const FirebaseProvider = (props: any) => {
   }, [path, handleAuthStateChanged]);
 
   useEffect(() => {
-    // function IsMobile() {
-    //   const regex =
-    //     /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    //   return regex.test(navigator.userAgent);
-    // }
-    // if (IsMobile()) setIsMobile(true);
     getInitialData();
   }, [getInitialData]);
+
+  useEffect(() => {
+    !online &&
+      toast.error(
+        "You are now offline,please check your internet connection!!"
+      );
+  }, [online]);
 
   return (
     <>
@@ -344,70 +350,15 @@ export const FirebaseProvider = (props: any) => {
         }}
       >
         <ThemeProvider>
-          {
-            // false ? (
-            //   <>
-            //     <div className="flex justify-center items-center w-full h-full text-center px-[5vw] text-slate-500 font-semibold">
-            //       <h1>
-            //         Currently this website available for only desktop devices, so
-            //         kindly use it on your desktop device or on desktop mode on
-            //         your mobile browser.
-            //       </h1>
-            //     </div>
-            //   </>
-            // ) :
-            <AnimatePresence mode="sync" key={path}>
-              <Navbar />
-              <motion.div
-                className={`w-full fixed h-[25%] bottom-0 
-              bg-yellow-500
-                z-[20]`}
-                initial={{ scaleY: 1 }}
-                animate={{ scaleY: 1 }}
-                whileInView={{ scaleY: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                key={path}
-              />
-              <motion.div
-                className={`w-full fixed h-[50%] bottom-0 
-              bg-blue-500 
-                z-[19]`}
-                initial={{ scaleY: 1 }}
-                animate={{ scaleY: 1 }}
-                whileInView={{ scaleY: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                key={path}
-              />
+          {/* <AnimatePresence mode="sync"  key={path}> */}
+          <Navbar />
+          <Suspense fallback={<Loading />}>
+            <ToastContainer className={"text-[1vw]"} />
 
-              <motion.div
-                className={`w-full fixed h-[75%] bottom-0 
-              bg-green-500
-                z-[18]`}
-                initial={{ scaleY: 1 }}
-                animate={{ scaleY: 1 }}
-                whileInView={{ scaleY: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                key={path}
-              />
-              <motion.div
-                className={`w-full fixed h-full bottom-0 
-              bg-red-500
-                z-[17]`}
-                initial={{ scaleY: 1 }}
-                animate={{ scaleY: 1 }}
-                whileInView={{ scaleY: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                key={path}
-              />
-              <ToastContainer className={"text-[1vw]"} />
-              {props.children}
-              <Footer />
-            </AnimatePresence>
-          }
+            {props.children}
+            <Footer />
+          </Suspense>
+          {/* </AnimatePresence> */}
         </ThemeProvider>
       </FirebaseContext.Provider>
     </>
