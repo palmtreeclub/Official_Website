@@ -14,7 +14,13 @@ export default function WhatWeDo() {
           viewport={{ once: true }}
           className=" sm:w-[40vw]  sm:h-[35vw] max-sm:w-[80vw] max-sm:h-[80vw] "
         >
-          <div className="relative sm:w-[30vw] sm:h-[25vw] max-sm:w-[60vw] max-sm:h-[60vw] ">
+          <motion.div
+            initial={{ translateX: "-100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1.3 }}
+            viewport={{ once: true }}
+            className="relative sm:w-[30vw] sm:h-[25vw] max-sm:w-[60vw] max-sm:h-[60vw] "
+          >
             <Image
               src="/Assets/About.gif"
               layout="fill"
@@ -25,7 +31,7 @@ export default function WhatWeDo() {
               fetchPriority="high"
               quality={60}
             />
-          </div>
+          </motion.div>
         </motion.div>
         <motion.div
           initial={{ translateY: "100px", opacity: 0 }}
@@ -34,10 +40,22 @@ export default function WhatWeDo() {
           viewport={{ once: true }}
           className=" flex flex-col sm:w-1/2 text-center"
         >
-          <h1 className="max-sm:text-2xl dark:invert text-[3vw] font-bold text-black">
+          <motion.h1
+            initial={{ translateX: "100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="max-sm:text-2xl dark:invert text-[3vw] font-bold text-black"
+          >
             What Do We Do?
-          </h1>
-          <h1 className="sm:text-[1.5vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
+          </motion.h1>
+          <motion.div
+            initial={{ translateX: "100px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            viewport={{ once: true }}
+            className="sm:text-[1.5vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600"
+          >
             <br />
             <span className="uppercase  max-md:text-xl sm:text-[2vw] font-google-sans font-bold text-transparent bgGradientAnim">
               DSC SOU
@@ -50,10 +68,16 @@ export default function WhatWeDo() {
             technologies through Google Developers$apos; resources. Engaging in
             talks, events, and Dev Fests ensures a well-rounded learning
             experience.
-          </h1>
-          <h1 className="mt-[3vw] dark:invert hover:text-blue-500/50 cursor-pointer transition-all duration-300 font-semibold text-[1.5vw] text-blue-500">
+          </motion.div>
+          <motion.div
+            initial={{ translateX: "200px", opacity: 0 }}
+            whileInView={{ translateX: "0px", opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="mt-[3vw] dark:invert hover:text-blue-500/50 cursor-pointer transition-all duration-300 font-semibold max-sm:text-xl sm:text-[1.5vw] text-blue-500"
+          >
             <span className="text-black">&gt;</span> Events
-          </h1>
+          </motion.div>
         </motion.div>
       </div>
     </section>

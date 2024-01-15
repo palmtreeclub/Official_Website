@@ -151,10 +151,10 @@ export default function Navbar() {
                 e.stopPropagation();
                 router.push("/");
               }}
-              className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[14vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]"
+              className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[14vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[35vw] max-sm:h-[8vw]"
             >
               {" "}
-              <h1 className="dark:invert text-[2vw] max-sm:text-xl">
+              <h1 className="dark:invert text-black text-[2vw] max-sm:text-xl">
                 GDSC SOU
               </h1>
             </div>

@@ -10,7 +10,6 @@ import UpcomingEventsv2 from "./components/v2/UpcomingEvents.v2";
 import WhatWeDo from "./components/v2/WhatWeDo.v2";
 import AboutUs from "./components/v1/AboutUsSection";
 import StatisticSection from "./components/v1/StatisticSection";
-
 export default function Home() {
   const router = useRouter();
   const firebase: any = useFirebase();

@@ -328,6 +328,7 @@ export const FirebaseProvider = (props: any) => {
           isLoggedIn,
           setIsLoggedIn,
           setUser,
+          isMobile,
           user,
           members,
           events,
@@ -345,7 +346,7 @@ export const FirebaseProvider = (props: any) => {
         }}
       >
         <ThemeProvider>
-          {isMobile ? (
+          {false ? (
             <>
               <div className="flex justify-center items-center w-full h-full text-center px-[5vw] text-slate-500 font-semibold">
                 <h1>

@@ -17,7 +17,7 @@ export default function StatisticSection() {
       <div className="flex absolute w-screen justify-between top-[8vw] z-10">
         <StatisticSectionSvgs />
       </div>
-      <div className="flex relative z-30 flex-wrap gap-[4vw]">
+      <div className="flex max-sm:flex-col relative z-30 flex-wrap gap-[4vw]">
         <CounterCard
           hoverColor="hover:bg-yellow-500"
           bgColor="bg-yellow-50"
@@ -45,7 +45,7 @@ export default function StatisticSection() {
         />
       </div>
 
-      <div className="flex relative z-30 w-full flex-col   justify-center items-center  light:bg-white/50   max-sm:p-5   sm:p-[2vw]">
+      <div className="flex relative max-sm:mt-[2rem] z-30 w-full flex-col   justify-center items-center  light:bg-white/50   max-sm:p-5   sm:p-[2vw]">
         <motion.h1
           initial={{ translateY: "-100px", opacity: 0 }}
           whileInView={{ translateY: "0px", opacity: 1 }}

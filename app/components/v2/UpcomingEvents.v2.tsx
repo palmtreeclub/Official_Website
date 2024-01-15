@@ -32,7 +32,13 @@ export default function UpcomingEventsv2() {
         alt="Haritage svg"
       />
       <div className="flex  flex-col max-sm:scale-90 max-sm:overflow-y-scroll sm:overflow-auto max-sm:py-28 sm:h-full max-md:flex-col scrollbar-none justify-center  items-center">
-        <div className="flex max-sm:flex-col max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none ">
+        <motion.div
+          initial={{ translateY: "100px", opacity: 0 }}
+          whileInView={{ translateY: "0px", opacity: 1 }}
+          transition={{ duration: 1.3 }}
+          viewport={{ once: true }}
+          className="flex max-sm:flex-col max-sm:h-4/5 max-sm:overflow-y-scroll sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll  scrollbar-none "
+        >
           {/* <div className="flex sm:gap-[2vw] max-sm:gap-5 overflow-x-scroll pl-[100vw] pr-[5vw]  scrollbar-none "> */}
           {upcomingEvents?.length > 0 ? (
             upcomingEvents
@@ -52,7 +58,7 @@ export default function UpcomingEventsv2() {
               <div className="flex">No Past Events available </div>
             </div>
           )}
-        </div>
+        </motion.div>
         <Confettin onClose={setIsVisible} onFire={isVisible} />
       </div>
     </section>

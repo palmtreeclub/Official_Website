@@ -14,7 +14,7 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import Partner from "../v1/Partner";
 import { FcGoogle } from "react-icons/fc";
-import { AiOutlineTwitter } from "react-icons/ai";
+import { RiTwitterXLine } from "react-icons/ri";
 
 export default function Footer() {
   const pathname: any = usePathname();
@@ -34,7 +34,7 @@ export default function Footer() {
           {pathname === "/login" ||
             (pathname?.includes("/team/") ? null : (
               <div className="flex max-sm:flex-col ">
-                <div className="flex w-full justify-center ">
+                <div className="flex max-sm:flex-col w-full justify-center ">
                   <div className="flex flex-col text-slate-800  font-normal px-[4vw] py-[2vw] max-sm:text-md sm:text-[1.4vw] gap-[.5rem]">
                     <h1 className="sm:text-[1.8vw] max-sm:text-xl text-slate-800 dark:text-white/60 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
                       Contact Us
@@ -56,7 +56,7 @@ export default function Footer() {
                     <h1 className="sm:text-[1.8vw] mt-[3vw] max-sm:text-xl text-slate-800 dark:text-white/60 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
                       Follow us
                     </h1>
-                    <div className="flex text-[3vw] gap-[1vw]">
+                    <div className="flex max-sm:text-3xl sm:text-[3vw] gap-[1vw]">
                       <div className="box cursor-pointer text-red-500 hover:scale-110 transition-all duration-300 hover:text-red-500/50 rounded-lg ">
                         <BiLogoInstagramAlt className="" />
                       </div>
@@ -66,18 +66,18 @@ export default function Footer() {
                       <div className="box cursor-pointer text-green-500 hover:scale-110 transition-all duration-300 hover:text-green-500/50 rounded-lg ">
                         <FcGoogle className="" />
                       </div>
-                      <div className="box cursor-pointer text-yellow-500 hover:scale-110 transition-all duration-300 hover:text-yellow-500/50 ">
+                      <div className="box cursor-pointer text-blue-500 hover:scale-110 transition-all duration-300 hover:text-blue-500/50 ">
                         <BiLogoFacebookCircle className="" />
                       </div>
                       <div className="box cursor-pointer text-sky-500 hover:scale-110 transition-all duration-300 hover:text-sky-500/50 ">
-                        <AiOutlineTwitter className="" />
+                        <RiTwitterXLine className="" />
                       </div>
                       <div className="box cursor-pointer text-black dark:text-white dark:hover:text-white/75 hover:scale-110 transition-all duration-300 hover:text-slate-800/50 rounded-lg ">
                         <BiLogoGithub className="" />
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col text-slate-600 dark:text-white/60  font-normal px-[4vw] py-[2vw] max-sm:text-xl sm:text-[1.4vw] gap-[.5rem]">
+                  <div className="flex  flex-col text-slate-600 dark:text-white/60  font-normal px-[4vw] py-[2vw] max-sm:text-xl sm:text-[1.4vw] gap-[.5rem]">
                     <h1 className="sm:text-[1.8vw] max-sm:text-xl dark:text-white/60 text-slate-800 font-medium border-b-2 border-b-slate-300/50] pb-[.6vw] mb-[.6rem]">
                       Our Partners
                     </h1>
@@ -85,7 +85,7 @@ export default function Footer() {
                       src="/Assets/IEEE_SOU_SB_Logo.png"
                       size={{
                         width: isMobile ? "w-[18rem]" : "w-[35vw]",
-                        height: isMobile ? "h-[10rem]" : "h-[10vw]",
+                        height: isMobile ? "h-[6rem]" : "h-[10vw]",
                       }}
                     />
                     <div className="flex w-full justify-between">

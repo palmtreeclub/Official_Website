@@ -12,16 +12,16 @@ export default function UpcomingEventCard({
   return (
     <div
       onClick={onClick}
-      className="bg-slate-900  px-[3vw] cursor-pointer flex w-[70vw] h-[35vw] justify-center items-center mt-[5vw] rounded-[4vw]"
+      className="bg-slate-900  px-[3vw] cursor-pointer flex  max-sm:w-[90vw] sm:w-[70vw] max-sm:h-[40vw] sm:h-[35vw] justify-center items-center mt-[5vw] max-sm:rounded-2xl sm:rounded-[4vw]"
     >
       <div className="flex flex-col">
         <h1 className="text-[5vw] text-white w-1/2">Upcoming Event</h1>
-        <h2 className="text-[1.5vw] text-yellow-500 font-semibold">
+        <h2 className="sm:text-[1.5vw] max-sm:text-sm text-yellow-500 font-semibold">
           {event?.eventName}
         </h2>
         <button
           type="button"
-          className="bg-blue-500 text-[1.5vw] w-max px-[2vw] py-[.5vw] rounded-full text-white font-semibold mt-[2vw] hover:bg-blue-500/80 transition-all duration-300"
+          className="bg-blue-500 max-sm:text-xs sm:text-[1.5vw] w-max px-[2vw] py-[.5vw] rounded-full text-white font-semibold mt-[2vw] hover:bg-blue-500/80 transition-all duration-300"
         >
           RSVP
         </button>
