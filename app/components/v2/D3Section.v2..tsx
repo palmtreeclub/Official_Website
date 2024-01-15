@@ -47,7 +47,7 @@ export default function D3Section() {
             className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-white/90"
           >
             <br />
-            <h1 className="text-[2.2vw]">
+            <h1 className="sm:text-[2.2vw] max-sm:text-md">
               Our Team believes in Designing the Vision, Development for
               Innovation, and Delivering for Your Success.
             </h1>

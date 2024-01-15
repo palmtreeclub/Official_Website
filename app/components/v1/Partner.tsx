@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import ReactCanvasConfetti from "react-canvas-confetti";
-import Confettin from "./Confettin";
 
 interface Image {
   src: string;

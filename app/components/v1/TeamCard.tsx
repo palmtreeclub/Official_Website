@@ -2,8 +2,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import { AiOutlineTwitter } from "react-icons/ai";
-import { BiLogoGithub, BiLogoLinkedin } from "react-icons/bi";
+import { RiTwitterXLine } from "react-icons/ri";
+import { BiLogoGithub, BiLogoLinkedin, BiX } from "react-icons/bi";
 
 export default function TeamCard({ member, onClick, mirror }: any) {
   const color = member?.color;
@@ -102,7 +102,7 @@ export default function TeamCard({ member, onClick, mirror }: any) {
               className={socialLinkContainer}
               onClick={() => window?.open(member?.twitter)}
             >
-              <AiOutlineTwitter className="" />
+              <RiTwitterXLine className="" />
             </div>
           </div>
         </div>
