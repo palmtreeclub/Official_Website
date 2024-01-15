@@ -47,11 +47,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useOnline } from "rooks";
+// import { useOnline } from "rooks";
 import Loading from "../loading";
 
 const FirebaseContext: any = createContext(null);
-
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN,
@@ -72,7 +71,7 @@ export const FirebaseProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
-  const online = useOnline();
+  // const online = useOnline();
 
   const path = usePathname();
   const db = getFirestore();
@@ -319,12 +318,12 @@ export const FirebaseProvider = (props: any) => {
     getInitialData();
   }, [getInitialData]);
 
-  useEffect(() => {
-    !online &&
-      toast.error(
-        "You are now offline,please check your internet connection!!"
-      );
-  }, [online]);
+  // useEffect(() => {
+  //   !online &&
+  //     toast.error(
+  //       "You are now offline,please check your internet connection!!"
+  //     );
+  // }, [online]);
 
   return (
     <>
