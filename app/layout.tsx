@@ -21,15 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} relative dark:bg-black`}>
-        <Suspense
-          fallback={<h1>Loading....</h1>}
-          unstable_expectedLoadTime={10}
-        >
-          <FirebaseProvider>
-            {children}
-            {/* <Footer /> */}
-          </FirebaseProvider>
-        </Suspense>
+        <FirebaseProvider>{children}</FirebaseProvider>
       </body>
     </html>
   );

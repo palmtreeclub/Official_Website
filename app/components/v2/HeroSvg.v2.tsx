@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useFirebase } from "@/app/context/firebase";
+
 export default function HeroSvgv2({ children }: any) {
   const firebase: any = useFirebase();
   const [isMobile, setIsMobile] = useState(false);
