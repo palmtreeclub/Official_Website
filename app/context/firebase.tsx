@@ -66,7 +66,6 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props: any) => {
   const [user, setUser] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [members, setMembers] = useState([]);
   const [events, setEvents] = useState([]);
@@ -312,12 +311,12 @@ export const FirebaseProvider = (props: any) => {
   }, [path, handleAuthStateChanged]);
 
   useEffect(() => {
-    function IsMobile() {
-      const regex =
-        /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-      return regex.test(navigator.userAgent);
-    }
-    if (IsMobile()) setIsMobile(true);
+    // function IsMobile() {
+    //   const regex =
+    //     /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    //   return regex.test(navigator.userAgent);
+    // }
+    // if (IsMobile()) setIsMobile(true);
     getInitialData();
   }, [getInitialData]);
 
@@ -328,7 +327,6 @@ export const FirebaseProvider = (props: any) => {
           isLoggedIn,
           setIsLoggedIn,
           setUser,
-          isMobile,
           user,
           members,
           events,
@@ -346,17 +344,18 @@ export const FirebaseProvider = (props: any) => {
         }}
       >
         <ThemeProvider>
-          {false ? (
-            <>
-              <div className="flex justify-center items-center w-full h-full text-center px-[5vw] text-slate-500 font-semibold">
-                <h1>
-                  Currently this website available for only desktop devices, so
-                  kindly use it on your desktop device or on desktop mode on
-                  your mobile browser.
-                </h1>
-              </div>
-            </>
-          ) : (
+          {
+            // false ? (
+            //   <>
+            //     <div className="flex justify-center items-center w-full h-full text-center px-[5vw] text-slate-500 font-semibold">
+            //       <h1>
+            //         Currently this website available for only desktop devices, so
+            //         kindly use it on your desktop device or on desktop mode on
+            //         your mobile browser.
+            //       </h1>
+            //     </div>
+            //   </>
+            // ) :
             <AnimatePresence mode="sync" key={path}>
               <Navbar />
               <motion.div
@@ -408,7 +407,7 @@ export const FirebaseProvider = (props: any) => {
               {props.children}
               <Footer />
             </AnimatePresence>
-          )}
+          }
         </ThemeProvider>
       </FirebaseContext.Provider>
     </>
