@@ -61,7 +61,7 @@ export default function Page() {
     <div
       className={`flex ${
         theme === "dark" && "invert"
-      } flex-col dark:invert bg-event-bg bg-cover w-full h-full justify-center items-center`}
+      } flex-col dark:invert bg-event-bg bg-cover w-full h-[95%] justify-center items-center`}
     >
       <div
         className={`flex flex-col dark:invert sm:py-[1vw] max-sm:py-5 gap-5 shadow-xl dark:bg-slate-900/80 bg-white/80 w-max h-max sm:p-[5vw max-sm:p-10 rounded-[5%] justify-center items-center `}

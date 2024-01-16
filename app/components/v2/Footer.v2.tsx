@@ -111,7 +111,7 @@ export default function Footer() {
           <div className="flex border-t-2 max-sm:text-md sm:text-[1.5vw] dark:border-t-white/10 border-t-slate-600/10 justify-center items-center text-center font-medium w-full dark:text-white text-slate-700 p-[1vw]">
             All rights reserved By &copy;{" "}
             <span className="uppercase flex cursor-pointer justify-center items-center max-md:text-md font-google-sans font-bold text-transparent bgGradientAnim ">
-              GDSC SOU 2023
+              GDSC SOU 2024
             </span>
           </div>
         </div>

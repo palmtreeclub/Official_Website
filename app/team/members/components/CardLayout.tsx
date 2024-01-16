@@ -14,7 +14,7 @@ export const CardLayout = ({
   children: PropsWithChildren<any>;
 }) => (
   <div
-    className={`flex pb-10 ${isDeleteMode && "shake"} ${isEditMode && "pulse"}`}
+    className={`flex pb-5 ${isDeleteMode && "shake"} ${isEditMode && "pulse"}`}
     key={key}
     onClick={onclick}
   >
