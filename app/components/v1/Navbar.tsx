@@ -20,10 +20,10 @@ export default function Navbar() {
   const pathname = usePathname();
   useEffect(() => {
     if (window.innerWidth) {
-      window.innerWidth > 600 ? setIsMobile(true) : setIsMobile(false);
+      window.innerWidth < 600 ? setIsMobile(true) : setIsMobile(false);
     }
     firebase?.isLoggedIn === true ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  }, [firebase?.isLoggedIn]);
+  }, [firebase?.isLoggedIn, pathname]);
 
   const toggleMobileMenu = (e: any) => {
     e.preventDefault();
@@ -35,8 +35,8 @@ export default function Navbar() {
       {pathname === "/login" || pathname.includes("/team/") ? (
         <div
           className={`${
-            theme === "dark" && "invert"
-          } flex max-sm:flex-col z-50 fixed top-0 w-full h-max  bg-white shadow-md backdrop-blur-md ${
+            theme === "dark" && "inver"
+          } flex max-sm:flex-col z-50 fixed top-0 w-full h-max  light:bg-white dark:bg-slate-900 shadow-md backdrop-blur-md ${
             isLoggedIn
               ? "sm:justify-between max-sm:justify-start"
               : "justify-center max-sm:justify-start"
@@ -49,7 +49,11 @@ export default function Navbar() {
                 onClick={() => router.push("/")}
               />
             )}
-            <div className="logo dark:-mt-3 dark:bg-gdsc-sou-bw-logo bg-gdsc-sou-logo bg-cover sm:dark:w-[20vw] sm:w-[18vw] max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[45vw] max-sm:h-[8vw]" />
+            <div className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[15vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[35vw] max-sm:h-[8vw]">
+              <h1 className="dark:text-white light:text-black text-[2vw] max-sm:text-xl">
+                GDSC SOU
+              </h1>
+            </div>
             {isLoggedIn && (
               <HiBars3BottomRight
                 onClick={(e) => toggleMobileMenu(e)}
@@ -206,7 +210,7 @@ export default function Navbar() {
             </Link>
             <div
               onClick={() => router.push("/login")}
-              className="flex transition-all duration-300 sm:text-white max-sm:text-blue-600 cursor-pointer sm:bg-blue-600 h-max py-[.3vw] sm:px-[1vw] rounded-full hover:shadow-[0_5px_10px_rgba(255,0,10,.4)] max-sm:text-md sm:text-[1.2vw]"
+              className="flex transition-all duration-300 sm:text-white max-sm:text-blue-600 cursor-pointer sm:bg-blue-600 h-max py-[.3vw] sm:px-[1vw] rounded-full sm:hover:shadow-[0_5px_10px_rgba(255,0,10,.4)] max-sm:text-md sm:text-[1.2vw]"
             >
               Team Login
             </div>

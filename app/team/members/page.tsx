@@ -14,6 +14,7 @@ import { CardLayout } from "./components/CardLayout";
 import { FilteredTypesBar } from "./components/FilteredTypesBar";
 import { TipsDialog } from "./components/TipsDialog";
 import MemberForm from "./components/MemberForm";
+import MemberCard from "./components/MemberCard";
 
 export default function Page() {
   const [selectedType, setSelectedType] = useState("gdsc_lead"); // Default type
@@ -319,7 +320,8 @@ export default function Page() {
                 key={member?.id}
                 onclick={() => deleteMember(member?.id, member)}
               >
-                <TeamCard key={member} member={member} />
+                {/* <TeamCard key={member} member={member} /> */}
+                <MemberCard member={member} />
               </CardLayout>
             ))
           ) : (

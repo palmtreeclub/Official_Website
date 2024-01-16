@@ -78,8 +78,8 @@ export const FirebaseProvider = (props: any) => {
 
   const resetPassword = useCallback(async (email: any) => {
     return await sendPasswordResetEmail(auth, email)
-      .then((p) => console.log("pw reset email sented", p))
-      .catch((err) => console.log(err));
+      .then((p) => toast.success("Password reset email sent:" + p))
+      .catch((err) => toast.error(err));
   }, []);
 
   const handleAuthStateChanged = useCallback((user: any) => {
@@ -340,6 +340,7 @@ export const FirebaseProvider = (props: any) => {
           signout,
           getMembers,
           deleteMember,
+          resetPassword,
           addNewMemberDetails,
           addEventToFirestore,
           deleteEvent,
