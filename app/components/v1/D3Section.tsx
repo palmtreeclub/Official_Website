@@ -65,7 +65,7 @@ export default function D3Section() {
             viewport={{ once: true }}
             onClick={() => router.push("/our_team")}
             type="button"
-            className="text-sky-600 flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl font-medium w-max  hover:text-pink-500"
+            className="text-sky-600 flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl font-medium w-max  hover:text-sky-500"
           >
             Meet The Team <AiOutlineArrowRight className="horiAnim" />
           </motion.button>

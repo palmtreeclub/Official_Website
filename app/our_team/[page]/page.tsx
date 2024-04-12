@@ -124,6 +124,7 @@ export default function Page() {
       portfolio: "",
     },
   ]);
+  const [facultyAdvisors, setFacultyAdvisors] = useState([]);
   const firebase: any = useFirebase();
   const [isVisible, setIsVisible] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -134,11 +135,15 @@ export default function Page() {
     setMembers(
       firebase.members.filter((member: any) => member.type === pageName)
     );
+
     const lead: any = firebase.members.filter(
-      (member: any) => member.type === "gdsc_lead"
+      (member: any) => member.type === "lead"
     );
+    const FacultyAdvisors: any = firebase.members.filter(
+      (member: any) => member.type === "facultyAdvisors"
+    );
+    setFacultyAdvisors(FacultyAdvisors);
     setGdscLead(lead[0]);
-    console.log({ lead });
   }, [firebase.members, page]);
   return (
     <div className="w-full h-max flex justify-center items-center">
@@ -165,26 +170,48 @@ export default function Page() {
               Every member of the society has always been passionate and hard
               working towards their goal, creating a positive work environment.
               Their support and will to help each other out in every way
-              possible is what makes DSC-SOU a &ldquo;team&rdquo;.
+              possible is what makes Palm Tree Club a &ldquo;team&rdquo;.
             </h4>
           </div>
         </div>
         {(page === "leads" || page === "core_team") && (
-          <div className="flex flex-col pb-10 items-center w-full h-full ">
-            <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
-              GDSC Lead 2023
-            </h1>
-
-            <Confettin onClose={setIsVisible} onFire={isVisible} />
-
-            <TeamCard
-              onClick={() => {
-                setIsVisible(true);
-              }}
-              member={GdscLead}
-            />
+          <div className="flex flex-wrap pb-[2vw] w-full justify-center items-center sm:gap-[3vw] max-sm:gap-10">
+            {facultyAdvisors?.length > 0 && (
+              <>
+                <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
+                  Meet our Faculty Advisords
+                </h1>
+              </>
+            )}
+            {facultyAdvisors?.length > 0 &&
+              facultyAdvisors.map((faculty: any, index) => {
+                return (
+                  <>
+                    <TeamCard
+                      key={faculty?.id}
+                      onClick={() => {
+                        setIsVisible(true);
+                      }}
+                      member={faculty}
+                    />
+                  </>
+                );
+              })}
           </div>
         )}
+
+        <h1 className="max-sm:text-2xl border-t-2 border-t-slate-400/40 font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
+          Meet to Our Captain
+        </h1>
+
+        <Confettin onClose={setIsVisible} onFire={isVisible} />
+
+        <TeamCard
+          onClick={() => {
+            setIsVisible(true);
+          }}
+          member={GdscLead}
+        />
         <div className="border-t-2 pb-10 flex flex-col justify-center items-center  dark:border-t-slate-700 border-t-slate-400/40  w-4/5">
           <h1 className="max-sm:text-2xl font-medium text-slate-600 sm:text-[2.3vw] max-sm:p-10 sm:p-[2vw] text-center w-full">
             {page === "alumni"

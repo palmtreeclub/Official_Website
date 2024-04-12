@@ -4,7 +4,7 @@ import Image from "next/image";
 import WhatWeDoSvgs from "./WhatWeDoSvgs";
 export default function WhatWeDo() {
   return (
-    <section className="flex relative justify-center items-center w-full h-full">
+    <section className="flex linearBlueGradient relative justify-center items-center w-full h-full">
       <div className="flex w-4/5 relative h-max max-md:flex-col justify-center  items-center">
         <WhatWeDoSvgs />
         <motion.div
@@ -45,7 +45,7 @@ export default function WhatWeDo() {
             whileInView={{ translateX: "0px", opacity: 1 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="max-sm:text-2xl dark:invert text-[3vw] font-bold text-black"
+            className="max-sm:text-2xl dark:invert text-[3vw] font-bold text-slate-700"
           >
             What Do We Do?
           </motion.h1>
@@ -57,8 +57,8 @@ export default function WhatWeDo() {
             className="sm:text-[1.5vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600"
           >
             <br />
-            <span className="uppercase  max-md:text-xl sm:text-[2vw] font-google-sans font-bold text-transparent bgGradientAnim">
-              DSC SOU
+            <span className="uppercase  max-md:text-xl sm:text-[2vw] font-google-sans font-bold  dark:text-orange-600  text-orange-600">
+              Palm Tree Club
             </span>{" "}
             a hub of innovation at Silver Oak University, organizes workshops,
             seminars, and showcases to build a dynamic and collaborative
@@ -74,7 +74,7 @@ export default function WhatWeDo() {
             whileInView={{ translateX: "0px", opacity: 1 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: true }}
-            className="mt-[3vw] dark:invert hover:text-blue-500/50 cursor-pointer transition-all duration-300 font-semibold max-sm:text-xl sm:text-[1.5vw] text-blue-500"
+            className="mt-[3vw] dark:invert hover:text-green-600/50 cursor-pointer transition-all duration-300 font-semibold max-sm:text-xl sm:text-[1.5vw] text-green-600"
           >
             <span className="text-black">&gt;</span> Events
           </motion.div>

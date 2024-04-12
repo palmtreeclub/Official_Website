@@ -134,6 +134,7 @@ export const FirebaseProvider = (props: any) => {
         id: docRef.id,
         avtar: url,
       });
+      console.log({ newMemberDetails });
       if (
         newMemberDetails.type !== "volunteer" &&
         newMemberDetails.type !== "alumni"
@@ -191,6 +192,7 @@ export const FirebaseProvider = (props: any) => {
       });
 
       setMembers(members);
+      console.log({ members });
       return members;
     } catch (error) {
       console.error("Error getting documents: ", error);

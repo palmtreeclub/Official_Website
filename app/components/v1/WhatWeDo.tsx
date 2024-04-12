@@ -41,7 +41,7 @@ export default function WhatWeDo() {
           <h1 className="sm:text-[1.3vw] max-sm:text-justify max-sm:text-md font-medium text-slate-600">
             <br />
             <span className="uppercase  max-md:text-xl sm:text-[2.2vw] font-google-sans font-bold text-transparent bgGradientAnim">
-              DSC SOU
+              Palm Tree Club
             </span>{" "}
             a hub of innovation at Silver Oak University, organizes workshops,
             seminars, and showcases to build a dynamic and collaborative

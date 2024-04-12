@@ -8,8 +8,8 @@ export default function JoinCommunityv2() {
   const router = useRouter();
   return (
     <>
-      <div className="w-full bg-[#0080FC] py-5"></div>
-      <section className="flex relative justify-center  py-[5vw] sm:h-4/5  items-center w-full ">
+      <div className="w-full linearWhiteGradient opacity-70 bg-[#FFF3D5] dark:invert py-5"></div>
+      <section className="flex linearWhiteGradient  relative justify-center  py-[5vw] sm:h-4/5  items-center w-full ">
         <motion.div
           initial={{
             translateX: "-100px",
@@ -22,15 +22,15 @@ export default function JoinCommunityv2() {
           className="flex"
         >
           <div className="w-[40%]">
-            <h1 className="text-white text-[5vw] leading-[7vw] w-full">
+            <h1 className="dark:text-white text-orange-500  text-[5vw] leading-[7vw] w-full">
               Join Our Community of
-              <span className="font-bold"> #Developers</span>
+              <span className="font-bold text-green-600"> #Developers</span>
             </h1>
-            <h1 className="mt-[6vw] max-sm:text-xs sm:text-[1.2vw] text-white cursor-pointer transition-all duration-300 hover:text-white/50">
+            <h1 className="mt-[6vw] max-sm:text-xs sm:text-[1.6vw] dark:text-white text-blue-500/70 font-bold cursor-pointer transition-all duration-300 hover:text-blue-500">
               &gt; Become a Member
             </h1>
           </div>
-          <div className="w-[60%] bg-red-">
+          <div className="w-[60%] ">
             <motion.div
               initial={{
                 translateX: "100px",
@@ -46,17 +46,17 @@ export default function JoinCommunityv2() {
                 src={"/Svg/Event3.svg"}
                 objectFit="contain"
                 layout="fill"
-                className="self-start left-0 absolute -z-10"
+                className="self-start  left-0 absolute -z-10"
                 alt=""
               />
             </motion.div>
           </div>
         </motion.div>
         <Image
-          src={"/Svg/GDSC-blue-bg.png"}
+          src={"/Assets/join-card.png"}
           objectFit="cover"
           layout="fill"
-          className="self-start left-0 absolute -z-20"
+          className="self-start  opacity-70  dark:invert left-0 absolute -z-20"
           alt=""
         />
       </section>

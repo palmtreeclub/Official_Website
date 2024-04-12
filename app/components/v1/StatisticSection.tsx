@@ -10,7 +10,7 @@ export default function StatisticSection() {
 
   return (
     <section
-      className={`flex flex-col relative justify-center bg-white dark:bg-slate-900 items-center w-full h-4/5 ${
+      className={`flex flex-col radialGradientYellow relative justify-center bg-white dark:bg-black items-center w-full h-4/5 ${
         theme === "dark" && "invert"
       }`}
     >
@@ -30,8 +30,8 @@ export default function StatisticSection() {
           total={650}
         />
         <CounterCard
-          hoverColor="hover:bg-blue-500"
-          bgColor="bg-blue-50"
+          hoverColor="hover:bg-orange-500"
+          bgColor="bg-orange-50"
           redirect="/our_team/volunteer"
           title="Volunteers"
           total={30}
@@ -51,9 +51,12 @@ export default function StatisticSection() {
           whileInView={{ translateY: "0px", opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="max-sm:text-2xl sm:pb-[2vw] max-sm:pb-5  md:text-[5vw] font-bold text-slate-500"
+          className="max-sm:text-2xl sm:pb-[2vw] flex justify-center items-center flex-col  max-sm:pb-5  md:text-[5vw] font-bold text-green-700"
         >
-          We are GDSC <br /> Silver Oak University
+          Palm Tree Club <br />{" "}
+          <span className=" md:text-[2vw] text-orange-600">
+            Silver Oak Collage Of Computer Application
+          </span>
         </motion.h1>
         <div className="flex  flex-wrap sm:gap-x-[15vw] max-sm:gap-5 gap-y-[3vw] w-4/5 justify-center items-center"></div>
       </div>

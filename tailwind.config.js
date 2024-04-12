@@ -8,12 +8,12 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gdsccode-logo": "url('/Assets/GDSC-CODE.png')",
+        "gdsccode-logo": "url('/Assets/ptc-landscape-lm.png')",
         "gdsc-footer-logo": "url('/Assets/GDSC_Silver_Oak University1.png')",
         "gdsc-footer-bw-logo":
           "url('/Assets/GDSC_Silver_Oak UniversityBW.png')",
-        "gdsc-sou-bw-logo": "url('/Assets/GDSC_SOU_BW.png')",
-        "gdsc-sou-logo": "url('/Assets/GDSC-CODE.png')",
+        "gdsc-sou-bw-logo": "url('/Assets/ptc-landscape-dm.png')",
+        "gdsc-sou-logo": "url('/Assets/ptc-landscape-lm.png')",
         "team-header": "url('/Assets/TEAM_HEADER_BG.png')",
         "join-team-bg": "url('/Svg/GDSC-blue-bg.svg)",
         wave: "url('/Assets/wave.png')",

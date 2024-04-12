@@ -40,10 +40,10 @@ export default function Footer() {
                       Contact Us
                     </h1>
                     <Link
-                      href={"mailto:gdsc@silveroakuni.ac.in"}
-                      className="flex  dark:text-white/60 hover:text-slate-500 justify-ceter items-center gap-[1vw]"
+                      href={"mailto:palmtreeclub.socca@silveroakuni.ac.in"}
+                      className="flex relative z-50 dark:text-white/60 hover:text-slate-500 justify-ceter items-center gap-[1vw]"
                     >
-                      <GrMail /> gdsc@silveroakuni.ac.in
+                      <GrMail /> palmtreeclub.socca@silveroakuni.ac.in
                     </Link>
                     <Link
                       href={"/about"}
@@ -110,8 +110,8 @@ export default function Footer() {
             ))}
           <div className="flex border-t-2 max-sm:text-md sm:text-[1.5vw] dark:border-t-white/10 border-t-slate-600/10 justify-center items-center text-center font-medium w-full dark:text-white text-slate-700 p-[1vw]">
             All rights reserved By &copy;{" "}
-            <span className="uppercase flex cursor-pointer justify-center items-center max-md:text-md font-google-sans font-bold text-transparent bgGradientAnim ">
-              GDSC SOU 2024
+            <span className="uppercase text-orange-600 flex cursor-pointer justify-center items-center max-md:text-md font-google-sans font-bold  dark:text-orange-600  ">
+              Palm Tree Club 2024
             </span>
           </div>
         </div>

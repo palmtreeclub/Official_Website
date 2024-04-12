@@ -280,9 +280,8 @@ const MemberForm: React.FC<MemberFormProps> = ({
             </label>
           ))}
         </div>
-        {(newMemberDetails.type === "gdsc_lead" ||
-          newMemberDetails.type === "core_team") &&
-          !isEditMode && (
+        {newMemberDetails.type === "lead" ||
+          (newMemberDetails.type === "facultyAdvisors" && !isEditMode && (
             <div className="flex justify-center items-center gap-5 pb-5">
               <div className="flex justify-center items-center w-1/2 gap-5">
                 <h1 className="max-sm:text-[1vw] max-sm:text-xl font-semibold text-red-500">
@@ -323,7 +322,7 @@ const MemberForm: React.FC<MemberFormProps> = ({
                 />
               </div>
             </div>
-          )}
+          ))}
         <div className="flex w-full gap-5">
           <button
             onClick={() => removeAllCurrentDetails()}

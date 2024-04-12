@@ -17,7 +17,7 @@ import MemberForm from "./components/MemberForm";
 import MemberCard from "./components/MemberCard";
 
 export default function Page() {
-  const [selectedType, setSelectedType] = useState("gdsc_lead"); // Default type
+  const [selectedType, setSelectedType] = useState("lead"); // Default type
   const firebase: any = useFirebase();
   const imgRef: any = useRef();
   const [isOptions, setIsOptions] = useState(false);
@@ -29,6 +29,7 @@ export default function Page() {
   const [selectedMemberColor, setSelectedMemberColor] = useState<any>(null);
   const [volunteers, setVolunteers] = useState([]);
   const [gdscLeads, setGdscLeads] = useState([]);
+  const [facultyAdvisors, setfacultyAdvisors] = useState([]);
   const [alumni, setAlumni] = useState([]);
   const [coreTeam, setCoreTeam] = useState([]);
   const [showMembers, setShowMembers] = useState([]);
@@ -54,8 +55,11 @@ export default function Page() {
       const volunteerMembers = firebase.members.filter(
         (member: any) => member.type === "volunteer"
       );
+      const facultyAdvisors = firebase.members.filter(
+        (member: any) => member.type === "facultyAdvisors"
+      );
       const gdscLeadMembers = firebase.members.filter(
-        (member: any) => member.type === "gdsc_lead"
+        (member: any) => member.type === "lead"
       );
       const alumniMembers = firebase.members.filter(
         (member: any) => member.type === "alumni"
@@ -67,8 +71,11 @@ export default function Page() {
         case "volunteer":
           setShowMembers(volunteerMembers);
           break;
-        case "gdsc_lead":
+        case "lead":
           setShowMembers(gdscLeadMembers);
+          break;
+        case "facultyAdvisors":
+          setShowMembers(facultyAdvisors);
           break;
         case "alumni":
           setShowMembers(alumniMembers);
@@ -115,9 +122,15 @@ export default function Page() {
   ];
   const memberTypes = [
     {
-      name: "GDSC Lead",
-      value: "gdsc_lead",
+      name: "Lead",
+      value: "lead",
       color: "bg-blue-600",
+      dbValue: "blue",
+    },
+    {
+      name: "Faculty Advisors",
+      value: "facultyAdvisors",
+      color: "bg-cyan-600",
       dbValue: "blue",
     },
     {
@@ -141,8 +154,6 @@ export default function Page() {
   ];
 
   const handleTypeChange = (newType: any) => {
-    console.log(newType, showMembers);
-
     setSelectedType(newType);
   };
 
@@ -256,6 +267,7 @@ export default function Page() {
         newMemberDetails,
         newMemberCradentials
       );
+      console.log(newMemberDetails);
       if (res.success) {
         toast.success("New Member Successfully Added!!!", {
           className: "sm:text-[1vw] max-sm:text-xl relative z-50",

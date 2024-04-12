@@ -7,7 +7,7 @@ import { FaGreaterThan } from "react-icons/fa6";
 export default function D3Section() {
   const router = useRouter();
   return (
-    <section className="flex justify-center bg-yellow-500 py-[5vw]  items-center w-full ">
+    <section className="flex justify-center bg-orange-600 py-[5vw]  items-center w-full ">
       <div className="flex w-4/5 h-max max-md:flex-col justify-center  items-center">
         <div className=" flex flex-col relative">
           <div className="max-sm:text-2xl flex text-[7vw] font-medium text-red-500">
@@ -59,7 +59,7 @@ export default function D3Section() {
             viewport={{ once: true }}
             onClick={() => router.push("/our_team/leads")}
             type="button"
-            className="text-white flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl relative self-end font-medium w-max  hover:text-red-500"
+            className="text-white flex justify-center items-center gap-5 py-10 sm:text-[2vw] transition-all duration-300 max-sm:text-2xl relative self-end font-medium w-max  hover:text-white/70"
           >
             <FaGreaterThan className="horiAnim" />
             Meet The Team

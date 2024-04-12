@@ -49,10 +49,10 @@ export default function Navbar() {
                 onClick={() => router.push("/")}
               />
             )}
-            <div className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[15vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[35vw] max-sm:h-[8vw]">
-              <h1 className="dark:text-white light:text-black text-[2vw] max-sm:text-xl">
-                GDSC SOU
-              </h1>
+            <div className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[20vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[35vw] max-sm:h-[8vw]">
+              {/* <h1 className="dark:text-white light:text-black text-[2vw] max-sm:text-xl">
+                Palm Tree Club
+              </h1> */}
             </div>
             {isLoggedIn && (
               <HiBars3BottomRight
@@ -146,7 +146,7 @@ export default function Navbar() {
         <div
           className={`${
             theme === "dark" && "invert"
-          } flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md justify-between sm:px-[2vw] sm:py-[1vw]`}
+          } flex max-sm:flex-col z-50 fixed top-0 w-full h-max dark:bg-slate-800/50 bg-slate-50/80 shadow-md backdrop-blur-md justify-between sm:px-[2vw] sm:py-[.5vw]`}
         >
           <div className="logo cursor-pointer h-full max-sm:py-5 px-5 justify-between text-3xl items-center flex">
             <div
@@ -155,62 +155,57 @@ export default function Navbar() {
                 e.stopPropagation();
                 router.push("/");
               }}
-              className="logo  bg-gdsc-sou-logo bg-contain bg-no-repeat  sm:w-[14vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[3vw] max-sm:w-[35vw] max-sm:h-[8vw]"
-            >
-              {" "}
-              <h1 className="dark:invert text-black text-[2vw] max-sm:text-xl">
-                GDSC SOU
-              </h1>
-            </div>
+              className="logo  bg-gdsc-sou-logo dark:bg-gdsc-sou-bw-logo bg-contain bg-no-repeat  sm:w-[20vw] font-google-sans flex items-center  justify-end  text-right max-sm:dark:w-[55vw]  sm:h-[5vw] max-sm:w-[35vw] max-sm:h-[8vw]"
+            ></div>
             <HiBars3BottomRight
               onClick={(e) => toggleMobileMenu(e)}
               className="sm:hidden dark:text-white"
             />
           </div>
           <div
-            className={`link relative transition-all duration-300 overflow-hidden z-40 max-sm:px-5 max-sm:backdrop-blur-xl max-sm:bg-slate-50 dark:max-sm:bg-slate-800 dark:text-white/50 flex max-sm:flex-col max-sm:text-md sm:text-[1.4vw] sm:font-semibold gap-[1.5vw] text-slate-600 ${
+            className={`link  relative transition-all duration-300 overflow-hidden z-40 max-sm:px-5 max-sm:backdrop-blur-xl max-sm:bg-slate-50 dark:max-sm:bg-slate-800 dark:text-white/50 justify-center items-center flex max-sm:flex-col max-sm:text-md sm:text-[1.4vw] sm:font-semibold gap-[1.5vw] text-slate-600 ${
               isMobileMenuOpen ? "h-max max-sm:py-5" : "max-sm:h-0"
             }`}
           >
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="hover:text-red-600"
+              className="hover:text-orange-600"
               href={"/"}
             >
               Home
             </Link>
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="hover:text-blue-600"
+              className="hover:text-orange-600"
               href={"/events"}
             >
               Events
             </Link>
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="hover:text-green-600"
+              className="hover:text-orange-600"
               href={"/our_team/leads"}
             >
               Our Teams
             </Link>
             <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="hover:text-pink-600"
+              className="hover:text-orange-600"
               href={"/our_team/alumni"}
             >
               Alumni
             </Link>
 
-            <Link
+            {/* <Link
               onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="hover:text-yellow-600"
+              className="hover:text-orange-600"
               href={"/contact_us"}
             >
               Contact Us
-            </Link>
+            </Link> */}
             <div
               onClick={() => router.push("/login")}
-              className="flex transition-all duration-300 sm:text-white max-sm:text-blue-600 cursor-pointer sm:bg-blue-600 h-max py-[.3vw] sm:px-[1vw] rounded-full sm:hover:shadow-[0_5px_10px_rgba(255,0,10,.4)] max-sm:text-md sm:text-[1.2vw]"
+              className="flex transition-all duration-300 sm:text-white max-sm:text-orange-600 cursor-pointer sm:bg-orange-600 h-max py-[.3vw] sm:px-[1vw] rounded-full sm:hover:shadow-[0_5px_10px_rgba(255,0,10,.4)] max-sm:text-md sm:text-[1.2vw]"
             >
               Team Login
             </div>
